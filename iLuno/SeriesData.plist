@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>unidade</key>
+		<string>Botafogo1</string>
+		<key>series</key>
+		<array>
+			<string>Extensivo</string>
+		</array>
+		<key>turmas</key>
+		<array>
+			<string>Manhã A</string>
+			<string>Manhã B</string>
+			<string>Tarde</string>
+			<string>Noite</string>
+		</array>
+	</dict>
+	<dict>
+		<key>unidade</key>
+		<string>Botafogo2</string>
+		<key>series</key>
+		<array>
+			<string>9º Ano</string>
+			<string>1ª Série</string>
+			<string>2ª Série</string>
+			<string>3ª Série</string>
+		</array>
+		<key>turmas</key>
+		<array>
+			<string>Abelha</string>
+			<string>Zangão</string>
+		</array>
+	</dict>
+	<dict>
+		<key>unidade</key>
+		<string>Barra</string>
+		<key>series</key>
+		<array>
+			<string>3ª Série</string>
+			<string>Extensivo</string>
+		</array>
+		<key>turmas</key>
+		<array>
+			<string>Manhã</string>
+			<string>Tarde/Noite</string>
+		</array>
+	</dict>
+</array>
+</plist>
