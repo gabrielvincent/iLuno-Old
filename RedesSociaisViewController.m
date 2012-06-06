@@ -26,20 +26,25 @@
 
 - (void) goToSocialNetwork:(UIPanGestureRecognizer *) sender {
 	CGPoint tapPoint = [sender locationInView:self.view];
+	CGPoint velocity = [sender velocityInView:self.view];
 	float y = tapPoint.y;
 	
-	[self.view removeGestureRecognizer:pan];
+	if (velocity.x < 0.0) {
+		[self.view removeGestureRecognizer:pan];
+		
+		if (y <= 177) {
+			TwitterViewController *twitter = [[TwitterViewController alloc] init];
+			twitter.title = @"Twitter";
+			[self.navigationController pushViewController:twitter animated:YES];
+		}
+		else {
+			TwitterViewController *twitter = [[TwitterViewController alloc] init];
+			twitter.title = @"Formspring";
+			[self.navigationController pushViewController:twitter animated:YES];
+		}
+	}
 	
-	if (y <= 177) {
-		TwitterViewController *twitter = [[TwitterViewController alloc] init];
-		twitter.title = @"Twitter";
-		[self.navigationController pushViewController:twitter animated:YES];
-	}
-	else {
-		TwitterViewController *twitter = [[TwitterViewController alloc] init];
-		twitter.title = @"Formspring";
-		[self.navigationController pushViewController:twitter animated:YES];
-	}
+	
 }
 
 - (void)viewDidLoad
