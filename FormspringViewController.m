@@ -29,6 +29,9 @@
 	messageView.frame = CGRectMake(0, 400, 320, 1);
 	messageLabel.frame = CGRectMake(10, 18, 320, 1);
 	
+	if (isLoadingMore) messageLabel.text = @"Carregando mais pergintas...";
+	else messageLabel.text = @"Carregando perguntas...";
+	
 	if (spinner == nil) {
 		spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
 		spinner.center = messageLabel.center;
@@ -62,7 +65,7 @@
 	[UIView commitAnimations];
 	
 	[self.tableView reloadData];
-	[self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y+80) animated:YES];
+	if (isLoadingMore) [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y+80) animated:YES];
 	[messageView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:0.4];
 	[spinner performSelector:@selector(stopAnimating) withObject:nil afterDelay:0.4];
 }
@@ -83,6 +86,20 @@
 - (void) callLoadMoreQuestions {
 	queue = [NSOperationQueue new];
 	NSInvocationOperation *loadOperation = [[NSInvocationOperation alloc] initWithTarget:self  selector:@selector(loadMoreQuestions)  object:nil];
+	[queue addOperation:loadOperation];
+}
+
+- (void) loadQuestions {
+	questionsArray = [[NSMutableArray alloc] initWithContentsOfURL:[NSURL URLWithString:@"http://iluno.com.br/plistgenerator/get-formspring-xml.php?url=deaaz.xml"]];
+	idToKeepListing = [[questionsArray lastObject] objectForKey:@"id"];
+	[self performSelectorOnMainThread:@selector(loadDidFinish) withObject:nil waitUntilDone:YES];
+}
+
+- (void) callLoadQuestions {
+	[self showMessageLoadingMoreQuestions];
+	
+	queue = [NSOperationQueue new];
+	NSInvocationOperation *loadOperation = [[NSInvocationOperation alloc] initWithTarget:self  selector:@selector(loadQuestions)  object:nil];
 	[queue addOperation:loadOperation];
 }
 
@@ -118,13 +135,11 @@
 	messageLabel.shadowColor = [UIColor blackColor];
 	messageLabel.shadowOffset = CGSizeMake(0, -1);
 	messageLabel.textAlignment = UITextAlignmentCenter;
-	messageLabel.text = @"Carregando próximas perguntas...";
 	[messageView addSubview:messageLabel];
 	
 	isLoadingMore = NO;
 	
-	questionsArray = [[NSMutableArray alloc] initWithContentsOfURL:[NSURL URLWithString:@"http://iluno.com.br/plistgenerator/get-formspring-xml.php?url=deaaz.xml"]];
-	idToKeepListing = [[questionsArray lastObject] objectForKey:@"id"];
+	[self callLoadQuestions];
 	
 	nextOffsetToLoadMoreQuestions = 2326;
 	
