@@ -44,6 +44,7 @@
 	[titleLabel sizeToFit];
 
     self.navigationItem.title = title;
+	self.navigationController.navigationBar.tintColor = UIColorFromRGB(0xFDDD5B);
 }
 
 - (void)viewDidUnload

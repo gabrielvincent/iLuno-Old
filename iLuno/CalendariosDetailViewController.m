@@ -262,7 +262,7 @@
 		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); 
 		arrayEventos = [[NSMutableArray alloc] initWithContentsOfURL:[NSURL URLWithString:urlString]];
 		
-		[arrayEventos writeToFile:[[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist", fileName]] atomically:YES];\
+		[arrayEventos writeToFile:[[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist", fileName]] atomically:YES];
 		[self setUpdateDate];
 		
 		[self performSelectorOnMainThread:@selector(stopSpinner) withObject:nil waitUntilDone:NO];

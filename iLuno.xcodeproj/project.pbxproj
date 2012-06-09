@@ -19,6 +19,16 @@
 		3D1AC3DA156B278700B9AF49 /* Dakota.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D1AC3D9156B278700B9AF49 /* Dakota.ttf */; };
 		3D1AC3DE156B2C2100B9AF49 /* downloading-post-it.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D1AC3DC156B2C2100B9AF49 /* downloading-post-it.png */; };
 		3D1AC3DF156B2C2100B9AF49 /* downloading-post-it@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D1AC3DD156B2C2100B9AF49 /* downloading-post-it@2x.png */; };
+		3D1E8E601582C82700DFF380 /* FormspringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1E8E5F1582C82700DFF380 /* FormspringViewController.m */; };
+		3D1E8E6B1582D09A00DFF380 /* FormspringQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1E8E691582D09A00DFF380 /* FormspringQuestionViewController.m */; };
+		3D1E8E6C1582D09A00DFF380 /* FormspringQuestionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D1E8E6A1582D09A00DFF380 /* FormspringQuestionViewController.xib */; };
+		3D1E8EEF1583110800DFF380 /* BalaoRabin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D1E8EED1583110800DFF380 /* BalaoRabin@2x.png */; };
+		3D1E8EF01583110800DFF380 /* BalaoRabin.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D1E8EEE1583110800DFF380 /* BalaoRabin.png */; };
+		3D1E8EF31583119300DFF380 /* Rabin.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D1E8EF11583119300DFF380 /* Rabin.png */; };
+		3D1E8EF41583119300DFF380 /* Rabin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D1E8EF21583119300DFF380 /* Rabin@2x.png */; };
+		3D1E8EFB1583179200DFF380 /* ThumbsUp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D1E8EF91583179200DFF380 /* ThumbsUp@2x.png */; };
+		3D1E8EFC1583179200DFF380 /* ThumbsUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D1E8EFA1583179200DFF380 /* ThumbsUp.png */; };
+		3D1E8EFE1583C33F00DFF380 /* FormspringViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D1E8EFD1583C33F00DFF380 /* FormspringViewController.xib */; };
 		3D3076C01560339600F668A3 /* TurmaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3076BF1560339600F668A3 /* TurmaViewController.m */; };
 		3D3076C7156048A400F668A3 /* MostraHorariosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3076C6156048A400F668A3 /* MostraHorariosViewController.m */; };
 		3D30EC6A153A5FF400FF3004 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D30EC68153A5FF400FF3004 /* logo.png */; };
@@ -101,6 +111,18 @@
 		3D1AC3D9156B278700B9AF49 /* Dakota.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Dakota.ttf; sourceTree = "<group>"; };
 		3D1AC3DC156B2C2100B9AF49 /* downloading-post-it.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "downloading-post-it.png"; sourceTree = "<group>"; };
 		3D1AC3DD156B2C2100B9AF49 /* downloading-post-it@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "downloading-post-it@2x.png"; sourceTree = "<group>"; };
+		3D1E8E5E1582C82700DFF380 /* FormspringViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormspringViewController.h; sourceTree = "<group>"; };
+		3D1E8E5F1582C82700DFF380 /* FormspringViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormspringViewController.m; sourceTree = "<group>"; };
+		3D1E8E681582D09A00DFF380 /* FormspringQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormspringQuestionViewController.h; sourceTree = "<group>"; };
+		3D1E8E691582D09A00DFF380 /* FormspringQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormspringQuestionViewController.m; sourceTree = "<group>"; };
+		3D1E8E6A1582D09A00DFF380 /* FormspringQuestionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormspringQuestionViewController.xib; sourceTree = "<group>"; };
+		3D1E8EED1583110800DFF380 /* BalaoRabin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BalaoRabin@2x.png"; sourceTree = "<group>"; };
+		3D1E8EEE1583110800DFF380 /* BalaoRabin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BalaoRabin.png; sourceTree = "<group>"; };
+		3D1E8EF11583119300DFF380 /* Rabin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Rabin.png; sourceTree = "<group>"; };
+		3D1E8EF21583119300DFF380 /* Rabin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Rabin@2x.png"; sourceTree = "<group>"; };
+		3D1E8EF91583179200DFF380 /* ThumbsUp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ThumbsUp@2x.png"; sourceTree = "<group>"; };
+		3D1E8EFA1583179200DFF380 /* ThumbsUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ThumbsUp.png; sourceTree = "<group>"; };
+		3D1E8EFD1583C33F00DFF380 /* FormspringViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormspringViewController.xib; sourceTree = "<group>"; };
 		3D3076BE1560339600F668A3 /* TurmaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TurmaViewController.h; sourceTree = "<group>"; };
 		3D3076BF1560339600F668A3 /* TurmaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TurmaViewController.m; sourceTree = "<group>"; };
 		3D3076C5156048A400F668A3 /* MostraHorariosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MostraHorariosViewController.h; sourceTree = "<group>"; };
@@ -260,6 +282,12 @@
 				3D81287E15322BA8003DAE2B /* RedesSociaisViewController.xib */,
 				3D3245A715323ED600C822A2 /* TwitterViewController.h */,
 				3D3245A815323ED600C822A2 /* TwitterViewController.m */,
+				3D1E8E5E1582C82700DFF380 /* FormspringViewController.h */,
+				3D1E8E5F1582C82700DFF380 /* FormspringViewController.m */,
+				3D1E8EFD1583C33F00DFF380 /* FormspringViewController.xib */,
+				3D1E8E681582D09A00DFF380 /* FormspringQuestionViewController.h */,
+				3D1E8E691582D09A00DFF380 /* FormspringQuestionViewController.m */,
+				3D1E8E6A1582D09A00DFF380 /* FormspringQuestionViewController.xib */,
 			);
 			name = "Redes Sociais";
 			path = ..;
@@ -351,6 +379,12 @@
 		3DCABE2D152ECCE5007BF5BF /* Ibagens */ = {
 			isa = PBXGroup;
 			children = (
+				3D1E8EF91583179200DFF380 /* ThumbsUp@2x.png */,
+				3D1E8EFA1583179200DFF380 /* ThumbsUp.png */,
+				3D1E8EF11583119300DFF380 /* Rabin.png */,
+				3D1E8EF21583119300DFF380 /* Rabin@2x.png */,
+				3D1E8EED1583110800DFF380 /* BalaoRabin@2x.png */,
+				3D1E8EEE1583110800DFF380 /* BalaoRabin.png */,
 				3D10F80C156FAB6400ED8F09 /* underline.png */,
 				3D10F80D156FAB6400ED8F09 /* underline@2x.png */,
 				3D1AC3DC156B2C2100B9AF49 /* downloading-post-it.png */,
@@ -514,6 +548,14 @@
 				3D1AC3DF156B2C2100B9AF49 /* downloading-post-it@2x.png in Resources */,
 				3D10F80E156FAB6400ED8F09 /* underline.png in Resources */,
 				3D10F80F156FAB6400ED8F09 /* underline@2x.png in Resources */,
+				3D1E8E6C1582D09A00DFF380 /* FormspringQuestionViewController.xib in Resources */,
+				3D1E8EEF1583110800DFF380 /* BalaoRabin@2x.png in Resources */,
+				3D1E8EF01583110800DFF380 /* BalaoRabin.png in Resources */,
+				3D1E8EF31583119300DFF380 /* Rabin.png in Resources */,
+				3D1E8EF41583119300DFF380 /* Rabin@2x.png in Resources */,
+				3D1E8EFB1583179200DFF380 /* ThumbsUp@2x.png in Resources */,
+				3D1E8EFC1583179200DFF380 /* ThumbsUp.png in Resources */,
+				3D1E8EFE1583C33F00DFF380 /* FormspringViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,6 +585,8 @@
 				3D3076C7156048A400F668A3 /* MostraHorariosViewController.m in Sources */,
 				3DDF0D3C1565128B00FC33E8 /* MateriaViewController.m in Sources */,
 				3DF5417A15653BE8007ABA01 /* GVImageDownloader.m in Sources */,
+				3D1E8E601582C82700DFF380 /* FormspringViewController.m in Sources */,
+				3D1E8E6B1582D09A00DFF380 /* FormspringQuestionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

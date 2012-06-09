@@ -13,6 +13,7 @@
 	IBOutlet UIButton *formspringButton;
 	
 	UIPanGestureRecognizer *pan;
+	UITapGestureRecognizer *tap;
 }
 
 @end

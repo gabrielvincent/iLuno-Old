@@ -8,6 +8,7 @@
 
 #import "RedesSociaisViewController.h"
 #import "TwitterViewController.h"
+#import "FormspringViewController.h"
 
 @interface RedesSociaisViewController ()
 
@@ -24,6 +25,26 @@
     return self;
 }
 
+
+- (void) goToSocialNetworkByTapping:(UIPanGestureRecognizer *) sender {
+	CGPoint tapPoint = [sender locationInView:self.view];
+	float y = tapPoint.y;
+	
+	if (y <= 177) {
+		TwitterViewController *twitter = [[TwitterViewController alloc] init];
+		twitter.title = @"Twitter";
+		[self.navigationController pushViewController:twitter animated:YES];
+	}
+	else {
+		FormspringViewController *fomrspring = [[FormspringViewController alloc] init];
+		fomrspring.title = @"Formspring";
+		[self.navigationController pushViewController:fomrspring animated:YES];
+	}
+	
+	
+}
+
+
 - (void) goToSocialNetwork:(UIPanGestureRecognizer *) sender {
 	CGPoint tapPoint = [sender locationInView:self.view];
 	CGPoint velocity = [sender velocityInView:self.view];
@@ -38,9 +59,9 @@
 			[self.navigationController pushViewController:twitter animated:YES];
 		}
 		else {
-			TwitterViewController *twitter = [[TwitterViewController alloc] init];
-			twitter.title = @"Formspring";
-			[self.navigationController pushViewController:twitter animated:YES];
+			FormspringViewController *fomrspring = [[FormspringViewController alloc] init];
+			fomrspring.title = @"Formspring";
+			[self.navigationController pushViewController:fomrspring animated:YES];
 		}
 	}
 	
@@ -67,6 +88,7 @@
 	
 	self.view.frame = CGRectMake(0, 0, 320, 400);
 	self.navigationItem.title = @"Redes Sociais";
+	self.navigationController.navigationBar.tintColor = UIColorFromRGB(0xFDDD5B);
 	self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkest-background-full.png"]];
 }
 
@@ -77,6 +99,8 @@
 	
 	pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(goToSocialNetwork:)];
 	[self.view addGestureRecognizer:pan];
+	tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToSocialNetworkByTapping:)];
+	[self.view addGestureRecognizer:tap];
 }
 
 - (void)viewDidUnload
