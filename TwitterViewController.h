@@ -10,6 +10,15 @@
 
 @interface TwitterViewController : UITableViewController {
 	NSString *title;
+	NSOperationQueue *queue;
+	NSMutableArray *tweetsArray;
+	NSString *idToKeepListing;
+	UIView *messageView;
+	UILabel *messageLabel;
+	BOOL isLoadingMore;
+	UIActivityIndicatorView *spinner;
+	UIColor *bgColor;
+	UITextView *tweetTextView;
 }
 @property (nonatomic, retain) NSString *title;
 

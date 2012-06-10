@@ -29,7 +29,7 @@
 	messageView.frame = CGRectMake(0, 400, 320, 1);
 	messageLabel.frame = CGRectMake(10, 18, 320, 1);
 	
-	if (isLoadingMore) messageLabel.text = @"Carregando mais pergintas...";
+	if (isLoadingMore) messageLabel.text = @"Carregando mais perguntas...";
 	else messageLabel.text = @"Carregando perguntas...";
 	
 	if (spinner == nil) {
@@ -75,7 +75,7 @@
 	
 	[self performSelectorOnMainThread:@selector(showMessageLoadingMoreQuestions) withObject:nil waitUntilDone:NO];
 	
-	NSArray *tempArray = [[NSArray alloc] initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://iluno.com.br/plistgenerator/get-formspring-xml.php?url=deaaz.xml?max_id=%@", idToKeepListing]]];
+	NSArray *tempArray = [[NSArray alloc] initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://iluno.com.br/plistgenerator/get-formspring-xml.php?id=%@", idToKeepListing]]];
 	
 	[questionsArray addObjectsFromArray:tempArray];
 	idToKeepListing = [[questionsArray lastObject] objectForKey:@"id"];
@@ -90,7 +90,7 @@
 }
 
 - (void) loadQuestions {
-	questionsArray = [[NSMutableArray alloc] initWithContentsOfURL:[NSURL URLWithString:@"http://iluno.com.br/plistgenerator/get-formspring-xml.php?url=deaaz.xml"]];
+	questionsArray = [[NSMutableArray alloc] initWithContentsOfURL:[NSURL URLWithString:@"http://iluno.com.br/plistgenerator/get-formspring-xml.php"]];
 	idToKeepListing = [[questionsArray lastObject] objectForKey:@"id"];
 	[self performSelectorOnMainThread:@selector(loadDidFinish) withObject:nil waitUntilDone:YES];
 }
@@ -140,8 +140,6 @@
 	isLoadingMore = NO;
 	
 	[self callLoadQuestions];
-	
-	nextOffsetToLoadMoreQuestions = 2326;
 	
 	
 }

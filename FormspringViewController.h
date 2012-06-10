@@ -15,7 +15,6 @@
 	NSOperationQueue *queue;
 	UIColor *bgColor;
 	BOOL isLoadingMore;
-	float nextOffsetToLoadMoreQuestions;
 	UIView *messageView;
 	UILabel *messageLabel;
 	UIActivityIndicatorView *spinner;
