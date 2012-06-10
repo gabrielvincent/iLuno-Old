@@ -232,15 +232,18 @@
 		[textView removeFromSuperview];
 	}
 	
-	tweetTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, 10, 300, cell.frame.size.height+20)];
+	tweetTextView = [[UITextView alloc] init];
+	[cell addSubview:tweetTextView];
 	tweetTextView.font = [UIFont fontWithName:@"Helvetica" size:18];
 	tweetTextView.text = [[tweetsArray objectAtIndex:indexPath.row] objectForKey:@"tweet"];
+	tweetTextView.frame = CGRectMake(10, 10, 300, tweetTextView.contentSize.height+40);
 	tweetTextView.dataDetectorTypes = UIDataDetectorTypeLink;
 	tweetTextView.backgroundColor = [UIColor clearColor];
 	tweetTextView.textColor = [UIColor whiteColor];
 	tweetTextView.editable = NO;
 	tweetTextView.scrollEnabled = NO;
-	[cell addSubview:tweetTextView];
+	
+	cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	
 	if (cell.subviews.count < 2) {
 		UIImageView *separatorView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separator.png"]];
