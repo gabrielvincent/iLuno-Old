@@ -7,6 +7,7 @@
 //
 
 #import "TwitterViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface TwitterViewController ()
 
@@ -277,9 +278,12 @@
 	tweetTextView.frame = CGRectMake(10, 10, 300, tweetTextView.contentSize.height+40);
 	tweetTextView.dataDetectorTypes = UIDataDetectorTypeLink;
 	tweetTextView.backgroundColor = [UIColor clearColor];
-	tweetTextView.textColor = [UIColor whiteColor];
+	tweetTextView.textColor = UIColorFromRGB(0xFDDD5B);
 	tweetTextView.editable = NO;
 	tweetTextView.scrollEnabled = NO;
+	tweetTextView.layer.shadowColor = [[UIColor blackColor] CGColor];
+	tweetTextView.layer.shadowOffset = CGSizeMake(0, -1);
+	tweetTextView.layer.shadowOpacity = 1.0;
 	
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	
