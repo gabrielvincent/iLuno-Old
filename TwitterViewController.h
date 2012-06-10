@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Reachability.h"
 
 @interface TwitterViewController : UITableViewController {
 	NSString *title;
@@ -19,7 +20,14 @@
 	UIActivityIndicatorView *spinner;
 	UIColor *bgColor;
 	UITextView *tweetTextView;
+	BOOL shouldLoadMoreOnInternetRecover;
+	
+	BOOL connected;
+	Reachability* internetReachable;
+	Reachability* hostReachable;
 }
 @property (nonatomic, retain) NSString *title;
+
+- (void) checkNetworkStatus:(NSNotification *)notice;
 
 @end

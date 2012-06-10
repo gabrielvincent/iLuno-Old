@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Reachability.h"
 
 @interface FormspringViewController : UITableViewController <NSXMLParserDelegate> {
 	
@@ -18,6 +19,13 @@
 	UIView *messageView;
 	UILabel *messageLabel;
 	UIActivityIndicatorView *spinner;
+	BOOL shouldLoadMoreOnInternetRecover;
+	
+	BOOL connected;
+	Reachability* internetReachable;
+	Reachability* hostReachable;
 }
+
+- (void) checkNetworkStatus:(NSNotification *)notice;
 
 @end

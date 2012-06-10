@@ -84,28 +84,44 @@
 
 
 - (void) callLoadMoreQuestions {
-	queue = [NSOperationQueue new];
-	NSInvocationOperation *loadOperation = [[NSInvocationOperation alloc] initWithTarget:self  selector:@selector(loadMoreQuestions)  object:nil];
-	[queue addOperation:loadOperation];
+	if (connected) {
+		queue = [NSOperationQueue new];
+		NSInvocationOperation *loadOperation = [[NSInvocationOperation alloc] initWithTarget:self  selector:@selector(loadMoreQuestions)  object:nil];
+		[queue addOperation:loadOperation];
+	}
+	else {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"As perguntas não podem ser carregadas" message:@"Verifique sua conexão com a internet e tente novamente." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		[alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:NO];
+		shouldLoadMoreOnInternetRecover = YES;
+	}
 }
 
 - (void) loadQuestions {
+	
 	questionsArray = [[NSMutableArray alloc] initWithContentsOfURL:[NSURL URLWithString:@"http://iluno.com.br/plistgenerator/get-formspring-xml.php"]];
 	idToKeepListing = [[questionsArray lastObject] objectForKey:@"id"];
 	[self performSelectorOnMainThread:@selector(loadDidFinish) withObject:nil waitUntilDone:YES];
 }
 
 - (void) callLoadQuestions {
-	[self showMessageLoadingMoreQuestions];
 	
-	queue = [NSOperationQueue new];
-	NSInvocationOperation *loadOperation = [[NSInvocationOperation alloc] initWithTarget:self  selector:@selector(loadQuestions)  object:nil];
-	[queue addOperation:loadOperation];
+	if (connected) {
+		[self showMessageLoadingMoreQuestions];
+		
+		queue = [NSOperationQueue new];
+		NSInvocationOperation *loadOperation = [[NSInvocationOperation alloc] initWithTarget:self  selector:@selector(loadQuestions)  object:nil];
+		[queue addOperation:loadOperation];
+	}
+	else {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"As perguntas não podem ser carregadas" message:@"Verifique sua conexão com a internet e tente novamente." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		[alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:NO];
+	}
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	
 	
 	if ([self.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
 		[self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navbar.png"] forBarMetrics:UIBarMetricsDefault];
@@ -138,10 +154,27 @@
 	[messageView addSubview:messageLabel];
 	
 	isLoadingMore = NO;
+	shouldLoadMoreOnInternetRecover = NO;
 	
-	[self callLoadQuestions];
+	// Atrasa a chamada do carregamento das perguntas para que dê tempo de verificar a conexão com a internet
+	[self performSelector:@selector(callLoadQuestions) withObject:nil afterDelay:0.2];
 	
 	
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+	
+	// check for internet connection
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];
+	
+    internetReachable = [Reachability reachabilityForInternetConnection];
+    [internetReachable startNotifier];
+	
+    // check if a pathway to a random host exists
+    hostReachable = [Reachability reachabilityWithHostName: @"www.apple.com"];
+    [hostReachable startNotifier];
+	
+	[super viewWillAppear:animated];
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
@@ -160,6 +193,23 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+-(void) checkNetworkStatus:(NSNotification *)notice
+{
+    // called after network status changes
+    NetworkStatus internetStatus = [internetReachable currentReachabilityStatus];
+	
+	if (internetStatus == NotReachable) {
+		NSLog(@"Internet is down.");
+		connected = NO;
+	}
+	else {
+		NSLog(@"Internet is up.");
+		connected = YES;
+		if (!isLoadingMore) [self callLoadQuestions];
+		if (shouldLoadMoreOnInternetRecover) [self callLoadMoreQuestions];
+	}
 }
 
 #pragma mark - Table view data source
@@ -306,9 +356,6 @@
 	question.answer = [[questionsArray objectAtIndex:indexPath.row] objectForKey:@"answer"];
 	
 	[self.navigationController pushViewController:question animated:YES];
-
-	
-	//[self loadMoreQuestions];
 }
 
 @end

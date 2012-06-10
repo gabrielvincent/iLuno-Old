@@ -7,7 +7,6 @@
 //
 
 #import "TwitterViewController.h"
-#import "TweetViewController.h"
 
 @interface TwitterViewController ()
 
@@ -53,10 +52,16 @@
 
 
 - (void) callLoadMoreTweets {
-	[self showMessageLoadingMoreTweets];
-	queue = [NSOperationQueue new];
-	NSInvocationOperation *loadOperation = [[NSInvocationOperation alloc] initWithTarget:self  selector:@selector(loadMoreTweets)  object:nil];
-	[queue addOperation:loadOperation];
+	if (connected) {
+		[self showMessageLoadingMoreTweets];
+		queue = [NSOperationQueue new];
+		NSInvocationOperation *loadOperation = [[NSInvocationOperation alloc] initWithTarget:self  selector:@selector(loadMoreTweets)  object:nil];
+		[queue addOperation:loadOperation];
+	}
+	else {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Os tweets não podem ser carregados" message:@"Verifique sua conexão com a internet e tente novamente." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		[alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:NO];
+	}
 }
 
 - (void) showMessageLoadingMoreTweets {
@@ -96,11 +101,17 @@
 }
 
 - (void) callLoadTweets {
-	[self showMessageLoadingMoreTweets];
-	
-	queue = [NSOperationQueue new];
-	NSInvocationOperation *loadOperation = [[NSInvocationOperation alloc] initWithTarget:self  selector:@selector(loadTweets)  object:nil];
-	[queue addOperation:loadOperation];
+	if (connected) {
+		[self showMessageLoadingMoreTweets];
+		
+		queue = [NSOperationQueue new];
+		NSInvocationOperation *loadOperation = [[NSInvocationOperation alloc] initWithTarget:self  selector:@selector(loadTweets)  object:nil];
+		[queue addOperation:loadOperation];
+	}
+	else {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Os tweets não podem ser carregados" message:@"Verifique sua conexão com a internet e tente novamente." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		[alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:NO];
+	}
 }
 
 - (void)viewDidLoad
@@ -138,8 +149,25 @@
 	[messageView addSubview:messageLabel];
 	
 	isLoadingMore = NO;
+	shouldLoadMoreOnInternetRecover = NO;
 	
-	[self callLoadTweets];
+	// Atrasa a chamada do carregamento dos tweets para que dê tempo de verificar a conexão com a internet
+	[self performSelector:@selector(callLoadTweets) withObject:nil afterDelay:0.2];
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+	
+	// check for internet connection
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];
+	
+    internetReachable = [Reachability reachabilityForInternetConnection];
+    [internetReachable startNotifier];
+	
+    // check if a pathway to a random host exists
+    hostReachable = [Reachability reachabilityWithHostName: @"www.apple.com"];
+    [hostReachable startNotifier];
+	
+	[super viewWillAppear:animated];
 }
 
 - (void)viewDidUnload
@@ -152,6 +180,23 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+-(void) checkNetworkStatus:(NSNotification *)notice
+{
+    // called after network status changes
+    NetworkStatus internetStatus = [internetReachable currentReachabilityStatus];
+	
+	if (internetStatus == NotReachable) {
+		NSLog(@"Internet is down.");
+		connected = NO;
+	}
+	else {
+		NSLog(@"Internet is up.");
+		connected = YES;
+		if (!isLoadingMore) [self callLoadTweets];
+		if (shouldLoadMoreOnInternetRecover) [self callLoadMoreTweets];
+	}
 }
 
 #pragma mark - Table view data source
@@ -220,13 +265,6 @@
 	if (realRow == [tweetsArray count]-1) {
 		[self callLoadMoreTweets];
 	}
-	
-//	cell.textLabel.text = [[tweetsArray objectAtIndex:indexPath.row] objectForKey:@"tweet"];
-//	cell.textLabel.numberOfLines = 0;
-//	cell.textLabel.backgroundColor = [UIColor clearColor];
-//	cell.textLabel.textColor = [UIColor whiteColor];
-//	cell.textLabel.shadowColor = [UIColor blackColor];
-//	cell.textLabel.shadowOffset = CGSizeMake(0, -1);
 	
 	for (UITextView *textView in cell.subviews) {
 		[textView removeFromSuperview];
@@ -297,14 +335,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	TweetViewController *tweet = [[TweetViewController alloc] initWithNibName:@"TweetViewController" bundle:nil];
-    
-	tweet.tweet = [[tweetsArray objectAtIndex:indexPath.row] objectForKey:@"tweet"];
-	tweet.link = [[tweetsArray objectAtIndex:indexPath.row] objectForKey:@"link"];
-	tweet.date = [[tweetsArray objectAtIndex:indexPath.row] objectForKey:@"date"];
-	
-	[self.navigationController pushViewController:tweet animated:YES];
-
 }
 
 @end

@@ -86,8 +86,6 @@
 		3DCABE35152ECED0007BF5BF /* darkest-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DCABE33152ECED0007BF5BF /* darkest-background@2x.png */; };
 		3DDF0D3C1565128B00FC33E8 /* MateriaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDF0D3A1565128B00FC33E8 /* MateriaViewController.m */; };
 		3DDF0D3D1565128B00FC33E8 /* MateriaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DDF0D3B1565128B00FC33E8 /* MateriaViewController.xib */; };
-		3DE6314D158435B000022759 /* TweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE6314B158435B000022759 /* TweetViewController.m */; };
-		3DE6314E158435B000022759 /* TweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DE6314C158435B000022759 /* TweetViewController.xib */; };
 		3DF5416A156527A5007ABA01 /* MateriaBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DF54168156527A5007ABA01 /* MateriaBackground.png */; };
 		3DF5416B156527A5007ABA01 /* MateriaBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DF54169156527A5007ABA01 /* MateriaBackground@2x.png */; };
 		3DF5416F15652F06007ABA01 /* WoodBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DF5416D15652F06007ABA01 /* WoodBackground.png */; };
@@ -199,9 +197,6 @@
 		3DDF0D391565128B00FC33E8 /* MateriaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MateriaViewController.h; sourceTree = "<group>"; };
 		3DDF0D3A1565128B00FC33E8 /* MateriaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MateriaViewController.m; sourceTree = "<group>"; };
 		3DDF0D3B1565128B00FC33E8 /* MateriaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MateriaViewController.xib; sourceTree = "<group>"; };
-		3DE6314A158435B000022759 /* TweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetViewController.h; sourceTree = "<group>"; };
-		3DE6314B158435B000022759 /* TweetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetViewController.m; sourceTree = "<group>"; };
-		3DE6314C158435B000022759 /* TweetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetViewController.xib; sourceTree = "<group>"; };
 		3DF54168156527A5007ABA01 /* MateriaBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MateriaBackground.png; sourceTree = "<group>"; };
 		3DF54169156527A5007ABA01 /* MateriaBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MateriaBackground@2x.png"; sourceTree = "<group>"; };
 		3DF5416D15652F06007ABA01 /* WoodBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WoodBackground.png; sourceTree = "<group>"; };
@@ -287,9 +282,6 @@
 				3D81287E15322BA8003DAE2B /* RedesSociaisViewController.xib */,
 				3D3245A715323ED600C822A2 /* TwitterViewController.h */,
 				3D3245A815323ED600C822A2 /* TwitterViewController.m */,
-				3DE6314A158435B000022759 /* TweetViewController.h */,
-				3DE6314B158435B000022759 /* TweetViewController.m */,
-				3DE6314C158435B000022759 /* TweetViewController.xib */,
 				3D1E8E5E1582C82700DFF380 /* FormspringViewController.h */,
 				3D1E8E5F1582C82700DFF380 /* FormspringViewController.m */,
 				3D1E8EFD1583C33F00DFF380 /* FormspringViewController.xib */,
@@ -564,7 +556,6 @@
 				3D1E8EFB1583179200DFF380 /* ThumbsUp@2x.png in Resources */,
 				3D1E8EFC1583179200DFF380 /* ThumbsUp.png in Resources */,
 				3D1E8EFE1583C33F00DFF380 /* FormspringViewController.xib in Resources */,
-				3DE6314E158435B000022759 /* TweetViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,7 +587,6 @@
 				3DF5417A15653BE8007ABA01 /* GVImageDownloader.m in Sources */,
 				3D1E8E601582C82700DFF380 /* FormspringViewController.m in Sources */,
 				3D1E8E6B1582D09A00DFF380 /* FormspringQuestionViewController.m in Sources */,
-				3DE6314D158435B000022759 /* TweetViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
