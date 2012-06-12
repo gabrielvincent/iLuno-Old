@@ -21,7 +21,6 @@
 - (void) addValue:(NSString *)value ForKey:(NSString *)key ForEntryAtIndex:(NSInteger)index ToDatabase: (NSString *) fileName;
 - (void) removeEntryAtIndex:(NSInteger) index FromDatabase:(NSString *) fileName;
 - (NSString *) valueOfKey:(NSString *) key ForEntryAtIndex:(NSInteger) index FromDatabase:(NSString *)fileName;
-- (NSArray *) valueOfKey:(NSString *) key ForAllEntriesFromDatabase:(NSString *)fileName;
 - (void) setValue:(NSString *) value ForKey:(NSString *) key ForEntryAtIndex:(NSInteger) index InDatabase:(NSString *) fileName;
 - (void) setValue:(NSString *)value ForKey:(NSString *)key ForAllEntriesInDatabase:(NSString *) fileName;
 - (NSInteger) countEntriesInDatabase:(NSString *) fileName;

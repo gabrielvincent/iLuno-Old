@@ -117,7 +117,7 @@
 		}
 		else {
 			videos = [[UIWebView alloc] init];
-			[videos loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://m.iluno.com.br"]]];
+			[videos loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://videos.iluno.com.br"]]];
 			videos.frame = CGRectMake(0, 0, 320, 400);
 			[subviewsDict setValue:@"YES" forKey:viewController];
 			[vuashView addSubview:videos];

@@ -15,7 +15,7 @@
 #import "CalendariosDetailViewController.h"
 #import "MostraHorariosViewController.h"
 
-@interface HomeScreenViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIScrollViewDelegate, UIWebViewDelegate> {
+@interface HomeScreenViewController : UIViewController <UINavigationControllerDelegate, UIScrollViewDelegate, UIWebViewDelegate> {
 	IBOutlet UIScrollView *scrollView;
 	IBOutlet UIView *vuashView;
 	IBOutlet UIButton *returnToHomeButton;
@@ -61,10 +61,6 @@
 	CGFloat x;
 	CGFloat y;
 }
-
-- (IBAction)horariosSelected:(id)sender;
-- (IBAction)calendariosSelected:(id)sender;
-- (IBAction)mediasSelected:(id)sender;
 
 - (IBAction)returnToHomeScreen:(id)sender;
 - (IBAction)highlightButton:(id)sender;
