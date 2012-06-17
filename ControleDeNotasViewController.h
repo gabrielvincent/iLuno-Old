@@ -18,6 +18,7 @@
 	GVPlistPersistence *plistManager;
 	NSMutableArray *arrayMaterias;
 	UILabel *titleLabel;
+	UIColor *bgColor;
 }
 
 - (IBAction)dynamicallyValidateSubject:(id)sender;

@@ -254,6 +254,24 @@
 
 #pragma mark - Table view data source
 
+- (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+	cell.backgroundColor = bgColor;
+}
+
+- (NSInteger)realRowNumberForIndexPath:(NSIndexPath *)indexPath inTableView:(UITableView *)tableView
+{
+	NSInteger retInt = 0;
+	if (!indexPath.section)
+	{
+		return indexPath.row;
+	}
+	for (int i = 0; i < indexPath.section; i++) {
+		retInt += [tableView numberOfRowsInSection:i];
+	}
+	
+	return retInt + indexPath.row;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
@@ -279,6 +297,15 @@
 	cell.textLabel.textColor = UIColorFromRGB(0xFFCC00);
 	cell.textLabel.shadowOffset = CGSizeMake(0, -1);
 	cell.textLabel.shadowColor = [UIColor blackColor];
+	
+	NSInteger realRow = [self realRowNumberForIndexPath:indexPath inTableView:tableView];
+	
+	if (realRow % 2 == 0) {
+		bgColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkest-background-full.png"]];
+	}
+	else {
+		bgColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darker-background-pattern.png"]];
+	}
 	
 	UIView* accessoryView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 50)];
     UIImageView* accessoryViewImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow.png"]];
