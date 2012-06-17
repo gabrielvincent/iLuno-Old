@@ -10,6 +10,9 @@
 #import "Reachability.h"
 
 @interface TwitterViewController : UITableViewController {
+	IBOutlet UITableViewCell *customCell;
+	IBOutlet UITextView *tweetTextView;
+	
 	NSString *title;
 	NSOperationQueue *queue;
 	NSMutableArray *tweetsArray;
@@ -19,7 +22,6 @@
 	BOOL isLoadingMore;
 	UIActivityIndicatorView *spinner;
 	UIColor *bgColor;
-	UITextView *tweetTextView;
 	BOOL shouldLoadMoreOnInternetRecover;
 	
 	BOOL connected;

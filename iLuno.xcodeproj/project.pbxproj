@@ -29,6 +29,7 @@
 		3D1E8EFB1583179200DFF380 /* ThumbsUp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D1E8EF91583179200DFF380 /* ThumbsUp@2x.png */; };
 		3D1E8EFC1583179200DFF380 /* ThumbsUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D1E8EFA1583179200DFF380 /* ThumbsUp.png */; };
 		3D1E8EFE1583C33F00DFF380 /* FormspringViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D1E8EFD1583C33F00DFF380 /* FormspringViewController.xib */; };
+		3D232A78158D40FA000696EB /* TwitterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D232A77158D40FA000696EB /* TwitterCell.xib */; };
 		3D3076C01560339600F668A3 /* TurmaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3076BF1560339600F668A3 /* TurmaViewController.m */; };
 		3D3076C7156048A400F668A3 /* MostraHorariosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3076C6156048A400F668A3 /* MostraHorariosViewController.m */; };
 		3D30EC6A153A5FF400FF3004 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D30EC68153A5FF400FF3004 /* logo.png */; };
@@ -123,6 +124,7 @@
 		3D1E8EF91583179200DFF380 /* ThumbsUp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ThumbsUp@2x.png"; sourceTree = "<group>"; };
 		3D1E8EFA1583179200DFF380 /* ThumbsUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ThumbsUp.png; sourceTree = "<group>"; };
 		3D1E8EFD1583C33F00DFF380 /* FormspringViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormspringViewController.xib; sourceTree = "<group>"; };
+		3D232A77158D40FA000696EB /* TwitterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwitterCell.xib; sourceTree = "<group>"; };
 		3D3076BE1560339600F668A3 /* TurmaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TurmaViewController.h; sourceTree = "<group>"; };
 		3D3076BF1560339600F668A3 /* TurmaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TurmaViewController.m; sourceTree = "<group>"; };
 		3D3076C5156048A400F668A3 /* MostraHorariosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MostraHorariosViewController.h; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 				3D81287E15322BA8003DAE2B /* RedesSociaisViewController.xib */,
 				3D3245A715323ED600C822A2 /* TwitterViewController.h */,
 				3D3245A815323ED600C822A2 /* TwitterViewController.m */,
+				3D232A77158D40FA000696EB /* TwitterCell.xib */,
 				3D1E8E5E1582C82700DFF380 /* FormspringViewController.h */,
 				3D1E8E5F1582C82700DFF380 /* FormspringViewController.m */,
 				3D1E8EFD1583C33F00DFF380 /* FormspringViewController.xib */,
@@ -556,6 +559,7 @@
 				3D1E8EFB1583179200DFF380 /* ThumbsUp@2x.png in Resources */,
 				3D1E8EFC1583179200DFF380 /* ThumbsUp.png in Resources */,
 				3D1E8EFE1583C33F00DFF380 /* FormspringViewController.xib in Resources */,
+				3D232A78158D40FA000696EB /* TwitterCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

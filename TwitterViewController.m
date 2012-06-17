@@ -218,6 +218,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
+	
 	UITextView *text = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 300, 80)];
 	text.font = [UIFont fontWithName:@"Helvetica" size:18];
 	text.text = [[tweetsArray objectAtIndex:indexPath.row] objectForKey:@"tweet"];
@@ -247,11 +248,14 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-	if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+{	
+    static NSString *MyIdentifier = @"TwitterCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"cell"]];
+    if (cell == nil) {
+        [[NSBundle mainBundle] loadNibNamed:MyIdentifier owner:self options:nil];
+		
+        cell = customCell;
+        customCell = nil;
     }
 	
 	NSInteger realRow = [self realRowNumberForIndexPath:indexPath inTableView:tableView];
@@ -267,31 +271,19 @@
 		[self callLoadMoreTweets];
 	}
 	
-	for (UITextView *textView in cell.subviews) {
-		[textView removeFromSuperview];
-	}
-	
-	tweetTextView = [[UITextView alloc] init];
-	[cell addSubview:tweetTextView];
-	tweetTextView.font = [UIFont fontWithName:@"Helvetica" size:18];
 	tweetTextView.text = [[tweetsArray objectAtIndex:indexPath.row] objectForKey:@"tweet"];
 	tweetTextView.frame = CGRectMake(10, 10, 300, tweetTextView.contentSize.height+40);
-	tweetTextView.dataDetectorTypes = UIDataDetectorTypeLink;
-	tweetTextView.backgroundColor = [UIColor clearColor];
-	tweetTextView.textColor = UIColorFromRGB(0xFDDD5B);
-	tweetTextView.editable = NO;
-	tweetTextView.scrollEnabled = NO;
-	tweetTextView.layer.shadowColor = [[UIColor blackColor] CGColor];
-	tweetTextView.layer.shadowOffset = CGSizeMake(0, -1);
-	tweetTextView.layer.shadowOpacity = 1.0;
+//	tweetTextView.layer.shadowColor = [[UIColor blackColor] CGColor];
+//	tweetTextView.layer.shadowOffset = CGSizeMake(0, 1);
+//	tweetTextView.layer.shadowOpacity = 1.0;
 	
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	
-	if (cell.subviews.count < 2) {
-		UIImageView *separatorView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separator.png"]];
-		separatorView.frame = CGRectMake(0, 0, 320, 9);
-		[cell addSubview:separatorView];
-	}
+//	if (cell.subviews.count < 2) {
+//		UIImageView *separatorView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separator.png"]];
+//		separatorView.frame = CGRectMake(0, 0, 320, 9);
+//		[cell addSubview:separatorView];
+//	}
     
     return cell;
 }

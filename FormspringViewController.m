@@ -207,7 +207,7 @@
 	else {
 		NSLog(@"Internet is up.");
 		connected = YES;
-		if (!isLoadingMore) [self callLoadQuestions];
+		if (!isLoadingMore && [questionsArray count] == 0) [self callLoadQuestions];
 		if (shouldLoadMoreOnInternetRecover) [self callLoadMoreQuestions];
 	}
 }
