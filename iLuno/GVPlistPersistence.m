@@ -267,4 +267,22 @@
 	}
 }
 
+- (BOOL) databaseAlreadyExistsWithName:(NSString *)fileName {
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); 
+	NSString *documentsDirectoryPath = [paths objectAtIndex:0];
+	NSString *existent = [documentsDirectoryPath stringByAppendingPathComponent:[NSString stringWithFormat:@"ExistentDatabases.plist"]];
+	
+	NSMutableArray *existentArray = [[NSMutableArray alloc] initWithContentsOfFile:existent];
+	
+	plistAlreadyExists = NO;
+	for (NSString *database in existentArray) {
+		if ([database isEqualToString:fileName]) {
+			plistAlreadyExists = YES;
+			break;
+		}
+	}
+	
+	return plistAlreadyExists;
+}
+
 @end

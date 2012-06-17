@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GVPlistPersistence.h"
 
 @interface ControleDeNotasViewController : UITableViewController {
 	IBOutlet UIView *adicionarMateriaView;
@@ -14,6 +15,10 @@
 	
 	UIView *darkView;
 	UITapGestureRecognizer *cancelGesture;
+	GVPlistPersistence *plistManager;
+	NSMutableArray *arrayMaterias;
 }
+
+- (IBAction)dynamicallyValidateSubject:(id)sender;
 
 @end

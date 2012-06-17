@@ -25,5 +25,6 @@
 - (void) setValue:(NSString *)value ForKey:(NSString *)key ForAllEntriesInDatabase:(NSString *) fileName;
 - (NSInteger) countEntriesInDatabase:(NSString *) fileName;
 - (void) removeDatabase:(NSString *) fileName;
+- (BOOL) databaseAlreadyExistsWithName:(NSString *)fileName;
 
 @end
