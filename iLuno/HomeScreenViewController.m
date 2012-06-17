@@ -46,6 +46,7 @@
 	navigationCalendarios.view.alpha = 0.0;
 	navigationMedias.view.alpha = 0.0;
 	navigationRedes.view.alpha = 0.0;
+	navigationControle.view.alpha = 0.0;
 	videos.alpha = 0.0;
 	configuracoes.view.alpha = 0.0;
 	
@@ -121,6 +122,20 @@
 			videos.frame = CGRectMake(0, 0, 320, 400);
 			[subviewsDict setValue:@"YES" forKey:viewController];
 			[vuashView addSubview:videos];
+		}
+	}
+	// Controle de Notas
+	else if ([viewController isEqualToString:@"controle"]) {
+		if ([[subviewsDict objectForKey:viewController] isEqualToString:@"YES"]) {
+			[vuashView bringSubviewToFront:navigationControle.view];
+			navigationControle.view.alpha = 1.0;
+		}
+		else {
+			controle = [[ControleDeNotasViewController alloc] initWithStyle:UITableViewStylePlain];
+			navigationControle = [[UINavigationController alloc] initWithRootViewController:controle];
+			navigationControle.view.frame = CGRectMake(0, 0, 320, 400);
+			[subviewsDict setValue:@"YES" forKey:viewController];
+			[vuashView addSubview:navigationControle.view];
 		}
 	}
 	// Configurações
