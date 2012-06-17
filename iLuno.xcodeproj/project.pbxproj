@@ -61,8 +61,6 @@
 		3D7DA6DC1538059200440FB2 /* darkest-background-full.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D7DA6DA1538059200440FB2 /* darkest-background-full.png */; };
 		3D7DA6DD1538059200440FB2 /* darkest-background-full@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D7DA6DB1538059200440FB2 /* darkest-background-full@2x.png */; };
 		3D80599C158D5F1A0081BB6E /* ControleDeNotasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D80599B158D5F1A0081BB6E /* ControleDeNotasViewController.m */; };
-		3D8059A0158D60FB0081BB6E /* AdicionarMateriaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D80599E158D60FB0081BB6E /* AdicionarMateriaViewController.m */; };
-		3D8059A1158D60FB0081BB6E /* AdicionarMateriaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D80599F158D60FB0081BB6E /* AdicionarMateriaViewController.xib */; };
 		3D8059A3158D670F0081BB6E /* AdicionarMateria.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D8059A2158D670F0081BB6E /* AdicionarMateria.xib */; };
 		3D812876153203C7003DAE2B /* darker-background-pattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D812875153203C7003DAE2B /* darker-background-pattern.png */; };
 		3D81287F15322BA8003DAE2B /* RedesSociaisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D81287D15322BA8003DAE2B /* RedesSociaisViewController.m */; };
@@ -89,6 +87,7 @@
 		3DCABE31152ECD35007BF5BF /* menu-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DCABE30152ECD35007BF5BF /* menu-bg.png */; };
 		3DCABE34152ECED0007BF5BF /* darkest-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DCABE32152ECED0007BF5BF /* darkest-background.png */; };
 		3DCABE35152ECED0007BF5BF /* darkest-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DCABE33152ECED0007BF5BF /* darkest-background@2x.png */; };
+		3DDDF6CC158E2D46000ACE3D /* TrimestresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDDF6CB158E2D46000ACE3D /* TrimestresViewController.m */; };
 		3DDF0D3C1565128B00FC33E8 /* MateriaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDF0D3A1565128B00FC33E8 /* MateriaViewController.m */; };
 		3DDF0D3D1565128B00FC33E8 /* MateriaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DDF0D3B1565128B00FC33E8 /* MateriaViewController.xib */; };
 		3DF5416A156527A5007ABA01 /* MateriaBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DF54168156527A5007ABA01 /* MateriaBackground.png */; };
@@ -170,9 +169,6 @@
 		3D7DA6DB1538059200440FB2 /* darkest-background-full@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "darkest-background-full@2x.png"; sourceTree = "<group>"; };
 		3D80599A158D5F1A0081BB6E /* ControleDeNotasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControleDeNotasViewController.h; sourceTree = "<group>"; };
 		3D80599B158D5F1A0081BB6E /* ControleDeNotasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControleDeNotasViewController.m; sourceTree = "<group>"; };
-		3D80599D158D60FB0081BB6E /* AdicionarMateriaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdicionarMateriaViewController.h; sourceTree = "<group>"; };
-		3D80599E158D60FB0081BB6E /* AdicionarMateriaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdicionarMateriaViewController.m; sourceTree = "<group>"; };
-		3D80599F158D60FB0081BB6E /* AdicionarMateriaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdicionarMateriaViewController.xib; sourceTree = "<group>"; };
 		3D8059A2158D670F0081BB6E /* AdicionarMateria.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdicionarMateria.xib; sourceTree = "<group>"; };
 		3D812875153203C7003DAE2B /* darker-background-pattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "darker-background-pattern.png"; sourceTree = "<group>"; };
 		3D81287C15322BA8003DAE2B /* RedesSociaisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedesSociaisViewController.h; sourceTree = "<group>"; };
@@ -206,6 +202,8 @@
 		3DCABE30152ECD35007BF5BF /* menu-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-bg.png"; sourceTree = "<group>"; };
 		3DCABE32152ECED0007BF5BF /* darkest-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "darkest-background.png"; sourceTree = "<group>"; };
 		3DCABE33152ECED0007BF5BF /* darkest-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "darkest-background@2x.png"; sourceTree = "<group>"; };
+		3DDDF6CA158E2D46000ACE3D /* TrimestresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrimestresViewController.h; path = iLuno/TrimestresViewController.h; sourceTree = "<group>"; };
+		3DDDF6CB158E2D46000ACE3D /* TrimestresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TrimestresViewController.m; path = iLuno/TrimestresViewController.m; sourceTree = "<group>"; };
 		3DDF0D391565128B00FC33E8 /* MateriaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MateriaViewController.h; sourceTree = "<group>"; };
 		3DDF0D3A1565128B00FC33E8 /* MateriaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MateriaViewController.m; sourceTree = "<group>"; };
 		3DDF0D3B1565128B00FC33E8 /* MateriaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MateriaViewController.xib; sourceTree = "<group>"; };
@@ -292,9 +290,8 @@
 				3D80599A158D5F1A0081BB6E /* ControleDeNotasViewController.h */,
 				3D80599B158D5F1A0081BB6E /* ControleDeNotasViewController.m */,
 				3D8059A2158D670F0081BB6E /* AdicionarMateria.xib */,
-				3D80599D158D60FB0081BB6E /* AdicionarMateriaViewController.h */,
-				3D80599E158D60FB0081BB6E /* AdicionarMateriaViewController.m */,
-				3D80599F158D60FB0081BB6E /* AdicionarMateriaViewController.xib */,
+				3DDDF6CA158E2D46000ACE3D /* TrimestresViewController.h */,
+				3DDDF6CB158E2D46000ACE3D /* TrimestresViewController.m */,
 			);
 			name = "Controle de Notas";
 			path = ..;
@@ -585,7 +582,6 @@
 				3D1E8EFC1583179200DFF380 /* ThumbsUp.png in Resources */,
 				3D1E8EFE1583C33F00DFF380 /* FormspringViewController.xib in Resources */,
 				3D232A78158D40FA000696EB /* TwitterCell.xib in Resources */,
-				3D8059A1158D60FB0081BB6E /* AdicionarMateriaViewController.xib in Resources */,
 				3D8059A3158D670F0081BB6E /* AdicionarMateria.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -619,7 +615,7 @@
 				3D1E8E601582C82700DFF380 /* FormspringViewController.m in Sources */,
 				3D1E8E6B1582D09A00DFF380 /* FormspringQuestionViewController.m in Sources */,
 				3D80599C158D5F1A0081BB6E /* ControleDeNotasViewController.m in Sources */,
-				3D8059A0158D60FB0081BB6E /* AdicionarMateriaViewController.m in Sources */,
+				3DDDF6CC158E2D46000ACE3D /* TrimestresViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -154,6 +154,16 @@
 	
 }
 
+- (void) addEntry: (NSMutableDictionary *)dict atIndex:(NSInteger)index ToDatabase: (NSString *) fileName {
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSMutableArray *arrayLoaded = [[NSMutableArray alloc] init];
+	arrayLoaded = [NSMutableArray arrayWithArray:[self databaseWithName:fileName]];
+	
+	[arrayLoaded insertObject:dict atIndex:index];
+	
+	[arrayLoaded writeToFile:[[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist", fileName]] atomically:YES];
+}
+
 - (void) addValue:(NSString *)value ForKey:(NSString *)key ForEntryAtIndex:(NSInteger)index ToDatabase: (NSString *) fileName {
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSMutableArray *arrayLoaded = [[NSMutableArray alloc] init];

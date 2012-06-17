@@ -18,6 +18,7 @@
 - (void) downloadPlistFromURL:(NSString *)url AndSaveItAs:(NSString *)fileName;
 - (void) downloadPlistFromURL:(NSString *)url AndSaveItAs:(NSString *)fileName OverwrittingExistingFiles:(BOOL) overwrite;
 - (void) addNewEntry: (NSMutableDictionary *)dict ToDatabase: (NSString *) fileName;
+- (void) addEntry: (NSMutableDictionary *)dict atIndex:(NSInteger)index ToDatabase: (NSString *) fileName;
 - (void) addValue:(NSString *)value ForKey:(NSString *)key ForEntryAtIndex:(NSInteger)index ToDatabase: (NSString *) fileName;
 - (void) removeEntryAtIndex:(NSInteger) index FromDatabase:(NSString *) fileName;
 - (NSString *) valueOfKey:(NSString *) key ForEntryAtIndex:(NSInteger) index FromDatabase:(NSString *)fileName;

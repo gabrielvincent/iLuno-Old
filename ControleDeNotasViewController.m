@@ -9,9 +9,16 @@
 #define Opening 0
 #define Closing 1
 #define Database @"ControleDeNotas"
+#define Add 0
+#define Save 1
+#define Edit 0
+#define OK 1
+#define None -1
+#define Disabled 2
+#define Enabled 3
 
 #import "ControleDeNotasViewController.h"
-#import "AdicionarMateriaViewController.h"
+#import "TrimestresViewController.h"
 
 @interface ControleDeNotasViewController ()
 
@@ -19,51 +26,81 @@
 
 @implementation ControleDeNotasViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
+- (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
 
+- (NSString *) simplifiedString:(NSString *)string {
+	
+	string = [string lowercaseString];
+	string = [string stringByReplacingOccurrencesOfString:@"á" withString:@"a"];
+	string = [string stringByReplacingOccurrencesOfString:@"é" withString:@"e"];
+	string = [string stringByReplacingOccurrencesOfString:@"i" withString:@"i"];
+	string = [string stringByReplacingOccurrencesOfString:@"ó" withString:@"o"];
+	string = [string stringByReplacingOccurrencesOfString:@"ú" withString:@"ú"];
+	string = [string stringByReplacingOccurrencesOfString:@"ç" withString:@"c"];
+	string = [string stringByReplacingOccurrencesOfString:@"ã" withString:@"a"];
+	string = [string stringByReplacingOccurrencesOfString:@"â" withString:@"a"];
+	string = [string stringByReplacingOccurrencesOfString:@"ê" withString:@"e"];
+	string = [string stringByReplacingOccurrencesOfString:@"ô" withString:@"o"];
+	string = [string stringByReplacingOccurrencesOfString:@"à" withString:@"a"];
+	string = [string stringByReplacingOccurrencesOfString:@"è" withString:@"e"];
+	string = [string stringByReplacingOccurrencesOfString:@"ì" withString:@"i"];
+	string = [string stringByReplacingOccurrencesOfString:@"ò" withString:@"ò"];
+	string = [string stringByReplacingOccurrencesOfString:@"ù" withString:@"u"];
+	string = [string stringByReplacingOccurrencesOfString:@"ñ" withString:@"n"];
+	
+	return string;
+}
+
+- (void) setLeftBarButton:(NSInteger) button {
+	if (button == Edit) self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(toggleTableViewEdditing)];
+	else if (button == OK) self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"OK" style:UIBarButtonItemStyleDone target:self action:@selector(toggleTableViewEdditing)];
+	else if (button == None) self.navigationItem.leftBarButtonItem = nil;
+	else if (button == Disabled) self.navigationItem.leftBarButtonItem.enabled = NO;
+	else if (button == Enabled) self.navigationItem.leftBarButtonItem.enabled = YES;
+}
+
+- (void) setRightBarButton:(NSInteger) button {
+	
+	if (button == Add) self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addSubject)];
+	else if (button == Save) self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Salvar" style:UIBarButtonItemStyleDone target:self action:@selector(saveSubject)];
+	else if (button == None) self.navigationItem.rightBarButtonItem = nil;
+	else if (button == Disabled) self.navigationItem.rightBarButtonItem.enabled = NO;
+	else if (button == Enabled) self.navigationItem.rightBarButtonItem.enabled = YES;
+}
+
+- (void) toggleTableViewEdditing {
+	
+	if ([self.tableView isEditing]) {
+		[self.tableView setEditing:NO animated:YES];
+		[self setRightBarButton:Add];
+		[self setLeftBarButton:Edit];
+	}
+	else {
+		[self.tableView setEditing:YES animated:YES];
+		[self setLeftBarButton:OK];
+		[self setRightBarButton:None];
+	}
+	
+}
+
 - (IBAction)dynamicallyValidateSubject:(id)sender {
 	
-	if (materiaTextField.text.length == 0) self.navigationItem.rightBarButtonItem.enabled = NO;
-	else self.navigationItem.rightBarButtonItem.enabled = YES;
-	
+	// Verifica se a string está vazia ou se é composta por epaços
+	if (materiaTextField.text.length == 0  || [materiaTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""].length == 0) [self setRightBarButton:Disabled];
+	else [self setRightBarButton:Enabled];
 }
 
 - (BOOL) subjectNameIsValid {
 	
 	for (NSDictionary *dict in arrayMaterias) {
 		
-		NSString *materia1 = materiaTextField.text;
-		materia1 = [materia1 lowercaseString];
-		materia1 = [materia1 stringByReplacingOccurrencesOfString:@"á" withString:@"a"];
-		materia1 = [materia1 stringByReplacingOccurrencesOfString:@"é" withString:@"e"];
-		materia1 = [materia1 stringByReplacingOccurrencesOfString:@"i" withString:@"i"];
-		materia1 = [materia1 stringByReplacingOccurrencesOfString:@"ó" withString:@"o"];
-		materia1 = [materia1 stringByReplacingOccurrencesOfString:@"ú" withString:@"ú"];
-		materia1 = [materia1 stringByReplacingOccurrencesOfString:@"ç" withString:@"c"];
-		materia1 = [materia1 stringByReplacingOccurrencesOfString:@"ã" withString:@"a"];
-		materia1 = [materia1 stringByReplacingOccurrencesOfString:@"â" withString:@"a"];
-		materia1 = [materia1 stringByReplacingOccurrencesOfString:@"ê" withString:@"e"];
-		materia1 = [materia1 stringByReplacingOccurrencesOfString:@"ô" withString:@"o"];
-		
-		NSString *materia2 = [dict objectForKey:@"Materia"];
-		materia2 = [materia2 lowercaseString];
-		materia2 = [materia2 stringByReplacingOccurrencesOfString:@"á" withString:@"a"];
-		materia2 = [materia2 stringByReplacingOccurrencesOfString:@"é" withString:@"e"];
-		materia2 = [materia2 stringByReplacingOccurrencesOfString:@"i" withString:@"i"];
-		materia2 = [materia2 stringByReplacingOccurrencesOfString:@"ó" withString:@"o"];
-		materia2 = [materia2 stringByReplacingOccurrencesOfString:@"ú" withString:@"ú"];
-		materia2 = [materia2 stringByReplacingOccurrencesOfString:@"ç" withString:@"c"];
-		materia2 = [materia2 stringByReplacingOccurrencesOfString:@"ã" withString:@"a"];
-		materia2 = [materia2 stringByReplacingOccurrencesOfString:@"â" withString:@"a"];
-		materia2 = [materia2 stringByReplacingOccurrencesOfString:@"ê" withString:@"e"];
-		materia2 = [materia2 stringByReplacingOccurrencesOfString:@"ô" withString:@"o"];
+		NSString *materia1 = [self simplifiedString:materiaTextField.text];
+		NSString *materia2 = [self simplifiedString:[dict objectForKey:@"Materia"]];
 		
 		if ([materia1 isEqualToString:materia2]) {
 			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erro" message:[NSString stringWithFormat:@"Uma matéria com o nome \"%@\" já foi inserida. Por favor, escolha outro nome e tente novamente.", materiaTextField.text] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -82,6 +119,7 @@
 - (void) performGraphicalAdjustmentsFor:(NSInteger) action {
 	if (action == Opening) {
 		self.tableView.scrollEnabled = NO;
+		titleLabel.text = @"Nova Matéria";
 		
 		if (darkView == nil) {
 			darkView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height)];
@@ -109,17 +147,19 @@
 		self.navigationController.navigationBar.frame = CGRectMake(0, 44, 320, 44);
 		darkView.alpha = 0.6;
 		adicionarMateriaView.frame = CGRectMake(0, 0, 320, 44);
+		[self.tableView setContentInset:UIEdgeInsetsMake(44, 0, 0, 0)];
 		
 		[UIView commitAnimations];
 		
-		self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Salvar" style:UIBarButtonItemStyleDone target:self action:@selector(saveSubject)];
-		self.navigationItem.rightBarButtonItem.enabled = NO;
+		[self setRightBarButton:Save];
+		[self setRightBarButton:Disabled];
+		[self setLeftBarButton:None];
 		
 		[materiaTextField becomeFirstResponder];
 	}
-	else {
+	else if (action == Closing) {
 		[materiaTextField resignFirstResponder];
-		
+		titleLabel.text = @"Controle de Notas";
 		[self.view addSubview:darkView];
 		
 		[UIView beginAnimations:nil context:NULL];
@@ -128,6 +168,8 @@
 		self.navigationController.navigationBar.frame = CGRectMake(0, 0, 320, 44);
 		darkView.alpha = 0.0;
 		adicionarMateriaView.frame = CGRectMake(0, 0, 320, 44);
+		[self.tableView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
+		self.tableView.scrollEnabled = YES;
 		
 		[UIView commitAnimations];
 		
@@ -139,8 +181,9 @@
 		[adicionarMateriaView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:0.2];
 		[materiaTextField performSelector:@selector(setText:) withObject:@"" afterDelay:0.2];
 		
-		self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addSubject)];
-		self.tableView.scrollEnabled = YES;
+		[self setRightBarButton:Add];
+		[self setRightBarButton:Enabled];
+		[self setLeftBarButton:Edit];
 	}
 }
 
@@ -167,9 +210,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	
 	if ([self.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
 		[self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navbar.png"] forBarMetrics:UIBarMetricsDefault];
@@ -179,7 +219,7 @@
 	self.view.frame = CGRectMake(0, 0, 320, 400);
 	
 	self.navigationItem.title = @"Matérias";
-	UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+	titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 	titleLabel.backgroundColor = [UIColor clearColor];
 	titleLabel.font = [UIFont boldSystemFontOfSize:20.0];
 	titleLabel.shadowColor = [UIColor colorWithRed:252.0/255.0 green:234.0/255.0 blue:162.0/255.0 alpha:0.9];
@@ -192,7 +232,8 @@
 	
 	self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkest-background-full.png"]];
 	
-	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addSubject)];
+	[self setRightBarButton:Add];
+	[self setLeftBarButton:Edit];
 	
 	plistManager = [[GVPlistPersistence alloc] init];
 	arrayMaterias = [NSMutableArray arrayWithArray:[plistManager databaseWithName:Database]];
@@ -256,26 +297,34 @@
 }
 */
 
-/*
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [arrayMaterias removeObjectAtIndex:indexPath.row];
+		[plistManager removeEntryAtIndex:indexPath.row FromDatabase:Database];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
 
-/*
+
+
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
+	NSLog(@"From: %d | To: %d", fromIndexPath.row, toIndexPath.row);
+	NSMutableDictionary *temporarySubject = [arrayMaterias objectAtIndex:fromIndexPath.row];
+	
+	[arrayMaterias removeObjectAtIndex:fromIndexPath.row];
+	[arrayMaterias insertObject:temporarySubject atIndex:toIndexPath.row];
+	[plistManager removeEntryAtIndex:fromIndexPath.row FromDatabase:Database];
+	[plistManager addEntry:temporarySubject atIndex:toIndexPath.row ToDatabase:Database];
 }
-*/
+
 
 /*
 // Override to support conditional rearranging of the table view.
@@ -290,13 +339,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    TrimestresViewController *trimestres = [[TrimestresViewController alloc] initWithStyle:UITableViewStyleGrouped];
+	
+	
+	[self.navigationController pushViewController:trimestres animated:YES];
 }
 
 @end

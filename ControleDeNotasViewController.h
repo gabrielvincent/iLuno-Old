@@ -17,6 +17,7 @@
 	UITapGestureRecognizer *cancelGesture;
 	GVPlistPersistence *plistManager;
 	NSMutableArray *arrayMaterias;
+	UILabel *titleLabel;
 }
 
 - (IBAction)dynamicallyValidateSubject:(id)sender;
