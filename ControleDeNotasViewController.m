@@ -91,8 +91,12 @@
 - (IBAction)dynamicallyValidateSubject:(id)sender {
 	
 	// Verifica se a string está vazia ou se é composta por epaços
-	if (materiaTextField.text.length == 0  || [materiaTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""].length == 0) [self setRightBarButton:Disabled];
-	else [self setRightBarButton:Enabled];
+	if (materiaTextField.text.length == 0  || [materiaTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""].length == 0) {
+		[self setRightBarButton:Disabled];
+	}
+	else {
+		[self setRightBarButton:Enabled];
+	}
 }
 
 - (BOOL) subjectNameIsValid {
@@ -119,12 +123,13 @@
 - (void) performGraphicalAdjustmentsFor:(NSInteger) action {
 	if (action == Opening) {
 		self.tableView.scrollEnabled = NO;
+		[self.tableView setEditing:NO];
 		titleLabel.text = @"Nova Matéria";
 		
 		if (darkView == nil) {
 			darkView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height)];
 			darkView.backgroundColor = [UIColor blackColor];
-			[self.view addSubview:darkView];
+			[self.navigationController.view addSubview:darkView];
 		}
 		darkView.alpha = 0.0;
 		
@@ -143,11 +148,11 @@
 		
 		[UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationDuration:0.2];
-		
+
 		self.navigationController.navigationBar.frame = CGRectMake(0, 44, 320, 44);
+		[self.tableView setContentOffset:CGPointMake(0, -44) animated:YES];
 		darkView.alpha = 0.6;
 		adicionarMateriaView.frame = CGRectMake(0, 0, 320, 44);
-		[self.tableView setContentInset:UIEdgeInsetsMake(44, 0, 0, 0)];
 		
 		[UIView commitAnimations];
 		
@@ -160,15 +165,15 @@
 	else if (action == Closing) {
 		[materiaTextField resignFirstResponder];
 		titleLabel.text = @"Controle de Notas";
-		[self.view addSubview:darkView];
+		[self.navigationController.view addSubview:darkView];
 		
 		[UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationDuration:0.2];
 		
+		[self.tableView setContentOffset:CGPointMake(0, -44) animated:YES];
 		self.navigationController.navigationBar.frame = CGRectMake(0, 0, 320, 44);
 		darkView.alpha = 0.0;
 		adicionarMateriaView.frame = CGRectMake(0, 0, 320, 44);
-		[self.tableView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
 		self.tableView.scrollEnabled = YES;
 		
 		[UIView commitAnimations];
@@ -233,11 +238,12 @@
 	self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkest-background-full.png"]];
 	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 	
-	[self setRightBarButton:Add];
-	[self setLeftBarButton:Edit];
-	
 	plistManager = [[GVPlistPersistence alloc] init];
 	arrayMaterias = [NSMutableArray arrayWithArray:[plistManager databaseWithName:Database]];
+	
+	[self setRightBarButton:Add];
+	[self setLeftBarButton:Edit];
+	if ([arrayMaterias count] == 0) [self setLeftBarButton:Disabled];
 	
 	if (![plistManager databaseAlreadyExistsWithName:Database]) [plistManager createNewDatabaseWithName:Database];
 }
@@ -301,10 +307,10 @@
 	NSInteger realRow = [self realRowNumberForIndexPath:indexPath inTableView:tableView];
 	
 	if (realRow % 2 == 0) {
-		bgColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkest-background-full.png"]];
+		bgColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darker-background-pattern.png"]];
 	}
 	else {
-		bgColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darker-background-pattern.png"]];
+		bgColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkest-background-full.png"]];
 	}
 	
 	UIView* accessoryView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 50)];
@@ -338,7 +344,7 @@
 			[cell addSubview:separatorView];
 		}
 	}
-    
+	
     return cell;
 }
 
@@ -351,6 +357,15 @@
 }
 */
 
+// When single cell will be eddited
+- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+	[self setLeftBarButton:OK];
+}
+
+// When single cell did finish being eddited
+- (void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+	[self setLeftBarButton:Edit];
+}
 
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -359,6 +374,15 @@
         [arrayMaterias removeObjectAtIndex:indexPath.row];
 		[plistManager removeEntryAtIndex:indexPath.row FromDatabase:Database];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+		
+		if ([arrayMaterias count] == 0) {
+			[self.tableView setEditing:NO];
+			[self setLeftBarButton:Edit];
+			[self setLeftBarButton:Disabled];
+			[self setRightBarButton:Add];
+		}
+		
+		[self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:0.2];
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
