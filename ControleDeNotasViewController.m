@@ -39,7 +39,7 @@
 	
 	for (NSDictionary *dict in arrayMaterias) {
 		
-		NSString *materia1;
+		NSString *materia1 = materiaTextField.text;
 		materia1 = [materia1 lowercaseString];
 		materia1 = [materia1 stringByReplacingOccurrencesOfString:@"á" withString:@"a"];
 		materia1 = [materia1 stringByReplacingOccurrencesOfString:@"é" withString:@"e"];
