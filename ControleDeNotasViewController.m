@@ -231,6 +231,7 @@
 	[titleLabel sizeToFit];
 	
 	self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkest-background-full.png"]];
+	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 	
 	[self setRightBarButton:Add];
 	[self setLeftBarButton:Edit];
@@ -284,6 +285,32 @@
     accessoryViewImage.center = CGPointMake(12, 25);
     [accessoryView addSubview:accessoryViewImage];
     [cell setAccessoryView:accessoryView];
+	
+	// Adiciona o separador no topo da cell
+	if ([[cell subviews] count] < 2) {
+		UIImageView *separatorView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separator.png"]];
+		separatorView.frame = CGRectMake(0, 0, 320, 9);
+		[cell addSubview:separatorView];
+	}
+	
+	// Verifica se alguma row tem um separador a mais (acontece quando é inserida uma nova matéria];
+	if (cell.subviews.count == 3 && indexPath.row < [arrayMaterias count]-1) {
+		for (UIImageView *separator in cell.subviews) {
+			if (separator.frame.origin.y == 44) {
+				[separator removeFromSuperview];
+				break;
+			}
+		}
+	}
+	
+	// Insere um segundo separador à última row da TableView
+	if (indexPath.row == [arrayMaterias count]-1) {
+		if ([[cell subviews] count] < 3) {
+			UIImageView *separatorView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separator.png"]];
+			separatorView.frame = CGRectMake(0, 44, 320, 9);
+			[cell addSubview:separatorView];
+		}
+	}
     
     return cell;
 }
@@ -316,13 +343,15 @@
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
-	NSLog(@"From: %d | To: %d", fromIndexPath.row, toIndexPath.row);
 	NSMutableDictionary *temporarySubject = [arrayMaterias objectAtIndex:fromIndexPath.row];
 	
 	[arrayMaterias removeObjectAtIndex:fromIndexPath.row];
 	[arrayMaterias insertObject:temporarySubject atIndex:toIndexPath.row];
 	[plistManager removeEntryAtIndex:fromIndexPath.row FromDatabase:Database];
 	[plistManager addEntry:temporarySubject atIndex:toIndexPath.row ToDatabase:Database];
+	
+	[self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:0.2];
+	
 }
 
 
