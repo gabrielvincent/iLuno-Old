@@ -39,7 +39,7 @@
 	
 	for (NSDictionary *dict in arrayMaterias) {
 		
-		NSString *materia1 = materiaTextField.text;
+		NSString *materia1;
 		materia1 = [materia1 lowercaseString];
 		materia1 = [materia1 stringByReplacingOccurrencesOfString:@"á" withString:@"a"];
 		materia1 = [materia1 stringByReplacingOccurrencesOfString:@"é" withString:@"e"];
@@ -48,6 +48,9 @@
 		materia1 = [materia1 stringByReplacingOccurrencesOfString:@"ú" withString:@"ú"];
 		materia1 = [materia1 stringByReplacingOccurrencesOfString:@"ç" withString:@"c"];
 		materia1 = [materia1 stringByReplacingOccurrencesOfString:@"ã" withString:@"a"];
+		materia1 = [materia1 stringByReplacingOccurrencesOfString:@"â" withString:@"a"];
+		materia1 = [materia1 stringByReplacingOccurrencesOfString:@"ê" withString:@"e"];
+		materia1 = [materia1 stringByReplacingOccurrencesOfString:@"ô" withString:@"o"];
 		
 		NSString *materia2 = [dict objectForKey:@"Materia"];
 		materia2 = [materia2 lowercaseString];
@@ -58,6 +61,9 @@
 		materia2 = [materia2 stringByReplacingOccurrencesOfString:@"ú" withString:@"ú"];
 		materia2 = [materia2 stringByReplacingOccurrencesOfString:@"ç" withString:@"c"];
 		materia2 = [materia2 stringByReplacingOccurrencesOfString:@"ã" withString:@"a"];
+		materia2 = [materia2 stringByReplacingOccurrencesOfString:@"â" withString:@"a"];
+		materia2 = [materia2 stringByReplacingOccurrencesOfString:@"ê" withString:@"e"];
+		materia2 = [materia2 stringByReplacingOccurrencesOfString:@"ô" withString:@"o"];
 		
 		if ([materia1 isEqualToString:materia2]) {
 			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erro" message:[NSString stringWithFormat:@"Uma matéria com o nome \"%@\" já foi inserida. Por favor, escolha outro nome e tente novamente.", materiaTextField.text] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
