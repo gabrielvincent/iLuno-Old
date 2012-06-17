@@ -107,7 +107,7 @@
 		[UIView setAnimationDuration:0.2];
 		
 		self.navigationController.navigationBar.frame = CGRectMake(0, 44, 320, 44);
-		darkView.alpha = 0.5;
+		darkView.alpha = 0.6;
 		adicionarMateriaView.frame = CGRectMake(0, 0, 320, 44);
 		
 		[UIView commitAnimations];
