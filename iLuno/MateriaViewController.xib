@@ -75,7 +75,7 @@
 							<object class="IBUILabel" id="294023438">
 								<reference key="NSNextResponder" ref="1030848468"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{101, 60}, {78, 36}}</string>
+								<string key="NSFrame">{{101, 61}, {138, 36}}</string>
 								<reference key="NSSuperview" ref="1030848468"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="890622738"/>
@@ -94,15 +94,15 @@
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumFontSize">10</float>
-								<object class="IBUIFontDescription" key="IBUIFontDescription" id="978105449">
+								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<string key="name">Noteworthy-Light</string>
 									<string key="family">Noteworthy</string>
 									<int key="traits">0</int>
-									<double key="pointSize">17</double>
+									<double key="pointSize">20</double>
 								</object>
-								<object class="NSFont" key="IBUIFont" id="287080174">
+								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Noteworthy-Light</string>
-									<double key="NSSize">17</double>
+									<double key="NSSize">20</double>
 									<int key="NSfFlags">16</int>
 								</object>
 							</object>
@@ -128,8 +128,17 @@
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumFontSize">10</float>
-								<reference key="IBUIFontDescription" ref="978105449"/>
-								<reference key="IBUIFont" ref="287080174"/>
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="978105449">
+									<string key="name">Noteworthy-Light</string>
+									<string key="family">Noteworthy</string>
+									<int key="traits">0</int>
+									<double key="pointSize">17</double>
+								</object>
+								<object class="NSFont" key="IBUIFont" id="236113693">
+									<string key="NSName">Noteworthy-Light</string>
+									<double key="NSSize">17</double>
+									<int key="NSfFlags">16</int>
+								</object>
 							</object>
 							<object class="IBUILabel" id="741515567">
 								<reference key="NSNextResponder" ref="1030848468"/>
@@ -151,12 +160,12 @@
 								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumFontSize">10</float>
 								<reference key="IBUIFontDescription" ref="978105449"/>
-								<reference key="IBUIFont" ref="287080174"/>
+								<reference key="IBUIFont" ref="236113693"/>
 							</object>
 							<object class="IBUILabel" id="232714150">
 								<reference key="NSNextResponder" ref="1030848468"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{101, 169}, {138, 36}}</string>
+								<string key="NSFrame">{{101, 168}, {163, 36}}</string>
 								<reference key="NSSuperview" ref="1030848468"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1003190072"/>
@@ -172,8 +181,17 @@
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumFontSize">10</float>
-								<reference key="IBUIFontDescription" ref="978105449"/>
-								<reference key="IBUIFont" ref="287080174"/>
+								<object class="IBUIFontDescription" key="IBUIFontDescription">
+									<string key="name">Noteworthy-Light</string>
+									<string key="family">Noteworthy</string>
+									<int key="traits">0</int>
+									<double key="pointSize">19</double>
+								</object>
+								<object class="NSFont" key="IBUIFont">
+									<string key="NSName">Noteworthy-Light</string>
+									<double key="NSSize">19</double>
+									<int key="NSfFlags">16</int>
+								</object>
 							</object>
 							<object class="IBUILabel" id="1003190072">
 								<reference key="NSNextResponder" ref="1030848468"/>
@@ -195,7 +213,7 @@
 								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumFontSize">10</float>
 								<reference key="IBUIFontDescription" ref="978105449"/>
-								<reference key="IBUIFont" ref="287080174"/>
+								<reference key="IBUIFont" ref="236113693"/>
 							</object>
 							<object class="IBUILabel" id="591777678">
 								<reference key="NSNextResponder" ref="1030848468"/>
@@ -219,7 +237,7 @@
 								<int key="IBUINumberOfLines">0</int>
 								<int key="IBUILineBreakMode">5</int>
 								<reference key="IBUIFontDescription" ref="978105449"/>
-								<reference key="IBUIFont" ref="287080174"/>
+								<reference key="IBUIFont" ref="236113693"/>
 							</object>
 							<object class="IBUIImageView" id="243647349">
 								<reference key="NSNextResponder" ref="1030848468"/>
@@ -227,7 +245,6 @@
 								<string key="NSFrame">{{326, 34}, {200, 250}}</string>
 								<reference key="NSSuperview" ref="1030848468"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<int key="IBUIContentMode">1</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -236,7 +253,7 @@
 							<object class="IBUIButton" id="529542488">
 								<reference key="NSNextResponder" ref="1030848468"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{168, 200}, {103, 37}}</string>
+								<string key="NSFrame">{{168, 199}, {103, 37}}</string>
 								<reference key="NSSuperview" ref="1030848468"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="668425843"/>
@@ -262,11 +279,11 @@
 									<string key="name">Noteworthy-Bold</string>
 									<string key="family">Noteworthy</string>
 									<int key="traits">2</int>
-									<double key="pointSize">15</double>
+									<double key="pointSize">19</double>
 								</object>
 								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Noteworthy-Bold</string>
-									<double key="NSSize">15</double>
+									<double key="NSSize">19</double>
 									<int key="NSfFlags">16</int>
 								</object>
 							</object>
