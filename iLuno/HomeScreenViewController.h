@@ -55,6 +55,7 @@
 	CGPoint firstPoint;
 	NSMutableDictionary *subviewsDict;
 	NSArray *userDefaultsArray;
+	UIActivityIndicatorView *spinner;
 	
 	int scrollIndex;
 	BOOL isFirstScroll;

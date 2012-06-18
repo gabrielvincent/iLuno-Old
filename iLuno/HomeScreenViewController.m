@@ -120,8 +120,13 @@
 			videos = [[UIWebView alloc] init];
 			[videos loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://videos.iluno.com.br"]]];
 			videos.frame = CGRectMake(0, 0, 320, 400);
+			videos.delegate = self;
 			[subviewsDict setValue:@"YES" forKey:viewController];
 			[vuashView addSubview:videos];
+			spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+			spinner.center = videos.center;
+			[videos addSubview:spinner];
+			[spinner startAnimating];
 		}
 	}
 	// Controle de Notas
@@ -458,6 +463,12 @@
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation { 
     return NO;
+}
+
+#pragma mark UIWebView delegate Methods
+
+- (void) webViewDidFinishLoad:(UIWebView *)webView {
+	[spinner removeFromSuperview];
 }
 
 @end
