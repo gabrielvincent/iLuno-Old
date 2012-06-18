@@ -7,6 +7,7 @@
 //
 
 #import "iLunoAppDelegate.h"
+#import "FlurryAnalytics.h"
 
 @implementation iLunoAppDelegate
 
@@ -15,6 +16,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+	[FlurryAnalytics startSession:@"PFMUYQZX1JWIG2MPIX15"];
+	
     return YES;
 }
 							

@@ -75,6 +75,7 @@
 		3D95B819153D8569009193AD /* MediaTrimestralView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D95B817153D8569009193AD /* MediaTrimestralView.xib */; };
 		3D95B81B153D863A009193AD /* calculateButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D95B81A153D863A009193AD /* calculateButton@2x.png */; };
 		3D95B81D153D8652009193AD /* calculateButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D95B81C153D8652009193AD /* calculateButton.png */; };
+		3DB3AEE2158F386E006E26A5 /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB3AEE1158F386E006E26A5 /* libFlurryAnalytics.a */; };
 		3DB6FB9D152F4683000D2E0C /* TableViewSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6FB9C152F4683000D2E0C /* TableViewSampleViewController.m */; };
 		3DCABE11152EC5D6007BF5BF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCABE10152EC5D6007BF5BF /* UIKit.framework */; };
 		3DCABE13152EC5D6007BF5BF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCABE12152EC5D6007BF5BF /* Foundation.framework */; };
@@ -187,6 +188,8 @@
 		3D95B817153D8569009193AD /* MediaTrimestralView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MediaTrimestralView.xib; sourceTree = "<group>"; };
 		3D95B81A153D863A009193AD /* calculateButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calculateButton@2x.png"; sourceTree = "<group>"; };
 		3D95B81C153D8652009193AD /* calculateButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calculateButton.png; sourceTree = "<group>"; };
+		3DB3AEE0158F386E006E26A5 /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAnalytics.h; sourceTree = "<group>"; };
+		3DB3AEE1158F386E006E26A5 /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
 		3DB6FB9B152F4683000D2E0C /* TableViewSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableViewSampleViewController.h; path = iLuno/TableViewSampleViewController.h; sourceTree = "<group>"; };
 		3DB6FB9C152F4683000D2E0C /* TableViewSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableViewSampleViewController.m; path = iLuno/TableViewSampleViewController.m; sourceTree = "<group>"; };
 		3DCABE0C152EC5D6007BF5BF /* iLuno.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iLuno.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -230,6 +233,7 @@
 				3DCABE11152EC5D6007BF5BF /* UIKit.framework in Frameworks */,
 				3DCABE13152EC5D6007BF5BF /* Foundation.framework in Frameworks */,
 				3DCABE15152EC5D6007BF5BF /* CoreGraphics.framework in Frameworks */,
+				3DB3AEE2158F386E006E26A5 /* libFlurryAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +325,15 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		3DB3AEDF158F386E006E26A5 /* FlurryAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				3DB3AEE0158F386E006E26A5 /* FlurryAnalytics.h */,
+				3DB3AEE1158F386E006E26A5 /* libFlurryAnalytics.a */,
+			);
+			path = FlurryAnalytics;
+			sourceTree = "<group>";
+		};
 		3DB6FB9A152F40B9000D2E0C /* Horários */ = {
 			isa = PBXGroup;
 			children = (
@@ -387,6 +400,7 @@
 				3D3579FA15316150003E7018 /* GVPlistPersistence */,
 				3DF5417715653BD3007ABA01 /* GVImageDownloader */,
 				3D3579F915316136003E7018 /* Reachability */,
+				3DB3AEDF158F386E006E26A5 /* FlurryAnalytics */,
 				3DCABE17152EC5D6007BF5BF /* Supporting Files */,
 			);
 			path = iLuno;
@@ -702,6 +716,10 @@
 				GCC_PREFIX_HEADER = "iLuno/iLuno-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
 				INFOPLIST_FILE = "iLuno/iLuno-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/iLuno/FlurryAnalytics\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -716,6 +734,10 @@
 				GCC_PREFIX_HEADER = "iLuno/iLuno-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
 				INFOPLIST_FILE = "iLuno/iLuno-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/iLuno/FlurryAnalytics\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
