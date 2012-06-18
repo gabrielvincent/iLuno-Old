@@ -88,6 +88,8 @@
 		3DCABE34152ECED0007BF5BF /* darkest-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DCABE32152ECED0007BF5BF /* darkest-background.png */; };
 		3DCABE35152ECED0007BF5BF /* darkest-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DCABE33152ECED0007BF5BF /* darkest-background@2x.png */; };
 		3DDDF6CC158E2D46000ACE3D /* TrimestresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDDF6CB158E2D46000ACE3D /* TrimestresViewController.m */; };
+		3DDDF6D3158EBCE2000ACE3D /* AdicioneUmaMateria@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DDDF6D1158EBCE2000ACE3D /* AdicioneUmaMateria@2x.png */; };
+		3DDDF6D4158EBCE2000ACE3D /* AdicioneUmaMateria.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DDDF6D2158EBCE2000ACE3D /* AdicioneUmaMateria.png */; };
 		3DDF0D3C1565128B00FC33E8 /* MateriaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDF0D3A1565128B00FC33E8 /* MateriaViewController.m */; };
 		3DDF0D3D1565128B00FC33E8 /* MateriaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DDF0D3B1565128B00FC33E8 /* MateriaViewController.xib */; };
 		3DF5416A156527A5007ABA01 /* MateriaBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DF54168156527A5007ABA01 /* MateriaBackground.png */; };
@@ -204,6 +206,8 @@
 		3DCABE33152ECED0007BF5BF /* darkest-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "darkest-background@2x.png"; sourceTree = "<group>"; };
 		3DDDF6CA158E2D46000ACE3D /* TrimestresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrimestresViewController.h; path = iLuno/TrimestresViewController.h; sourceTree = "<group>"; };
 		3DDDF6CB158E2D46000ACE3D /* TrimestresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TrimestresViewController.m; path = iLuno/TrimestresViewController.m; sourceTree = "<group>"; };
+		3DDDF6D1158EBCE2000ACE3D /* AdicioneUmaMateria@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AdicioneUmaMateria@2x.png"; sourceTree = "<group>"; };
+		3DDDF6D2158EBCE2000ACE3D /* AdicioneUmaMateria.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AdicioneUmaMateria.png; sourceTree = "<group>"; };
 		3DDF0D391565128B00FC33E8 /* MateriaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MateriaViewController.h; sourceTree = "<group>"; };
 		3DDF0D3A1565128B00FC33E8 /* MateriaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MateriaViewController.m; sourceTree = "<group>"; };
 		3DDF0D3B1565128B00FC33E8 /* MateriaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MateriaViewController.xib; sourceTree = "<group>"; };
@@ -404,6 +408,8 @@
 		3DCABE2D152ECCE5007BF5BF /* Ibagens */ = {
 			isa = PBXGroup;
 			children = (
+				3DDDF6D1158EBCE2000ACE3D /* AdicioneUmaMateria@2x.png */,
+				3DDDF6D2158EBCE2000ACE3D /* AdicioneUmaMateria.png */,
 				3D1E8EF91583179200DFF380 /* ThumbsUp@2x.png */,
 				3D1E8EFA1583179200DFF380 /* ThumbsUp.png */,
 				3D1E8EF11583119300DFF380 /* Rabin.png */,
@@ -583,6 +589,8 @@
 				3D1E8EFE1583C33F00DFF380 /* FormspringViewController.xib in Resources */,
 				3D232A78158D40FA000696EB /* TwitterCell.xib in Resources */,
 				3D8059A3158D670F0081BB6E /* AdicionarMateria.xib in Resources */,
+				3DDDF6D3158EBCE2000ACE3D /* AdicioneUmaMateria@2x.png in Resources */,
+				3DDDF6D4158EBCE2000ACE3D /* AdicioneUmaMateria.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

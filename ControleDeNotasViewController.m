@@ -150,11 +150,12 @@
 		[UIView setAnimationDuration:0.2];
 
 		self.navigationController.navigationBar.frame = CGRectMake(0, 44, 320, 44);
-		[self.tableView setContentOffset:CGPointMake(0, -44) animated:YES];
 		darkView.alpha = 0.6;
 		adicionarMateriaView.frame = CGRectMake(0, 0, 320, 44);
 		
 		[UIView commitAnimations];
+		
+		[self.tableView setContentOffset:CGPointMake(0, -44) animated:YES];
 		
 		[self setRightBarButton:Save];
 		[self setRightBarButton:Disabled];
@@ -165,23 +166,20 @@
 	else if (action == Closing) {
 		[materiaTextField resignFirstResponder];
 		titleLabel.text = @"Controle de Notas";
-		[self.navigationController.view addSubview:darkView];
+//		[self.navigationController.view addSubview:darkView];
 		
 		[UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationDuration:0.2];
 		
-		[self.tableView setContentOffset:CGPointMake(0, -44) animated:YES];
+		[self.tableView setContentOffset:CGPointMake(0, -44)];
 		self.navigationController.navigationBar.frame = CGRectMake(0, 0, 320, 44);
 		darkView.alpha = 0.0;
-		adicionarMateriaView.frame = CGRectMake(0, 0, 320, 44);
+		adicionarMateriaView.frame = CGRectMake(0, -44, 320, 44);
 		self.tableView.scrollEnabled = YES;
 		
 		[UIView commitAnimations];
 		
-		[UIView beginAnimations:nil context:NULL];
-		[UIView setAnimationDuration:0.2];
-		adicionarMateriaView.frame = CGRectMake(0, -44, 320, 44);
-		[UIView commitAnimations];
+		[self.tableView setContentOffset:CGPointMake(0, -44) animated:YES];
 		
 		[adicionarMateriaView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:0.2];
 		[materiaTextField performSelector:@selector(setText:) withObject:@"" afterDelay:0.2];
@@ -204,6 +202,7 @@
 		[arrayMaterias addObject:dict];
 		
 		[self performGraphicalAdjustmentsFor:Closing];
+		self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkest-background-full.png"]];
 		[self.tableView reloadData];
 	}
 }
@@ -235,7 +234,6 @@
 	titleLabel.text = @"Controle de Notas";
 	[titleLabel sizeToFit];
 	
-	self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkest-background-full.png"]];
 	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 	
 	plistManager = [[GVPlistPersistence alloc] init];
@@ -243,7 +241,13 @@
 	
 	[self setRightBarButton:Add];
 	[self setLeftBarButton:Edit];
-	if ([arrayMaterias count] == 0) [self setLeftBarButton:Disabled];
+	if ([arrayMaterias count] == 0) {
+		[self setLeftBarButton:Disabled];
+		self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"AdicioneUmaMateria.png"]];
+	}
+	else {
+		self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkest-background-full.png"]];
+	}
 	
 	if (![plistManager databaseAlreadyExistsWithName:Database]) [plistManager createNewDatabaseWithName:Database];
 }
@@ -380,9 +384,10 @@
 			[self setLeftBarButton:Edit];
 			[self setLeftBarButton:Disabled];
 			[self setRightBarButton:Add];
+			self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"AdicioneUmaMateria.png"]];
 		}
 		
-		[self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:0.2];
+		[self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:0.3];
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -401,7 +406,7 @@
 	[plistManager removeEntryAtIndex:fromIndexPath.row FromDatabase:Database];
 	[plistManager addEntry:temporarySubject atIndex:toIndexPath.row ToDatabase:Database];
 	
-	[self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:0.2];
+	[self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:0.25];
 	
 }
 
