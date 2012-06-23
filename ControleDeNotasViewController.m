@@ -333,7 +333,7 @@
 	// Verifica se alguma row tem um separador a mais (acontece quando é inserida uma nova matéria];
 	if (cell.subviews.count == 3 && indexPath.row < [arrayMaterias count]-1) {
 		for (UIImageView *separator in cell.subviews) {
-			if (separator.frame.origin.y == 44) {
+			if (separator.frame.origin.y == 60) {
 				[separator removeFromSuperview];
 				break;
 			}
@@ -344,7 +344,7 @@
 	if (indexPath.row == [arrayMaterias count]-1) {
 		if ([[cell subviews] count] < 3) {
 			UIImageView *separatorView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separator.png"]];
-			separatorView.frame = CGRectMake(0, 44, 320, 9);
+			separatorView.frame = CGRectMake(0, 60, 320, 9);
 			[cell addSubview:separatorView];
 		}
 	}
@@ -360,6 +360,10 @@
     return YES;
 }
 */
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	return 60.0;
+}
 
 // When single cell will be eddited
 - (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
