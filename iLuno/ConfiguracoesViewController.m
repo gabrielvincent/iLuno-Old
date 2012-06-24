@@ -172,6 +172,9 @@
 }
 
 - (IBAction)hideKeyboard:(id)sender {
+	
+	[self pickerView:pickerView didSelectRow:[pickerView selectedRowInComponent:0] inComponent:0];
+	
 	[unidadeTextField resignFirstResponder];
 	[serieTextField resignFirstResponder];
 	[turmaTextField resignFirstResponder];
