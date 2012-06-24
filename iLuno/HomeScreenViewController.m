@@ -48,6 +48,7 @@
 	navigationRedes.view.alpha = 0.0;
 	navigationControle.view.alpha = 0.0;
 	videos.alpha = 0.0;
+	login.view.alpha = 0.0;
 	configuracoes.view.alpha = 0.0;
 	
 	// Horários
@@ -127,6 +128,19 @@
 			spinner.center = videos.center;
 			[videos addSubview:spinner];
 			[spinner startAnimating];
+		}
+	}
+	// Login
+	else if ([viewController isEqualToString:@"login"]) {
+		if ([[subviewsDict objectForKey:viewController] isEqualToString:@"YES"]) {
+			[vuashView bringSubviewToFront:login.view];
+			login.view.alpha = 1.0;
+		}
+		else {
+			login = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+			login.view.frame = CGRectMake(0, 0, 320, 400);
+			[subviewsDict setValue:@"YES" forKey:viewController];
+			[vuashView addSubview:login.view];
 		}
 	}
 	// Controle de Notas

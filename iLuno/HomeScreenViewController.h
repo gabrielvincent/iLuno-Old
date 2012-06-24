@@ -15,6 +15,7 @@
 #import "CalendariosDetailViewController.h"
 #import "MostraHorariosViewController.h"
 #import "ControleDeNotasViewController.h"
+#import "LoginViewController.h"
 
 @interface HomeScreenViewController : UIViewController <UINavigationControllerDelegate, UIScrollViewDelegate, UIWebViewDelegate> {
 	IBOutlet UIScrollView *scrollView;
@@ -45,6 +46,7 @@
 	GVPlistPersistence *plistManager;
 	CalendariosDetailViewController *calendariosDetail;
 	MostraHorariosViewController *mostraHorarios;
+	LoginViewController *login;
 	ControleDeNotasViewController *controle;
 	
 	NSString *iconId;

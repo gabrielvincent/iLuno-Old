@@ -77,6 +77,8 @@
 		3D95B81D153D8652009193AD /* calculateButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D95B81C153D8652009193AD /* calculateButton.png */; };
 		3DB3AEE2158F386E006E26A5 /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB3AEE1158F386E006E26A5 /* libFlurryAnalytics.a */; };
 		3DB6FB9D152F4683000D2E0C /* TableViewSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6FB9C152F4683000D2E0C /* TableViewSampleViewController.m */; };
+		3DC234481597C45F00814009 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC234461597C45F00814009 /* LoginViewController.m */; };
+		3DC234491597C45F00814009 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC234471597C45F00814009 /* LoginViewController.xib */; };
 		3DCABE11152EC5D6007BF5BF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCABE10152EC5D6007BF5BF /* UIKit.framework */; };
 		3DCABE13152EC5D6007BF5BF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCABE12152EC5D6007BF5BF /* Foundation.framework */; };
 		3DCABE15152EC5D6007BF5BF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCABE14152EC5D6007BF5BF /* CoreGraphics.framework */; };
@@ -192,6 +194,9 @@
 		3DB3AEE1158F386E006E26A5 /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
 		3DB6FB9B152F4683000D2E0C /* TableViewSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableViewSampleViewController.h; path = iLuno/TableViewSampleViewController.h; sourceTree = "<group>"; };
 		3DB6FB9C152F4683000D2E0C /* TableViewSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableViewSampleViewController.m; path = iLuno/TableViewSampleViewController.m; sourceTree = "<group>"; };
+		3DC234451597C45F00814009 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		3DC234461597C45F00814009 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		3DC234471597C45F00814009 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		3DCABE0C152EC5D6007BF5BF /* iLuno.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iLuno.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DCABE10152EC5D6007BF5BF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3DCABE12152EC5D6007BF5BF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -352,6 +357,17 @@
 			name = "Horários";
 			sourceTree = "<group>";
 		};
+		3DC234431597C44700814009 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				3DC234451597C45F00814009 /* LoginViewController.h */,
+				3DC234461597C45F00814009 /* LoginViewController.m */,
+				3DC234471597C45F00814009 /* LoginViewController.xib */,
+			);
+			name = Login;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		3DCABE01152EC5D6007BF5BF = {
 			isa = PBXGroup;
 			children = (
@@ -394,6 +410,7 @@
 				3D5E2AAD153118BE00C44CB7 /* Calendários */,
 				3D3798D81531247D0007263A /* Médias */,
 				3D81287815322911003DAE2B /* Redes Sociais */,
+				3DC234431597C44700814009 /* Login */,
 				3D805998158D5EE50081BB6E /* Controle de Notas */,
 				3D7D4C8F154611BB001B1A1D /* Configurações */,
 				3DCABE2D152ECCE5007BF5BF /* Ibagens */,
@@ -605,6 +622,7 @@
 				3D8059A3158D670F0081BB6E /* AdicionarMateria.xib in Resources */,
 				3DDDF6D3158EBCE2000ACE3D /* AdicioneUmaMateria@2x.png in Resources */,
 				3DDDF6D4158EBCE2000ACE3D /* AdicioneUmaMateria.png in Resources */,
+				3DC234491597C45F00814009 /* LoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -638,6 +656,7 @@
 				3D1E8E6B1582D09A00DFF380 /* FormspringQuestionViewController.m in Sources */,
 				3D80599C158D5F1A0081BB6E /* ControleDeNotasViewController.m in Sources */,
 				3DDDF6CC158E2D46000ACE3D /* TrimestresViewController.m in Sources */,
+				3DC234481597C45F00814009 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
