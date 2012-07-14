@@ -69,6 +69,7 @@
 	
 	messageView.frame = CGRectMake(0, 400, 320, 1);
 	messageLabel.frame = CGRectMake(10, 18, 320, 1);
+	messageLabel.font = [UIFont boldSystemFontOfSize:14];
 	
 	if (isLoadingMore) messageLabel.text = @"Carregando mais tweets...";
 	else messageLabel.text = @"Carregando tweets...";

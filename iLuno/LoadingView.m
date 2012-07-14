@@ -54,6 +54,7 @@
     messageLabel.shadowColor = [UIColor blackColor];
     messageLabel.shadowOffset = CGSizeMake(0, -1);
     messageLabel.text = labelString;
+	messageLabel.font = [UIFont boldSystemFontOfSize:14];
     
     if (reloadImage == nil) {
 		spinner = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(10, 10, 20, 20)];
