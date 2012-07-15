@@ -32,12 +32,12 @@
 	
 	if (y <= 177) {
 		TwitterViewController *twitter = [[TwitterViewController alloc] init];
-		twitter.title = @"Twitter";
+		twitter.titleString = @"Twitter";
 		[self.navigationController pushViewController:twitter animated:YES];
 	}
 	else {
 		FormspringViewController *fomrspring = [[FormspringViewController alloc] init];
-		fomrspring.title = @"Formspring";
+		fomrspring.titleString = @"Formspring";
 		[self.navigationController pushViewController:fomrspring animated:YES];
 	}
 	

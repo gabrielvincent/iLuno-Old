@@ -14,117 +14,103 @@
 @end
 
 @implementation FormspringViewController
+@synthesize tableView, titleString;
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void) showMessageLoadingMoreQuestions {
-	
-	messageView.frame = CGRectMake(0, 400, 320, 1);
-	messageLabel.frame = CGRectMake(10, 18, 320, 1);
-	messageLabel.font = [UIFont boldSystemFontOfSize:14];
-	
-	if (isLoadingMore) messageLabel.text = @"Carregando mais perguntas...";
-	else messageLabel.text = @"Carregando perguntas...";
-	
-	if (spinner == nil) {
-		spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-		spinner.center = messageLabel.center;
-		spinner.frame = CGRectMake(10, 20, spinner.frame.size.width, spinner.frame.size.height);
-	}
-	
-	[spinner startAnimating];
-	[messageView addSubview:spinner];
-	
-	[UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationBeginsFromCurrentState:YES];
-	[UIView setAnimationDuration:0.4];
-	messageView.frame = CGRectMake(0, 340, 320, 60);
-	messageLabel.frame = CGRectMake(10, 18, 320, 21);
-	messageView.alpha = 1.0;
-	[UIView commitAnimations];
-	
-	messageView.backgroundColor = [UIColor blackColor];
-	messageView.alpha = 0.8;
-	[self.navigationController.view addSubview:messageView];
+- (void) dismissLoadingView {
+	[loadingView dismissWithAnimation:GVLoadingViewDismissAnimationDisappear];
 }
 
 - (void) loadDidFinish {
 	
-	[UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationBeginsFromCurrentState:YES];
-	[UIView setAnimationDuration:0.4];
-	messageView.frame = CGRectMake(0, 400, 320, 1);
-	messageLabel.frame = CGRectMake(10, 18, 320, 0);
-	messageView.alpha = 0.0;
-	[UIView commitAnimations];
-	
 	[self.tableView reloadData];
 	if (isLoadingMore) [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y+80) animated:YES];
-	[messageView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:0.4];
-	[spinner performSelector:@selector(stopAnimating) withObject:nil afterDelay:0.4];
 }
 
 - (void) loadMoreQuestions {
-	isLoadingMore = YES;
 	
-	[self performSelectorOnMainThread:@selector(showMessageLoadingMoreQuestions) withObject:nil waitUntilDone:NO];
+	if (isReloading) [loadingView performSelectorOnMainThread:@selector(exitReloadModeWithMessage:) withObject:@"Recarregando mais perguntas" waitUntilDone:NO];
+	else loadingView.messageLabel.text = @"Carregando mais perguntas...";
 	
-	NSArray *tempArray = [[NSArray alloc] initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://iluno.com.br/plistgenerator/get-formspring-xml.php?id=%@", idToKeepListing]]];
-	
-	[questionsArray addObjectsFromArray:tempArray];
-	idToKeepListing = [[questionsArray lastObject] objectForKey:@"id"];
-	[self performSelectorOnMainThread:@selector(loadDidFinish) withObject:nil waitUntilDone:YES];
+	if ([self internetIsConnected]) {
+		isLoadingMore = YES;
+		
+		NSArray *tempArray = [[NSArray alloc] initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://iluno.com.br/plistgenerator/get-formspring-xml.php?id=%@", idToKeepListing]]];
+		
+		[questionsArray addObjectsFromArray:tempArray];
+		idToKeepListing = [[questionsArray lastObject] objectForKey:@"id"];
+		[self performSelectorOnMainThread:@selector(loadDidFinish) withObject:nil waitUntilDone:YES];
+		[self performSelectorOnMainThread:@selector(dismissLoadingView) withObject:nil waitUntilDone:NO];
+		isReloading = NO;
+	}
+	else {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"As perguntas não podem ser carregadas" message:@"Verifique sua conexão com a internet e tente novamente." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		[alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:NO];
+		
+		loadingView.reloadMethod = @selector(callLoadMoreQuestions);
+		[loadingView performSelectorOnMainThread:@selector(enterReloadModeWithMessage:) withObject:@"Recarregar" waitUntilDone:NO];
+		isReloading = YES;
+	}
 }
 
 
 - (void) callLoadMoreQuestions {
-	if (connected) {
-		queue = [NSOperationQueue new];
-		NSInvocationOperation *loadOperation = [[NSInvocationOperation alloc] initWithTarget:self  selector:@selector(loadMoreQuestions)  object:nil];
-		[queue addOperation:loadOperation];
-	}
-	else {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"As perguntas não podem ser carregadas" message:@"Verifique sua conexão com a internet e tente novamente." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		[alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:NO];
-		shouldLoadMoreOnInternetRecover = YES;
-	}
+	loadingView.messageLabel.text = @"Carregando mais perguntas...";
+	[loadingView showWithAnimation:GVLoadingViewShowAnimationAppear];
+	
+	queue = [NSOperationQueue new];
+	NSInvocationOperation *loadOperation = [[NSInvocationOperation alloc] initWithTarget:self  selector:@selector(loadMoreQuestions)  object:nil];
+	[queue addOperation:loadOperation];
 }
 
 - (void) loadQuestions {
 	
-	questionsArray = [[NSMutableArray alloc] initWithContentsOfURL:[NSURL URLWithString:@"http://iluno.com.br/plistgenerator/get-formspring-xml.php"]];
-	idToKeepListing = [[questionsArray lastObject] objectForKey:@"id"];
-	[self performSelectorOnMainThread:@selector(loadDidFinish) withObject:nil waitUntilDone:YES];
-}
-
-- (void) callLoadQuestions {
+	if (isReloading) [loadingView performSelectorOnMainThread:@selector(exitReloadModeWithMessage:) withObject:@"Recarregando perguntas..." waitUntilDone:NO];
 	
-	if (connected) {
-		[self showMessageLoadingMoreQuestions];
+	if ([self internetIsConnected]) {
 		
-		queue = [NSOperationQueue new];
-		NSInvocationOperation *loadOperation = [[NSInvocationOperation alloc] initWithTarget:self  selector:@selector(loadQuestions)  object:nil];
-		[queue addOperation:loadOperation];
+		questionsArray = [[NSMutableArray alloc] initWithContentsOfURL:[NSURL URLWithString:@"http://iluno.com.br/plistgenerator/get-formspring-xml.php"]];
+		
+		
+		idToKeepListing = [[questionsArray lastObject] objectForKey:@"id"];
+		[self performSelectorOnMainThread:@selector(loadDidFinish) withObject:nil waitUntilDone:YES];
+		[self performSelectorOnMainThread:@selector(dismissLoadingView) withObject:nil waitUntilDone:NO];
+		isReloading = NO;
 	}
 	else {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"As perguntas não podem ser carregadas" message:@"Verifique sua conexão com a internet e tente novamente." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 		[alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:NO];
+		
+		loadingView.reloadMethod = @selector(callLoadQuestions);
+		[loadingView performSelectorOnMainThread:@selector(enterReloadModeWithMessage:) withObject:@"Recarregar" waitUntilDone:NO];
+		isReloading = YES;
 	}
+}
+
+- (void) callLoadQuestions {
+	queue = [NSOperationQueue new];
+	NSInvocationOperation *loadOperation = [[NSInvocationOperation alloc] initWithTarget:self  selector:@selector(loadQuestions)  object:nil];
+	[queue addOperation:loadOperation];
+}
+
+- (void) configureLoadingView {
+	loadingView = [[GVLoadingView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-40, 320, 40)];
+	loadingView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
+	loadingView.animationTime = 0.4;
+	loadingView.delegate = (id)self;
+	loadingView.message = @"Carregando perguntas...";
+	loadingView.messageLabelFont = [UIFont boldSystemFontOfSize:14];
+	loadingView.messageLabelColor = [UIColor whiteColor];
+	loadingView.messageLabelShadowOffset = CGSizeMake(0, -1);
+	loadingView.messageLabelShadowColor = [UIColor blackColor];
+	loadingView.reloadImage = [UIImage imageNamed:@"ReloadIcon.png"];
+	loadingView.reloadMethod = @selector(loadQuestions);
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	
-	
-	if ([self.navigationController.navigationBar respondsToSelector:@selector( setBackgroundImage:forBarMetrics:)]){
+	if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)]){
 		[self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navbar.png"] forBarMetrics:UIBarMetricsDefault];
 	}
 	
@@ -136,7 +122,7 @@
 	titleLabel.textAlignment = UITextAlignmentCenter;
 	titleLabel.textColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.75];
 	self.navigationItem.titleView = titleLabel;
-	titleLabel.text = @"Formspring";
+	titleLabel.text = titleString;
 	[titleLabel sizeToFit];
 	
     self.navigationItem.title = @"Formspring";
@@ -145,50 +131,41 @@
 	self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkest-background-full.png"]];
 	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 	
-	messageView = [[UIView alloc] initWithFrame:CGRectMake(0, 400, 320, 1)];
-	messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 18, 320, 21)];
-	messageLabel.backgroundColor = [UIColor clearColor];
-	messageLabel.textColor = [UIColor whiteColor];
-	messageLabel.shadowColor = [UIColor blackColor];
-	messageLabel.shadowOffset = CGSizeMake(0, -1);
-	messageLabel.textAlignment = UITextAlignmentCenter;
-	[messageView addSubview:messageLabel];
-	
 	isLoadingMore = NO;
 	shouldLoadMoreOnInternetRecover = NO;
+	isReloading = NO;
 	
 	// Atrasa a chamada do carregamento das perguntas para que dê tempo de verificar a conexão com a internet
 	[self performSelector:@selector(callLoadQuestions) withObject:nil afterDelay:0.2];
-	
-	
 }
 
 - (void) viewWillAppear:(BOOL)animated {
-	
-	// check for internet connection
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];
-	
-    internetReachable = [Reachability reachabilityForInternetConnection];
-    [internetReachable startNotifier];
-	
-    // check if a pathway to a random host exists
-    hostReachable = [Reachability reachabilityWithHostName: @"www.apple.com"];
-    [hostReachable startNotifier];
-	
 	[super viewWillAppear:animated];
+	
+	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+	
+	if (!loadingView) {
+		[self configureLoadingView];
+		[loadingView showWithAnimation:GVLoadingViewShowAnimationAppear];
+	}
+	
+//	// check for internet connection
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];
+//	
+//    internetReachable = [Reachability reachabilityForInternetConnection];
+//    [internetReachable startNotifier];
+//	
+//    // check if a pathway to a random host exists
+//    hostReachable = [Reachability reachabilityWithHostName: @"www.apple.com"];
+//    [hostReachable startNotifier];
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
-	
-	[UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationBeginsFromCurrentState:YES];
-	[UIView setAnimationDuration:0.4];
-	messageView.frame = CGRectMake(0, 400, 320, 1);
-	messageView.alpha = 0.0;
-	[UIView commitAnimations];
-	
-	[messageView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:0.4];
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -196,21 +173,34 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (BOOL) internetIsConnected {
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://gabrielvincent.com/CheckInternetConnection"]];  
+    
+	NSLog(@"Verifying...");
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:8.0];      
+    NSURLResponse *response;
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
+    NSString *output = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+	NSLog(@"Verified!");
+    
+    return (output.length > 0) ? YES : NO;
+}
+
 -(void) checkNetworkStatus:(NSNotification *)notice
 {
-    // called after network status changes
-    NetworkStatus internetStatus = [internetReachable currentReachabilityStatus];
-	
-	if (internetStatus == NotReachable) {
-		NSLog(@"Internet is down.");
-		connected = NO;
-	}
-	else {
-		NSLog(@"Internet is up.");
-		connected = YES;
-		if (!isLoadingMore && [questionsArray count] == 0) [self callLoadQuestions];
-		if (shouldLoadMoreOnInternetRecover) [self callLoadMoreQuestions];
-	}
+//    // called after network status changes
+//    NetworkStatus internetStatus = [internetReachable currentReachabilityStatus];
+//	
+//	if (internetStatus == NotReachable) {
+//		NSLog(@"Internet is down.");
+//		connected = NO;
+//	}
+//	else {
+//		NSLog(@"Internet is up.");
+//		connected = YES;
+//		if (!isLoadingMore && [questionsArray count] == 0) [self callLoadQuestions];
+//		if (shouldLoadMoreOnInternetRecover) [self callLoadMoreQuestions];
+//	}
 }
 
 #pragma mark - Table view data source
@@ -223,7 +213,7 @@
 		return indexPath.row;
 	}
 	for (int i = 0; i < indexPath.section; i++) {
-		retInt += [tableView numberOfRowsInSection:i];
+		retInt += [self.tableView numberOfRowsInSection:i];
 	}
 	
 	return retInt + indexPath.row;
@@ -238,7 +228,7 @@
 	UITextView *text = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 280, 80)];
 	text.font = [UIFont fontWithName:@"Helvetica-Oblique" size:18];
 	text.text = [[questionsArray objectAtIndex:indexPath.row] objectForKey:@"question"];
-	[tableView addSubview:text];
+	[self.tableView addSubview:text];
 	
 	CGFloat height = text.contentSize.height;
 	[text removeFromSuperview];
@@ -262,12 +252,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
 	
-	NSInteger realRow = [self realRowNumberForIndexPath:indexPath inTableView:tableView];
+	NSInteger realRow = [self realRowNumberForIndexPath:indexPath inTableView:self.tableView];
 	
 	if (realRow % 2 == 0) {
 		bgColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkest-background-full.png"]];

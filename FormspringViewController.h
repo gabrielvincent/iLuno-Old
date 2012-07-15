@@ -8,23 +8,26 @@
 
 #import <UIKit/UIKit.h>
 #import "Reachability.h"
+#import "GVLoadingView.h"
 
-@interface FormspringViewController : UITableViewController <NSXMLParserDelegate> {
+@interface FormspringViewController : UIViewController <NSXMLParserDelegate, UITableViewDataSource, UITableViewDelegate> {
 	
 	NSMutableArray *questionsArray;
 	NSString *idToKeepListing;
 	NSOperationQueue *queue;
 	UIColor *bgColor;
 	BOOL isLoadingMore;
-	UIView *messageView;
-	UILabel *messageLabel;
-	UIActivityIndicatorView *spinner;
 	BOOL shouldLoadMoreOnInternetRecover;
+	BOOL isReloading;
+	GVLoadingView *loadingView;
 	
 	BOOL connected;
 	Reachability* internetReachable;
 	Reachability* hostReachable;
 }
+
+@property (nonatomic, strong) NSString *titleString;
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
 
 - (void) checkNetworkStatus:(NSNotification *)notice;
 

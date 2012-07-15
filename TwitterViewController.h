@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Reachability.h"
+#import "GVLoadingView.h"
 
-@interface TwitterViewController : UITableViewController {
+@interface TwitterViewController : UIViewController <UITableViewDataSource, UITabBarDelegate> {
 	IBOutlet UITableViewCell *customCell;
 	IBOutlet UITextView *tweetTextView;
 	
@@ -17,18 +18,18 @@
 	NSOperationQueue *queue;
 	NSMutableArray *tweetsArray;
 	NSString *idToKeepListing;
-	UIView *messageView;
-	UILabel *messageLabel;
 	BOOL isLoadingMore;
-	UIActivityIndicatorView *spinner;
+	BOOL isReloading;
 	UIColor *bgColor;
 	BOOL shouldLoadMoreOnInternetRecover;
+	GVLoadingView *loadingView;
 	
 	BOOL connected;
 	Reachability* internetReachable;
 	Reachability* hostReachable;
 }
-@property (nonatomic, retain) NSString *title;
+@property (nonatomic, retain) NSString *titleString;
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
 
 - (void) checkNetworkStatus:(NSNotification *)notice;
 

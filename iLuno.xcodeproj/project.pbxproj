@@ -36,6 +36,9 @@
 		3D30EC6B153A5FF400FF3004 /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D30EC69153A5FF400FF3004 /* logo@2x.png */; };
 		3D30EC6F153A62E500FF3004 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D30EC6D153A62E500FF3004 /* Default.png */; };
 		3D30EC70153A62E500FF3004 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D30EC6E153A62E500FF3004 /* Default@2x.png */; };
+		3D312FEC15B285E300E2074E /* ReloadIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D312FEA15B285E300E2074E /* ReloadIcon.png */; };
+		3D312FED15B285E300E2074E /* ReloadIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D312FEB15B285E300E2074E /* ReloadIcon@2x.png */; };
+		3D312FF015B28F2300E2074E /* TwitterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D312FEF15B28F2300E2074E /* TwitterViewController.xib */; };
 		3D3245A915323ED600C822A2 /* TwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3245A815323ED600C822A2 /* TwitterViewController.m */; };
 		3D3579F2153160B3003E7018 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3579F0153160B3003E7018 /* arrow.png */; };
 		3D3579F3153160B3003E7018 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3579F1153160B3003E7018 /* arrow@2x.png */; };
@@ -96,6 +99,7 @@
 		3DDDF6D4158EBCE2000ACE3D /* AdicioneUmaMateria.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DDDF6D2158EBCE2000ACE3D /* AdicioneUmaMateria.png */; };
 		3DDF0D3C1565128B00FC33E8 /* MateriaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDF0D3A1565128B00FC33E8 /* MateriaViewController.m */; };
 		3DDF0D3D1565128B00FC33E8 /* MateriaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DDF0D3B1565128B00FC33E8 /* MateriaViewController.xib */; };
+		3DEFE32B15B2699E00D8CD80 /* GVLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DEFE32A15B2699E00D8CD80 /* GVLoadingView.m */; };
 		3DF5416A156527A5007ABA01 /* MateriaBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DF54168156527A5007ABA01 /* MateriaBackground.png */; };
 		3DF5416B156527A5007ABA01 /* MateriaBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DF54169156527A5007ABA01 /* MateriaBackground@2x.png */; };
 		3DF5416F15652F06007ABA01 /* WoodBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DF5416D15652F06007ABA01 /* WoodBackground.png */; };
@@ -142,6 +146,9 @@
 		3D30EC69153A5FF400FF3004 /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
 		3D30EC6D153A62E500FF3004 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		3D30EC6E153A62E500FF3004 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		3D312FEA15B285E300E2074E /* ReloadIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ReloadIcon.png; sourceTree = "<group>"; };
+		3D312FEB15B285E300E2074E /* ReloadIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ReloadIcon@2x.png"; sourceTree = "<group>"; };
+		3D312FEF15B28F2300E2074E /* TwitterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwitterViewController.xib; sourceTree = "<group>"; };
 		3D3245A715323ED600C822A2 /* TwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterViewController.h; sourceTree = "<group>"; };
 		3D3245A815323ED600C822A2 /* TwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterViewController.m; sourceTree = "<group>"; };
 		3D3579F0153160B3003E7018 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
@@ -222,6 +229,8 @@
 		3DDF0D391565128B00FC33E8 /* MateriaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MateriaViewController.h; sourceTree = "<group>"; };
 		3DDF0D3A1565128B00FC33E8 /* MateriaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MateriaViewController.m; sourceTree = "<group>"; };
 		3DDF0D3B1565128B00FC33E8 /* MateriaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MateriaViewController.xib; sourceTree = "<group>"; };
+		3DEFE32915B2699E00D8CD80 /* GVLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GVLoadingView.h; sourceTree = "<group>"; };
+		3DEFE32A15B2699E00D8CD80 /* GVLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GVLoadingView.m; sourceTree = "<group>"; };
 		3DF54168156527A5007ABA01 /* MateriaBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MateriaBackground.png; sourceTree = "<group>"; };
 		3DF54169156527A5007ABA01 /* MateriaBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MateriaBackground@2x.png"; sourceTree = "<group>"; };
 		3DF5416D15652F06007ABA01 /* WoodBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WoodBackground.png; sourceTree = "<group>"; };
@@ -321,6 +330,7 @@
 				3D81287E15322BA8003DAE2B /* RedesSociaisViewController.xib */,
 				3D3245A715323ED600C822A2 /* TwitterViewController.h */,
 				3D3245A815323ED600C822A2 /* TwitterViewController.m */,
+				3D312FEF15B28F2300E2074E /* TwitterViewController.xib */,
 				3D232A77158D40FA000696EB /* TwitterCell.xib */,
 				3D1E8E5E1582C82700DFF380 /* FormspringViewController.h */,
 				3D1E8E5F1582C82700DFF380 /* FormspringViewController.m */,
@@ -363,6 +373,10 @@
 		3DC234431597C44700814009 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				3DEFE32915B2699E00D8CD80 /* GVLoadingView.h */,
+				3DEFE32A15B2699E00D8CD80 /* GVLoadingView.m */,
+				3D312FEA15B285E300E2074E /* ReloadIcon.png */,
+				3D312FEB15B285E300E2074E /* ReloadIcon@2x.png */,
 				3DC234451597C45F00814009 /* LoginViewController.h */,
 				3DC234461597C45F00814009 /* LoginViewController.m */,
 				3DC234471597C45F00814009 /* LoginViewController.xib */,
@@ -636,6 +650,9 @@
 				3DDDF6D3158EBCE2000ACE3D /* AdicioneUmaMateria@2x.png in Resources */,
 				3DDDF6D4158EBCE2000ACE3D /* AdicioneUmaMateria.png in Resources */,
 				3DC234491597C45F00814009 /* LoginViewController.xib in Resources */,
+				3D312FEC15B285E300E2074E /* ReloadIcon.png in Resources */,
+				3D312FED15B285E300E2074E /* ReloadIcon@2x.png in Resources */,
+				3D312FF015B28F2300E2074E /* TwitterViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -671,6 +688,7 @@
 				3DDDF6CC158E2D46000ACE3D /* TrimestresViewController.m in Sources */,
 				3DC234481597C45F00814009 /* LoginViewController.m in Sources */,
 				3DC234511597C73C00814009 /* LoadingView.m in Sources */,
+				3DEFE32B15B2699E00D8CD80 /* GVLoadingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
