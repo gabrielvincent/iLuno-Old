@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LoadingView.h"
+#import "GVLoadingView.h"
 
 @interface LoginViewController : UIViewController <UIWebViewDelegate> {
 	IBOutlet UIWebView *loginWebView;
 	
 	BOOL hasAlreadyTriedToLogIn;
 	BOOL shoulfRemoveLoadingFromSuperView;
-	LoadingView *loading;
+	GVLoadingView *loadingView;
 }
 
 @end

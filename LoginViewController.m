@@ -26,11 +26,23 @@
     return self;
 }
 
+- (void) configureLoadingView {
+	loadingView = [[GVLoadingView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-40, 320, 40)];
+	loadingView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
+	loadingView.animationTime = 0.4;
+	loadingView.delegate = (id)self;
+	loadingView.message = @"Fazendo login...";
+	loadingView.messageLabelFont = [UIFont boldSystemFontOfSize:14];
+	loadingView.messageLabelColor = [UIColor whiteColor];
+	loadingView.messageLabelShadowOffset = CGSizeMake(0, -1);
+	loadingView.messageLabelShadowColor = [UIColor blackColor];
+	loadingView.reloadImage = [UIImage imageNamed:@"ReloadIcon.png"];
+	loadingView.reloadMethod = @selector(loadQuestions);
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-	loading = [[LoadingView alloc] initWithLabel:@"Fazendo Login..."];
 	
 	hasAlreadyTriedToLogIn = NO;
 	shoulfRemoveLoadingFromSuperView = NO;
@@ -46,6 +58,10 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (void) viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
@@ -56,17 +72,8 @@
 - (BOOL) webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
 	
 	if (!hasAlreadyTriedToLogIn) {
-		loginWebView.userInteractionEnabled = NO;
-		
-		loading.frame = CGRectMake(0, ViewHeight, ViewWidth, 40);
-		loading.alpha = 0,0;
-		[self.view addSubview:loading];
-		
-		[UIView beginAnimations:nil context:NULL];
-		[UIView setAnimationDuration:0.4];
-		loading.frame = CGRectMake(0, ViewHeight-40, ViewWidth, 40);
-		loading.alpha = 1.0;
-		[UIView commitAnimations];
+		[self configureLoadingView];
+		[loadingView showWithAnimation:GVLoadingViewShowAnimationAppear];
 	}
 	
 	return YES;
@@ -83,22 +90,10 @@
 		shoulfRemoveLoadingFromSuperView = YES;
 	}
 	else {
-		[UIView beginAnimations:nil context:NULL];
-		[UIView setAnimationDuration:0.4];
-		loading.frame = CGRectMake(0, ViewHeight, ViewWidth, 0);
-		loading.alpha = 0.0;
-		[UIView commitAnimations];
-		
-		[loading performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:0.4];
+		[loadingView dismissWithAnimation:GVLoadingViewDismissAnimationDisappear];
 		
 		loginWebView.userInteractionEnabled = YES;
 	}
-/*	
-	[UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
-	}
-	completion:^(BOOL finished) {
-	}];
-*/
 	
 }
 
