@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TrimestresViewController : UITableViewController
+@interface TrimestresViewController : UITableViewController {
+	UILabel *titleLabel;
+	NSArray *arrayTrimestres;
+}
+
+@property (nonatomic, strong) NSString *materia;
 
 @end

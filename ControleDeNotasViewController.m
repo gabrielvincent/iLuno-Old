@@ -205,6 +205,9 @@
 		[self performGraphicalAdjustmentsFor:Closing];
 		self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkest-background-full.png"]];
 		[self.tableView reloadData];
+		
+		NSString *fileName = [NSString stringWithFormat:@"ControleDeNotas%@", [self simplifiedString:materia]];
+		if (![plistManager databaseAlreadyExistsWithName:fileName]) [plistManager createNewDatabaseWithName:fileName];
 	}
 }
 
@@ -431,6 +434,7 @@
 {
     TrimestresViewController *trimestres = [[TrimestresViewController alloc] initWithStyle:UITableViewStyleGrouped];
 	
+	trimestres.materia = [self.tableView cellForRowAtIndexPath:indexPath].textLabel.text;
 	
 	[self.navigationController pushViewController:trimestres animated:YES];
 }
