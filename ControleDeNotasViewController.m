@@ -36,9 +36,10 @@
 - (NSString *) simplifiedString:(NSString *)string {
 	
 	string = [string lowercaseString];
+	string = [string stringByReplacingOccurrencesOfString:@" " withString:@""];
 	string = [string stringByReplacingOccurrencesOfString:@"á" withString:@"a"];
 	string = [string stringByReplacingOccurrencesOfString:@"é" withString:@"e"];
-	string = [string stringByReplacingOccurrencesOfString:@"i" withString:@"i"];
+	string = [string stringByReplacingOccurrencesOfString:@"í" withString:@"i"];
 	string = [string stringByReplacingOccurrencesOfString:@"ó" withString:@"o"];
 	string = [string stringByReplacingOccurrencesOfString:@"ú" withString:@"ú"];
 	string = [string stringByReplacingOccurrencesOfString:@"ç" withString:@"c"];

@@ -26,6 +26,22 @@
     return self;
 }
 
+- (void) loadWebView {
+	if ([self internetIsConnected]) {
+		loginWebView.delegate = self;
+		[loginWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://deaaz.com.br"]]];
+	}
+	else {
+		[loadingView enterReloadModeWithMessage:@"Recarregar"];
+	}
+}
+
+- (void) callLoadWebView {
+	queue = [NSOperationQueue new];
+	NSInvocationOperation *loadOperation = [[NSInvocationOperation alloc] initWithTarget:self  selector:@selector(loadWebView)  object:nil];
+	[queue addOperation:loadOperation];
+}
+
 - (void) configureLoadingView {
 	loadingView = [[GVLoadingView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-40, 320, 40)];
 	loadingView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
@@ -47,8 +63,7 @@
 	hasAlreadyTriedToLogIn = NO;
 	shoulfRemoveLoadingFromSuperView = NO;
 	
-	loginWebView.delegate = self;
-	[loginWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://deaaz.com.br"]]];
+	[self callLoadWebView];
 }
 
 - (void)viewDidUnload
@@ -60,6 +75,22 @@
 
 - (void) viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
+	
+	[self configureLoadingView];
+	[loadingView showWithAnimation:GVLoadingViewShowAnimationAppear];
+}
+
+- (BOOL) internetIsConnected {
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://gabrielvincent.com/CheckInternetConnection"]];  
+    
+	NSLog(@"Verifying...");
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:8.0];      
+    NSURLResponse *response;
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
+    NSString *output = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+	NSLog(@"Verified!");
+    
+    return (output.length > 0) ? YES : NO;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -72,8 +103,7 @@
 - (BOOL) webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
 	
 	if (!hasAlreadyTriedToLogIn) {
-		[self configureLoadingView];
-		[loadingView showWithAnimation:GVLoadingViewShowAnimationAppear];
+		
 	}
 	
 	return YES;
@@ -90,7 +120,7 @@
 		shoulfRemoveLoadingFromSuperView = YES;
 	}
 	else {
-		[loadingView dismissWithAnimation:GVLoadingViewDismissAnimationDisappear];
+		[loadingView dismissWithAnimation:GVLoadingViewDismissAnimationFade];
 		
 		loginWebView.userInteractionEnabled = YES;
 	}

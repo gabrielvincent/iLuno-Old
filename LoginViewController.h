@@ -15,6 +15,7 @@
 	BOOL hasAlreadyTriedToLogIn;
 	BOOL shoulfRemoveLoadingFromSuperView;
 	GVLoadingView *loadingView;
+	NSOperationQueue *queue;
 }
 
 @end
