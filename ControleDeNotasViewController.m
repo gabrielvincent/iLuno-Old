@@ -58,7 +58,7 @@
 }
 
 - (void) setLeftBarButton:(NSInteger) button {
-	if (button == Edit) self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(toggleTableViewEdditing)];
+	if (button == Edit) self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Editar" style:UIBarButtonItemStyleBordered target:self action:@selector(toggleTableViewEdditing)];
 	else if (button == OK) self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"OK" style:UIBarButtonItemStyleDone target:self action:@selector(toggleTableViewEdditing)];
 	else if (button == None) self.navigationItem.leftBarButtonItem = nil;
 	else if (button == Disabled) self.navigationItem.leftBarButtonItem.enabled = NO;
