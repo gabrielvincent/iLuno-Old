@@ -17,8 +17,8 @@
 
 @implementation GVLoadingView
 @synthesize delegate, reloadMethod;
-@synthesize message, messageLabelFont, messageLabel, messageLabelShadowColor, messageLabelShadowOffset, messageLabelColor;
-@synthesize spinnerColor;
+@synthesize messageLabel;
+@synthesize spinner;
 @synthesize animationTime;
 @synthesize reloadImage;
 
@@ -27,32 +27,42 @@
     self = [super initWithFrame:frame];
     if (self) {
 		finalFrame = frame;
+		messageLabel = [[UILabel alloc] init];
+		spinner = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     }
     return self;
 }
+
+- (id) init {
+	self = [super init];
+    if (self) {
+		isFirstCall = YES;
+		messageLabel = [[UILabel alloc] init];
+		spinner = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    }
+    return self;
+}
+
+- (void)setFrame:(CGRect)frame
+{
+	[super setFrame:frame];
+    if (!CGRectIsNull(frame) && isFirstCall) {
+		finalFrame = frame;
+		isFirstCall = NO;
+	}
+}
+
 - (void)drawRect:(CGRect)rect
 {
-	NSLog(@"Drawrect");
 	// View configuration
     
 	// Message label configuration
-    messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, Width, Height)];
+    messageLabel.frame = CGRectMake(0, 0, Width, Height);
     messageLabel.backgroundColor = [UIColor clearColor];
-    messageLabel.textColor = [UIColor whiteColor];
     messageLabel.textAlignment = UITextAlignmentCenter;
-    messageLabel.shadowColor = [UIColor blackColor];
-    messageLabel.shadowOffset = CGSizeMake(0, -1);
-    messageLabel.text = message;
-	messageLabel.font = messageLabelFont;
-	messageLabel.shadowOffset = messageLabelShadowOffset;
-	messageLabel.shadowColor = messageLabelShadowColor;
-	messageLabel.textColor = messageLabelColor;
 	
 	// Activity Indicator View configuration
-	spinner = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-	spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
-	spinner.color = spinnerColor;
-	spinner.center = CGPointMake(20, self.frame.size.height/2);
+	spinner.center = CGPointMake(20, Height/2);
 	
 	[self addSubview:messageLabel];
 	[self addSubview:spinner];
@@ -63,9 +73,6 @@
 	
 	messageLabel.text = reloadMessage;
 	
-	spinner = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-	spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
-	spinner.color = spinnerColor;
 	spinner.center = CGPointMake(20, self.frame.size.height/2);
 	[spinner startAnimating];
 	
@@ -91,6 +98,7 @@
 }
 
 - (void) showWithAnimation:(GVLoadingViewShowAnimation)animation {
+	
 	[delegate.view addSubview:self];
 	
 	if (animation == GVLoadingViewShowAnimationNone) {
@@ -110,7 +118,7 @@
 			self.frame = CGRectMake(self.frame.origin.x, SuperviewHeight-Height, Width, 0);
 		}
 		else if (animation == GVLoadingViewShowAnimationDrop) {
-			self.frame = CGRectMake(OriginX, OriginY-80, Width, Height);
+			self.frame = CGRectMake(OriginX, finalFrame.origin.y-40, Width, Height);
 			self.alpha = 0.0;
 		}
 		
@@ -123,16 +131,16 @@
 			if (animation == GVLoadingViewShowAnimationDrop) {
 				
 				[UIView animateWithDuration:animationTime animations:^{ 
-					self.frame = CGRectMake(OriginX, OriginY-7, Width, Height-8);
+					self.frame = CGRectMake(OriginX, OriginY-7, Width, Height+4);
 				} completion:^(BOOL finished) {
 					[UIView animateWithDuration:animationTime animations:^{ 
-						self.frame = CGRectMake(OriginX, OriginY+7, Width, Height+8);
+						self.frame = CGRectMake(OriginX, OriginY+7, Width, Height-4);
 					} completion:^(BOOL finished) {
 						[UIView animateWithDuration:animationTime animations:^{ 
-							self.frame = CGRectMake(OriginX, OriginY-1, Width, Height-2);
+							self.frame = CGRectMake(OriginX, OriginY-2, Width, Height+2);
 						} completion:^(BOOL finished) {
 							[UIView animateWithDuration:animationTime animations:^{ 
-								self.frame = CGRectMake(OriginX, OriginY+1, Width, Height+2);
+								self.frame = CGRectMake(OriginX, OriginY+2, Width, Height-2);
 							}];
 						}];
 					}];

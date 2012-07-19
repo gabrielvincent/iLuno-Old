@@ -146,13 +146,13 @@
 	loadingView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
 	loadingView.animationTime = 0.4;
 	loadingView.delegate = (id)self;
-	loadingView.message = @"Carregando tweets...";
-	loadingView.messageLabelFont = [UIFont boldSystemFontOfSize:14];
-	loadingView.messageLabelColor = [UIColor whiteColor];
-	loadingView.messageLabelShadowOffset = CGSizeMake(0, -1);
-	loadingView.messageLabelShadowColor = [UIColor blackColor];
+	loadingView.messageLabel.text = @"Carregando tweets...";
+	loadingView.messageLabel.font = [UIFont boldSystemFontOfSize:14];
+	loadingView.messageLabel.textColor = [UIColor whiteColor];
+	loadingView.messageLabel.shadowOffset = CGSizeMake(0, -1);
+	loadingView.messageLabel.ShadowColor = [UIColor blackColor];
 	loadingView.reloadImage = [UIImage imageNamed:@"ReloadIcon.png"];
-	loadingView.reloadMethod = @selector(loadQuestions);
+	loadingView.reloadMethod = @selector(loadTweets);
 }
 
 - (void)viewDidUnload

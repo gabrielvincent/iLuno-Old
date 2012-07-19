@@ -47,11 +47,11 @@
 	loadingView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
 	loadingView.animationTime = 0.4;
 	loadingView.delegate = (id)self;
-	loadingView.message = @"Fazendo login...";
-	loadingView.messageLabelFont = [UIFont boldSystemFontOfSize:14];
-	loadingView.messageLabelColor = [UIColor whiteColor];
-	loadingView.messageLabelShadowOffset = CGSizeMake(0, -1);
-	loadingView.messageLabelShadowColor = [UIColor blackColor];
+	loadingView.messageLabel.text = @"Fazendo login...";
+	loadingView.messageLabel.font = [UIFont boldSystemFontOfSize:14];
+	loadingView.messageLabel.textColor = [UIColor whiteColor];
+	loadingView.messageLabel.shadowOffset = CGSizeMake(0, -1);
+	loadingView.messageLabel.ShadowColor = [UIColor blackColor];
 	loadingView.reloadImage = [UIImage imageNamed:@"ReloadIcon.png"];
 	loadingView.reloadMethod = @selector(loadQuestions);
 }
