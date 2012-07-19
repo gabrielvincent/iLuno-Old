@@ -18,7 +18,7 @@
 #define Enabled 3
 
 #import "ControleDeNotasViewController.h"
-#import "TrimestresViewController.h"
+#import "ControleDaMateriaViewController.h"
 
 @interface ControleDeNotasViewController ()
 
@@ -432,11 +432,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TrimestresViewController *trimestres = [[TrimestresViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    ControleDaMateriaViewController *detailViewController = [[ControleDaMateriaViewController alloc] initWithNibName:@"ControleDaMateriaViewController" bundle:nil];
 	
-	trimestres.materia = [self.tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+	detailViewController.materia = [self.tableView cellForRowAtIndexPath:indexPath].textLabel.text;
 	
-	[self.navigationController pushViewController:trimestres animated:YES];
+	[self.navigationController pushViewController:detailViewController animated:YES];
 }
 
 @end

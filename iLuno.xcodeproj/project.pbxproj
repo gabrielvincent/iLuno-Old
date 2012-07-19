@@ -78,6 +78,10 @@
 		3D95B819153D8569009193AD /* MediaTrimestralView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D95B817153D8569009193AD /* MediaTrimestralView.xib */; };
 		3D95B81B153D863A009193AD /* calculateButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D95B81A153D863A009193AD /* calculateButton@2x.png */; };
 		3D95B81D153D8652009193AD /* calculateButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D95B81C153D8652009193AD /* calculateButton.png */; };
+		3D9D718015B820A400EFCC1F /* ControleDaMateriaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9D717E15B820A400EFCC1F /* ControleDaMateriaViewController.m */; };
+		3D9D718115B820A400EFCC1F /* ControleDaMateriaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D9D717F15B820A400EFCC1F /* ControleDaMateriaViewController.xib */; };
+		3D9D718C15B8371000EFCC1F /* NoteBookBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9D718A15B8371000EFCC1F /* NoteBookBackground.png */; };
+		3D9D718D15B8371000EFCC1F /* NoteBookBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9D718B15B8371000EFCC1F /* NoteBookBackground@2x.png */; };
 		3DB3AEE2158F386E006E26A5 /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB3AEE1158F386E006E26A5 /* libFlurryAnalytics.a */; };
 		3DB6FB9D152F4683000D2E0C /* TableViewSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6FB9C152F4683000D2E0C /* TableViewSampleViewController.m */; };
 		3DC234481597C45F00814009 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC234461597C45F00814009 /* LoginViewController.m */; };
@@ -94,7 +98,6 @@
 		3DCABE31152ECD35007BF5BF /* menu-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DCABE30152ECD35007BF5BF /* menu-bg.png */; };
 		3DCABE34152ECED0007BF5BF /* darkest-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DCABE32152ECED0007BF5BF /* darkest-background.png */; };
 		3DCABE35152ECED0007BF5BF /* darkest-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DCABE33152ECED0007BF5BF /* darkest-background@2x.png */; };
-		3DDDF6CC158E2D46000ACE3D /* TrimestresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDDF6CB158E2D46000ACE3D /* TrimestresViewController.m */; };
 		3DDDF6D3158EBCE2000ACE3D /* AdicioneUmaMateria@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DDDF6D1158EBCE2000ACE3D /* AdicioneUmaMateria@2x.png */; };
 		3DDDF6D4158EBCE2000ACE3D /* AdicioneUmaMateria.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DDDF6D2158EBCE2000ACE3D /* AdicioneUmaMateria.png */; };
 		3DDF0D3C1565128B00FC33E8 /* MateriaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDF0D3A1565128B00FC33E8 /* MateriaViewController.m */; };
@@ -198,6 +201,11 @@
 		3D95B817153D8569009193AD /* MediaTrimestralView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MediaTrimestralView.xib; sourceTree = "<group>"; };
 		3D95B81A153D863A009193AD /* calculateButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calculateButton@2x.png"; sourceTree = "<group>"; };
 		3D95B81C153D8652009193AD /* calculateButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calculateButton.png; sourceTree = "<group>"; };
+		3D9D717D15B820A400EFCC1F /* ControleDaMateriaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControleDaMateriaViewController.h; sourceTree = "<group>"; };
+		3D9D717E15B820A400EFCC1F /* ControleDaMateriaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControleDaMateriaViewController.m; sourceTree = "<group>"; };
+		3D9D717F15B820A400EFCC1F /* ControleDaMateriaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ControleDaMateriaViewController.xib; sourceTree = "<group>"; };
+		3D9D718A15B8371000EFCC1F /* NoteBookBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoteBookBackground.png; sourceTree = "<group>"; };
+		3D9D718B15B8371000EFCC1F /* NoteBookBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NoteBookBackground@2x.png"; sourceTree = "<group>"; };
 		3DB3AEE0158F386E006E26A5 /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAnalytics.h; sourceTree = "<group>"; };
 		3DB3AEE1158F386E006E26A5 /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
 		3DB6FB9B152F4683000D2E0C /* TableViewSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableViewSampleViewController.h; path = iLuno/TableViewSampleViewController.h; sourceTree = "<group>"; };
@@ -222,8 +230,6 @@
 		3DCABE30152ECD35007BF5BF /* menu-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-bg.png"; sourceTree = "<group>"; };
 		3DCABE32152ECED0007BF5BF /* darkest-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "darkest-background.png"; sourceTree = "<group>"; };
 		3DCABE33152ECED0007BF5BF /* darkest-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "darkest-background@2x.png"; sourceTree = "<group>"; };
-		3DDDF6CA158E2D46000ACE3D /* TrimestresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrimestresViewController.h; path = iLuno/TrimestresViewController.h; sourceTree = "<group>"; };
-		3DDDF6CB158E2D46000ACE3D /* TrimestresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TrimestresViewController.m; path = iLuno/TrimestresViewController.m; sourceTree = "<group>"; };
 		3DDDF6D1158EBCE2000ACE3D /* AdicioneUmaMateria@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AdicioneUmaMateria@2x.png"; sourceTree = "<group>"; };
 		3DDDF6D2158EBCE2000ACE3D /* AdicioneUmaMateria.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AdicioneUmaMateria.png; sourceTree = "<group>"; };
 		3DDF0D391565128B00FC33E8 /* MateriaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MateriaViewController.h; sourceTree = "<group>"; };
@@ -315,8 +321,9 @@
 				3D80599A158D5F1A0081BB6E /* ControleDeNotasViewController.h */,
 				3D80599B158D5F1A0081BB6E /* ControleDeNotasViewController.m */,
 				3D8059A2158D670F0081BB6E /* AdicionarMateria.xib */,
-				3DDDF6CA158E2D46000ACE3D /* TrimestresViewController.h */,
-				3DDDF6CB158E2D46000ACE3D /* TrimestresViewController.m */,
+				3D9D717D15B820A400EFCC1F /* ControleDaMateriaViewController.h */,
+				3D9D717E15B820A400EFCC1F /* ControleDaMateriaViewController.m */,
+				3D9D717F15B820A400EFCC1F /* ControleDaMateriaViewController.xib */,
 			);
 			name = "Controle de Notas";
 			path = ..;
@@ -475,6 +482,8 @@
 		3DCABE2D152ECCE5007BF5BF /* Ibagens */ = {
 			isa = PBXGroup;
 			children = (
+				3D9D718A15B8371000EFCC1F /* NoteBookBackground.png */,
+				3D9D718B15B8371000EFCC1F /* NoteBookBackground@2x.png */,
 				3DDDF6D1158EBCE2000ACE3D /* AdicioneUmaMateria@2x.png */,
 				3DDDF6D2158EBCE2000ACE3D /* AdicioneUmaMateria.png */,
 				3D1E8EF91583179200DFF380 /* ThumbsUp@2x.png */,
@@ -662,6 +671,9 @@
 				3D312FEC15B285E300E2074E /* ReloadIcon.png in Resources */,
 				3D312FED15B285E300E2074E /* ReloadIcon@2x.png in Resources */,
 				3D312FF015B28F2300E2074E /* TwitterViewController.xib in Resources */,
+				3D9D718115B820A400EFCC1F /* ControleDaMateriaViewController.xib in Resources */,
+				3D9D718C15B8371000EFCC1F /* NoteBookBackground.png in Resources */,
+				3D9D718D15B8371000EFCC1F /* NoteBookBackground@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -694,10 +706,10 @@
 				3D1E8E601582C82700DFF380 /* FormspringViewController.m in Sources */,
 				3D1E8E6B1582D09A00DFF380 /* FormspringQuestionViewController.m in Sources */,
 				3D80599C158D5F1A0081BB6E /* ControleDeNotasViewController.m in Sources */,
-				3DDDF6CC158E2D46000ACE3D /* TrimestresViewController.m in Sources */,
 				3DC234481597C45F00814009 /* LoginViewController.m in Sources */,
 				3DC234511597C73C00814009 /* LoadingView.m in Sources */,
 				3DEFE32B15B2699E00D8CD80 /* GVLoadingView.m in Sources */,
+				3D9D718015B820A400EFCC1F /* ControleDaMateriaViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
