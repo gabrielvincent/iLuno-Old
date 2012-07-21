@@ -10,11 +10,9 @@
 
 @interface ControleDaMateriaViewController : UIViewController <UIScrollViewDelegate, UIPageViewControllerDelegate, UIPageViewControllerDataSource> {
 	IBOutlet UIScrollView *scrollView;
-	IBOutlet UIPageControl *pageControl;
 	
 	UILabel *titleLabel;
 	NSArray *arrayTrimestres;
-	int currentPage;
 }
 
 @property (nonatomic, strong) NSString *materia;

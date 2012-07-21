@@ -40,7 +40,6 @@
 {
     NSUInteger currentIndex = [self.modelArray indexOfObject:[(TrimestresViewController *)viewController trimestreString]];
 	NSLog(@"IndexBefore: %d", currentIndex);
-	pageControl.currentPage = currentIndex-1;
     if(currentIndex == 0)
     {
         return nil;
@@ -55,7 +54,6 @@
 {
     NSUInteger currentIndex = [self.modelArray indexOfObject:[(TrimestresViewController *)viewController trimestreString]];
 	NSLog(@"IndexAfter: %d", currentIndex);
-	pageControl.currentPage = currentIndex+1;
     if(currentIndex == self.modelArray.count-1)
     {
         return nil;
@@ -187,20 +185,6 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-#pragma mark Scroll view delegate methods
-
-- (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-	currentPage = pageControl.currentPage;
-}
-
-- (void) scrollViewDidScroll:(UIScrollView *)ascrollView {
-    
-    CGFloat pageWidth = scrollView.frame.size.width;
-    int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-    
-    [pageControl setCurrentPage:page];
 }
 
 @end
