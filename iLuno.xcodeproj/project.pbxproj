@@ -49,6 +49,9 @@
 		3D481A8A155935A100E4A674 /* SeriesData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D481A89155935A100E4A674 /* SeriesData.plist */; };
 		3D481A911559507C00E4A674 /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D481A8F1559507C00E4A674 /* check@2x.png */; };
 		3D481A921559507C00E4A674 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D481A901559507C00E4A674 /* check.png */; };
+		3D5987FA15BA3E1100DB5E99 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D5987F915BA3E1100DB5E99 /* QuartzCore.framework */; };
+		3D59881015BA49DC00DB5E99 /* TrimestresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D59880E15BA49DC00DB5E99 /* TrimestresViewController.m */; };
+		3D59881115BA49DC00DB5E99 /* TrimestresViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D59880F15BA49DC00DB5E99 /* TrimestresViewController.xib */; };
 		3D5B26921557DD3500BCBE3A /* GVPlistPersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B26911557DD3500BCBE3A /* GVPlistPersistence.m */; };
 		3D5E2AAA15310D5500C44CB7 /* shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D5E2AA815310D5500C44CB7 /* shadow@2x.png */; };
 		3D5E2AAB15310D5500C44CB7 /* shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D5E2AA915310D5500C44CB7 /* shadow.png */; };
@@ -166,6 +169,10 @@
 		3D481A89155935A100E4A674 /* SeriesData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SeriesData.plist; sourceTree = "<group>"; };
 		3D481A8F1559507C00E4A674 /* check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check@2x.png"; sourceTree = "<group>"; };
 		3D481A901559507C00E4A674 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
+		3D5987F915BA3E1100DB5E99 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		3D59880D15BA49DC00DB5E99 /* TrimestresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrimestresViewController.h; sourceTree = "<group>"; };
+		3D59880E15BA49DC00DB5E99 /* TrimestresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrimestresViewController.m; sourceTree = "<group>"; };
+		3D59880F15BA49DC00DB5E99 /* TrimestresViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrimestresViewController.xib; sourceTree = "<group>"; };
 		3D5B26901557DD3500BCBE3A /* GVPlistPersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GVPlistPersistence.h; sourceTree = "<group>"; };
 		3D5B26911557DD3500BCBE3A /* GVPlistPersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GVPlistPersistence.m; sourceTree = "<group>"; };
 		3D5E2AA815310D5500C44CB7 /* shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shadow@2x.png"; sourceTree = "<group>"; };
@@ -252,6 +259,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D5987FA15BA3E1100DB5E99 /* QuartzCore.framework in Frameworks */,
 				3D357A0315316286003E7018 /* SystemConfiguration.framework in Frameworks */,
 				3DCABE11152EC5D6007BF5BF /* UIKit.framework in Frameworks */,
 				3DCABE13152EC5D6007BF5BF /* Foundation.framework in Frameworks */,
@@ -324,6 +332,9 @@
 				3D9D717D15B820A400EFCC1F /* ControleDaMateriaViewController.h */,
 				3D9D717E15B820A400EFCC1F /* ControleDaMateriaViewController.m */,
 				3D9D717F15B820A400EFCC1F /* ControleDaMateriaViewController.xib */,
+				3D59880D15BA49DC00DB5E99 /* TrimestresViewController.h */,
+				3D59880E15BA49DC00DB5E99 /* TrimestresViewController.m */,
+				3D59880F15BA49DC00DB5E99 /* TrimestresViewController.xib */,
 			);
 			name = "Controle de Notas";
 			path = ..;
@@ -431,6 +442,7 @@
 		3DCABE0F152EC5D6007BF5BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3D5987F915BA3E1100DB5E99 /* QuartzCore.framework */,
 				3D357A0215316286003E7018 /* SystemConfiguration.framework */,
 				3DCABE10152EC5D6007BF5BF /* UIKit.framework */,
 				3DCABE12152EC5D6007BF5BF /* Foundation.framework */,
@@ -674,6 +686,7 @@
 				3D9D718115B820A400EFCC1F /* ControleDaMateriaViewController.xib in Resources */,
 				3D9D718C15B8371000EFCC1F /* NoteBookBackground.png in Resources */,
 				3D9D718D15B8371000EFCC1F /* NoteBookBackground@2x.png in Resources */,
+				3D59881115BA49DC00DB5E99 /* TrimestresViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -710,6 +723,7 @@
 				3DC234511597C73C00814009 /* LoadingView.m in Sources */,
 				3DEFE32B15B2699E00D8CD80 /* GVLoadingView.m in Sources */,
 				3D9D718015B820A400EFCC1F /* ControleDaMateriaViewController.m in Sources */,
+				3D59881015BA49DC00DB5E99 /* TrimestresViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -791,7 +805,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/iLuno/FlurryAnalytics\"",
+					"\"$(SRCROOT)/**\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -810,7 +824,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/iLuno/FlurryAnalytics\"",
+					"\"$(SRCROOT)/**\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

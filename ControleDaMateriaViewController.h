@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ControleDaMateriaViewController : UIViewController <UIScrollViewDelegate> {
+@interface ControleDaMateriaViewController : UIViewController <UIScrollViewDelegate, UIPageViewControllerDelegate, UIPageViewControllerDataSource> {
 	IBOutlet UIScrollView *scrollView;
 	IBOutlet UIPageControl *pageControl;
 	
@@ -18,5 +18,7 @@
 }
 
 @property (nonatomic, strong) NSString *materia;
+@property (nonatomic, strong) UIPageViewController *pageViewController;
+@property (nonatomic, strong) NSMutableArray *modelArray;
 
 @end
