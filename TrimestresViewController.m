@@ -13,7 +13,7 @@
 @end
 
 @implementation TrimestresViewController
-@synthesize labelContents, myLabel;
+@synthesize trimestreLabel, trimestreString;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,12 +27,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.myLabel.text = self.labelContents;
+    self.trimestreLabel.text = self.trimestreString;
 }
 
 - (void)viewDidUnload
 {
-    [self setMyLabel:nil];
+    [self setTrimestreLabel:nil];
     [super viewDidUnload];
 }
 

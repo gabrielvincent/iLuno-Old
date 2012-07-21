@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface TrimestresViewController : UIViewController
-@property (strong, nonatomic) IBOutlet UILabel *myLabel;
-@property (strong, nonatomic) NSString *labelContents;
+
+@property (strong, nonatomic) IBOutlet UILabel *trimestreLabel;
+@property (strong, nonatomic) NSString *trimestreString;
+
 @end

@@ -38,7 +38,7 @@
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController 
       viewControllerBeforeViewController:(UIViewController *)viewController
 {
-    NSUInteger currentIndex = [self.modelArray indexOfObject:[(TrimestresViewController *)viewController labelContents]];
+    NSUInteger currentIndex = [self.modelArray indexOfObject:[(TrimestresViewController *)viewController trimestreString]];
 	NSLog(@"IndexBefore: %d", currentIndex);
 	pageControl.currentPage = currentIndex-1;
     if(currentIndex == 0)
@@ -46,14 +46,14 @@
         return nil;
     }
     TrimestresViewController *trimestresViewController = [[TrimestresViewController alloc] init];
-    trimestresViewController.labelContents = [self.modelArray objectAtIndex:currentIndex - 1];
+    trimestresViewController.trimestreString = [self.modelArray objectAtIndex:currentIndex - 1];
     return trimestresViewController;
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController
        viewControllerAfterViewController:(UIViewController *)viewController
 {
-    NSUInteger currentIndex = [self.modelArray indexOfObject:[(TrimestresViewController *)viewController labelContents]];
+    NSUInteger currentIndex = [self.modelArray indexOfObject:[(TrimestresViewController *)viewController trimestreString]];
 	NSLog(@"IndexAfter: %d", currentIndex);
 	pageControl.currentPage = currentIndex+1;
     if(currentIndex == self.modelArray.count-1)
@@ -61,7 +61,7 @@
         return nil;
     }
     TrimestresViewController *trimestresViewController = [[TrimestresViewController alloc] init];
-    trimestresViewController.labelContents = [self.modelArray objectAtIndex:currentIndex + 1];
+    trimestresViewController.trimestreString = [self.modelArray objectAtIndex:currentIndex + 1];
 	
     return trimestresViewController;
 }
@@ -88,7 +88,7 @@
         NSArray *viewControllers = nil;
         TrimestresViewController *trimestresViewController = [self.pageViewController.viewControllers objectAtIndex:0];
         
-        NSUInteger currentIndex = [self.modelArray indexOfObject:[(TrimestresViewController *)trimestresViewController labelContents]];
+        NSUInteger currentIndex = [self.modelArray indexOfObject:[(TrimestresViewController *)trimestresViewController trimestreString]];
         if(currentIndex == 0 || currentIndex %2 == 0)
         {
             UIViewController *nextViewController = [self pageViewController:self.pageViewController viewControllerAfterViewController:trimestresViewController];
@@ -120,7 +120,7 @@
 	//Step 1
     //Instantiate the UIPageViewController.
     self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl 
-                                                              navigationOrientation:UIPageViewControllerNavigationOrientationVertical options:nil];
+                                                              navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     
     //Step 2:
     //Assign the delegate and datasource as self.
@@ -130,7 +130,7 @@
     //Step 3:
     //Set the initial view controllers.
     TrimestresViewController *contentViewController = [[TrimestresViewController alloc] initWithNibName:@"TrimestresViewController" bundle:nil];
-    contentViewController.labelContents = [self.modelArray objectAtIndex:0];
+    contentViewController.trimestreString = [self.modelArray objectAtIndex:0];
     NSArray *viewControllers = [NSArray arrayWithObject:contentViewController];
     [self.pageViewController setViewControllers:viewControllers 
                                       direction:UIPageViewControllerNavigationDirectionForward
@@ -150,7 +150,7 @@
 	
     //Step 5:
     // set the pageViewController's frame as an inset rect.
-    self.pageViewController.view.frame = CGRectMake(0, 0, 320, 354);
+    self.pageViewController.view.frame = CGRectMake(0, 0, 313, 354);
 	self.pageViewController.view.center = self.view.center;
     
     //Step 6:
