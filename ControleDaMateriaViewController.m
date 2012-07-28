@@ -148,7 +148,7 @@
 	
     //Step 5:
     // set the pageViewController's frame as an inset rect.
-    self.pageViewController.view.frame = CGRectMake(0, 0, 313, 354);
+    self.pageViewController.view.frame = CGRectMake(0, 0, 320, 354);
 	self.pageViewController.view.center = self.view.center;
     
     //Step 6:

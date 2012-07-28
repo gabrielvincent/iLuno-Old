@@ -27,7 +27,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	
+	NSLog(@"Frame: %f", scrollView.frame.size.height);
+	
     self.trimestreLabel.text = self.trimestreString;
+//	scrollView.frame = CGRectMake(51, 50, 262, 295);
+	scrollView.contentSize = CGSizeMake(262, 725);
 }
 
 - (void)viewDidUnload
