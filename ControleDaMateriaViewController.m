@@ -29,8 +29,28 @@
     return self;
 }
 
-- (void) setData {
+- (NSString *) simplifiedString:(NSString *)string {
 	
+//	string = [string lowercaseString];
+	string = [string stringByReplacingOccurrencesOfString:@" " withString:@""];
+	string = [string stringByReplacingOccurrencesOfString:@"á" withString:@"a"];
+	string = [string stringByReplacingOccurrencesOfString:@"é" withString:@"e"];
+	string = [string stringByReplacingOccurrencesOfString:@"í" withString:@"i"];
+	string = [string stringByReplacingOccurrencesOfString:@"ó" withString:@"o"];
+	string = [string stringByReplacingOccurrencesOfString:@"ú" withString:@"ú"];
+	string = [string stringByReplacingOccurrencesOfString:@"ç" withString:@"c"];
+	string = [string stringByReplacingOccurrencesOfString:@"ã" withString:@"a"];
+	string = [string stringByReplacingOccurrencesOfString:@"â" withString:@"a"];
+	string = [string stringByReplacingOccurrencesOfString:@"ê" withString:@"e"];
+	string = [string stringByReplacingOccurrencesOfString:@"ô" withString:@"o"];
+	string = [string stringByReplacingOccurrencesOfString:@"à" withString:@"a"];
+	string = [string stringByReplacingOccurrencesOfString:@"è" withString:@"e"];
+	string = [string stringByReplacingOccurrencesOfString:@"ì" withString:@"i"];
+	string = [string stringByReplacingOccurrencesOfString:@"ò" withString:@"ò"];
+	string = [string stringByReplacingOccurrencesOfString:@"ù" withString:@"u"];
+	string = [string stringByReplacingOccurrencesOfString:@"ñ" withString:@"n"];
+	
+	return string;
 }
 
 #pragma mark - UIPageViewControllerDataSource Methods
@@ -39,13 +59,13 @@
       viewControllerBeforeViewController:(UIViewController *)viewController
 {
     NSUInteger currentIndex = [self.modelArray indexOfObject:[(TrimestresViewController *)viewController trimestreString]];
-	NSLog(@"IndexBefore: %d", currentIndex);
     if(currentIndex == 0)
     {
         return nil;
     }
     TrimestresViewController *trimestresViewController = [[TrimestresViewController alloc] init];
     trimestresViewController.trimestreString = [self.modelArray objectAtIndex:currentIndex - 1];
+	trimestresViewController.materiaString = [self simplifiedString:materia];
     return trimestresViewController;
 }
 
@@ -53,18 +73,33 @@
        viewControllerAfterViewController:(UIViewController *)viewController
 {
     NSUInteger currentIndex = [self.modelArray indexOfObject:[(TrimestresViewController *)viewController trimestreString]];
-	NSLog(@"IndexAfter: %d", currentIndex);
     if(currentIndex == self.modelArray.count-1)
     {
         return nil;
     }
     TrimestresViewController *trimestresViewController = [[TrimestresViewController alloc] init];
     trimestresViewController.trimestreString = [self.modelArray objectAtIndex:currentIndex + 1];
+	trimestresViewController.materiaString = [self simplifiedString:materia];
 	
     return trimestresViewController;
 }
 
 #pragma mark - UIPageViewControllerDelegate Methods
+
+- (void)pageViewController:(UIPageViewController *)pvc didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
+{
+    // If the page did not turn
+    if (!completed)
+    {
+        // You do nothing because whatever page you thought
+        // the book was on before the gesture started is still the correct page
+        return;
+    }
+	
+	currentTrimester = [[[[pvc.viewControllers objectAtIndex:0] trimestreString] stringByReplacingOccurrencesOfString:@"º Trimestre" withString:@""] integerValue];
+	
+    // This is where you would know the page number changed and handle it appropriately
+}
 
 - (UIPageViewControllerSpineLocation)pageViewController:(UIPageViewController *)pageViewController
                    spineLocationForInterfaceOrientation:(UIInterfaceOrientation)orientation
@@ -104,9 +139,48 @@
     }
 }
 
+#pragma mark ViewController methods
+
+- (void) toggleEditMode {
+	
+	if (isEditing) {
+		isEditing = NO;
+		self.navigationItem.rightBarButtonItem.title = @"Editar";
+		self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStyleBordered;
+		self.view.gestureRecognizers = self.pageViewController.gestureRecognizers;
+		
+		[UIView animateWithDuration:0.2 animations:^{
+			addButton.alpha = 0.0;
+		}];
+	}
+	else {
+		isEditing = YES;
+		self.navigationItem.rightBarButtonItem.title = @"OK";
+		self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStyleDone;
+		self.view.gestureRecognizers = nil;
+		
+		[UIView animateWithDuration:0.2 animations:^{
+			addButton.alpha = 1.0;
+		}];
+		[self.view bringSubviewToFront:addButton];
+	}
+	
+}
+
+- (IBAction)addFields:(id)sender {
+	
+	[[self.pageViewController.viewControllers objectAtIndex:0] addFieldsForTrimester:currentTrimester OfSubject:[self simplifiedString:materia]];
+	
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Editar" style:UIBarButtonItemStyleBordered target:self action:@selector(toggleEditMode)];
+	
+	isEditing = NO;
+	currentTrimester = 1;
 	
 	//Instantiate the model array
     self.modelArray = [[NSMutableArray alloc] init];
@@ -129,6 +203,7 @@
     //Set the initial view controllers.
     TrimestresViewController *contentViewController = [[TrimestresViewController alloc] initWithNibName:@"TrimestresViewController" bundle:nil];
     contentViewController.trimestreString = [self.modelArray objectAtIndex:0];
+	contentViewController.materiaString = [self simplifiedString:materia];
     NSArray *viewControllers = [NSArray arrayWithObject:contentViewController];
     [self.pageViewController setViewControllers:viewControllers 
                                       direction:UIPageViewControllerNavigationDirectionForward
@@ -167,12 +242,6 @@
 	self.navigationItem.titleView = titleLabel;
 	titleLabel.text = materia;
 	[titleLabel sizeToFit];
-	
-    scrollView.frame = CGRectMake(0, 0, 320, 367);
-	scrollView.contentSize = CGSizeMake(320*3, 367);
-	scrollView.delegate = self;
-	
-	[self setData];
 }
 
 - (void)viewDidUnload

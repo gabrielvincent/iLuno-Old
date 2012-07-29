@@ -8,15 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ControleDaMateriaViewController : UIViewController <UIScrollViewDelegate, UIPageViewControllerDelegate, UIPageViewControllerDataSource> {
-	IBOutlet UIScrollView *scrollView;
+@interface ControleDaMateriaViewController : UIViewController <UIPageViewControllerDelegate, UIPageViewControllerDataSource> {
+	IBOutlet UIButton *addButton;
 	
 	UILabel *titleLabel;
 	NSArray *arrayTrimestres;
+	BOOL isEditing;
+	NSInteger currentTrimester;
 }
 
 @property (nonatomic, strong) NSString *materia;
 @property (nonatomic, strong) UIPageViewController *pageViewController;
 @property (nonatomic, strong) NSMutableArray *modelArray;
+
+- (IBAction)addFields:(id)sender;
 
 @end
