@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GVPlistPersistence.h"
 
-@interface TrimestresViewController : UIViewController {
+@interface TrimestresViewController : UIViewController <UITextFieldDelegate> {
 	IBOutlet UIScrollView *scrollView;
 	
 	GVPlistPersistence *plistManager;
@@ -23,5 +23,7 @@
 @property (strong, nonatomic) NSString *materiaString;
 
 - (void)addFieldsForTrimester:(NSInteger)trimester OfSubject:(NSString *)subject;
+- (void) didExitEditMode;
+- (void) didEnterEditMode;
 
 @end

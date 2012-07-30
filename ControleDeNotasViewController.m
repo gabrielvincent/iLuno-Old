@@ -205,9 +205,6 @@
 		[self performGraphicalAdjustmentsFor:Closing];
 		self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkest-background-full.png"]];
 		[self.tableView reloadData];
-		
-		NSString *fileName = [NSString stringWithFormat:@"ControleDeNotas%@", [self simplifiedString:materia]];
-		if (![plistManager databaseAlreadyExistsWithName:fileName]) [plistManager createNewDatabaseWithName:fileName];
 	}
 }
 

@@ -152,6 +152,8 @@
 		[UIView animateWithDuration:0.2 animations:^{
 			addButton.alpha = 0.0;
 		}];
+		
+		[[self.pageViewController.viewControllers objectAtIndex:0] didExitEditMode];
 	}
 	else {
 		isEditing = YES;
@@ -159,10 +161,12 @@
 		self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStyleDone;
 		self.view.gestureRecognizers = nil;
 		
+		[self.view bringSubviewToFront:addButton];
 		[UIView animateWithDuration:0.2 animations:^{
 			addButton.alpha = 1.0;
 		}];
-		[self.view bringSubviewToFront:addButton];
+		
+		[[self.pageViewController.viewControllers objectAtIndex:0] didEnterEditMode];
 	}
 	
 }

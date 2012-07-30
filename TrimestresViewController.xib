@@ -45,6 +45,7 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="941285032"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<int key="IBUITag">-1</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -64,6 +65,7 @@
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="716709046"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<int key="IBUITag">-1</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
@@ -82,6 +84,7 @@
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
+								<int key="IBUITag">-1</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">Trimestre</string>
@@ -109,7 +112,7 @@
 								<reference key="NSNextResponder" ref="941285032"/>
 								<int key="NSvFlags">268</int>
 								<array class="NSMutableArray" key="NSSubviews">
-									<object class="IBUILabel" id="126507899">
+									<object class="IBUILabel" id="989449325">
 										<reference key="NSNextResponder" ref="153740711"/>
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{200, 15}, {55, 30}}</string>
@@ -119,6 +122,7 @@
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
 										<int key="IBUIContentMode">7</int>
+										<int key="IBUITag">-1</int>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										<string key="IBUIText"/>
@@ -142,17 +146,18 @@
 											<int key="NSfFlags">16</int>
 										</object>
 									</object>
-									<object class="IBUILabel" id="978481106">
+									<object class="IBUILabel" id="158304439">
 										<reference key="NSNextResponder" ref="153740711"/>
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{10, 15}, {182, 30}}</string>
 										<reference key="NSSuperview" ref="153740711"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="126507899"/>
+										<reference key="NSNextKeyView" ref="989449325"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
 										<int key="IBUIContentMode">7</int>
+										<int key="IBUITag">-1</int>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										<string key="IBUIText"/>
@@ -176,10 +181,11 @@
 								<string key="NSFrame">{{51, 38}, {262, 280}}</string>
 								<reference key="NSSuperview" ref="941285032"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="978481106"/>
+								<reference key="NSNextKeyView" ref="158304439"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIMultipleTouchEnabled">YES</bool>
+								<int key="IBUITag">-1</int>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<bool key="IBUIAlwaysBounceVertical">YES</bool>
 								<bool key="IBUIPagingEnabled">YES</bool>
@@ -196,6 +202,7 @@
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
 						</object>
+						<int key="IBUITag">-1</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</array>
@@ -204,6 +211,7 @@
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="309232663"/>
 				<reference key="IBUIBackgroundColor" ref="1058542142"/>
+				<int key="IBUITag">-1</int>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 				<object class="IBUISimulatedNavigationBarMetrics" key="IBUISimulatedTopBarMetrics">
 					<bool key="IBUIPrompted">NO</bool>
@@ -272,8 +280,8 @@
 						<reference key="object" ref="941285032"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="418469504"/>
-							<reference ref="153740711"/>
 							<reference ref="716709046"/>
+							<reference ref="153740711"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -291,8 +299,8 @@
 						<int key="objectID">89</int>
 						<reference key="object" ref="153740711"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="126507899"/>
-							<reference ref="978481106"/>
+							<reference ref="989449325"/>
+							<reference ref="158304439"/>
 						</array>
 						<reference key="parent" ref="941285032"/>
 					</object>
@@ -303,12 +311,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">156</int>
-						<reference key="object" ref="126507899"/>
+						<reference key="object" ref="989449325"/>
 						<reference key="parent" ref="153740711"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">157</int>
-						<reference key="object" ref="978481106"/>
+						<reference key="object" ref="158304439"/>
 						<reference key="parent" ref="153740711"/>
 					</object>
 				</array>
@@ -331,7 +339,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">157</int>
+			<int key="maxID">159</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
