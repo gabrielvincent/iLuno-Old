@@ -112,7 +112,7 @@
 								<reference key="NSNextResponder" ref="941285032"/>
 								<int key="NSvFlags">268</int>
 								<array class="NSMutableArray" key="NSSubviews">
-									<object class="IBUILabel" id="989449325">
+									<object class="IBUILabel" id="831138991">
 										<reference key="NSNextResponder" ref="153740711"/>
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{200, 15}, {55, 30}}</string>
@@ -146,13 +146,13 @@
 											<int key="NSfFlags">16</int>
 										</object>
 									</object>
-									<object class="IBUILabel" id="158304439">
+									<object class="IBUILabel" id="999885703">
 										<reference key="NSNextResponder" ref="153740711"/>
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{10, 15}, {182, 30}}</string>
 										<reference key="NSSuperview" ref="153740711"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="989449325"/>
+										<reference key="NSNextKeyView" ref="831138991"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -181,7 +181,7 @@
 								<string key="NSFrame">{{51, 38}, {262, 280}}</string>
 								<reference key="NSSuperview" ref="941285032"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="158304439"/>
+								<reference key="NSNextKeyView" ref="999885703"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIMultipleTouchEnabled">YES</bool>
@@ -299,8 +299,8 @@
 						<int key="objectID">89</int>
 						<reference key="object" ref="153740711"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="989449325"/>
-							<reference ref="158304439"/>
+							<reference ref="831138991"/>
+							<reference ref="999885703"/>
 						</array>
 						<reference key="parent" ref="941285032"/>
 					</object>
@@ -311,12 +311,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">156</int>
-						<reference key="object" ref="989449325"/>
+						<reference key="object" ref="831138991"/>
 						<reference key="parent" ref="153740711"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">157</int>
-						<reference key="object" ref="158304439"/>
+						<reference key="object" ref="999885703"/>
 						<reference key="parent" ref="153740711"/>
 					</object>
 				</array>

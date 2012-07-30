@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 _A_Z. All rights reserved.
 //
 
-#define DynamicContentSizeHeight (([arrayFields count]+(([arrayFields count]%7)+1))*40)+15
+#define DynamicContentSizeHeight (([arrayFields count]+(7-([arrayFields count]%7)))*40)+15
 #define ScrollViewContentSizeHeight self.scrollView.contentSize.height
 #define ScrollViewWidth self.scrollView.frame.size.width
 #define ScrollViewHeight self.scrollView.frame.size.height
@@ -140,6 +140,7 @@
 	// Saves to the array
 	[arrayFields addObject:fieldsDictionary];
 	
+	NSLog(@"PercentSeven: %d", [arrayFields count]%7);
 	if ([arrayFields count] > 7) self.scrollView.contentSize = CGSizeMake(0, DynamicContentSizeHeight);
 	
 }
