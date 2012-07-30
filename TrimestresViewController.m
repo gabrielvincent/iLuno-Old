@@ -52,7 +52,6 @@
 	NSMutableDictionary *fields = [arrayFields objectAtIndex:index];
 	NSString *key;
 	
-	NSLog(@"Tag: %d", textField.tag);
 	if (textField.tag%2 == 0) key = @"labelTextField";
 	else key = @"gradeTextField";
 	
@@ -71,21 +70,23 @@
 	if ([arrayFields count] > 7) self.scrollView.contentSize = CGSizeMake(0, DynamicContentSizeHeight);
 	
 	// Makes the user interaction disabled for all TextFields
-	for (int i = 0; i < [arrayFields count]*2; i++) {
-		if (i%2 == 0) {
-			[(UITextField *)[self.scrollView viewWithTag:i/2] setUserInteractionEnabled:NO];
-			[(UITextField *)[self.scrollView viewWithTag:(i/2)+1] setUserInteractionEnabled:NO];
-		}
+	for (NSDictionary *fields in arrayFields) {
+		int evenTag = [[fields objectForKey:@"evenTag"] intValue];
+		int oddTag = [[fields objectForKey:@"oddTag"] intValue];
+		
+		[(UITextField *)[self.scrollView viewWithTag:evenTag] setUserInteractionEnabled:NO];
+		[(UITextField *)[self.scrollView viewWithTag:oddTag] setUserInteractionEnabled:NO];
 	}
 }
 
 - (void) didEnterEditMode {
 	// Makes the user interaction enabled for all TextFields
-	for (int i = 0; i < [arrayFields count]*2; i++) {
-		if (i%2 == 0) {
-			[(UITextField *)[self.scrollView viewWithTag:i/2] setUserInteractionEnabled:YES];
-			[(UITextField *)[self.scrollView viewWithTag:(i/2)+1] setUserInteractionEnabled:YES];
-		}
+	for (NSDictionary *fields in arrayFields) {
+		int evenTag = [[fields objectForKey:@"evenTag"] intValue];
+		int oddTag = [[fields objectForKey:@"oddTag"] intValue];
+		
+		[(UITextField *)[self.scrollView viewWithTag:evenTag] setUserInteractionEnabled:YES];
+		[(UITextField *)[self.scrollView viewWithTag:oddTag] setUserInteractionEnabled:YES];
 	}
 }
 
@@ -155,7 +156,7 @@
 		labelTextField.font = [UIFont fontWithName:@"Noteworthy-Light" size:17];
 		labelTextField.borderStyle = UITextBorderStyleNone;
 		labelTextField.textColor = UIColorFromRGB(0x222222);
-		labelTextField.tag = i;
+		labelTextField.tag = [[fields objectForKey:@"evenTag"] intValue];
 		labelTextField.delegate = self;
 		labelTextField.text = [fields objectForKey:@"labelTextField"];
 		labelTextField.userInteractionEnabled = NO;
@@ -165,7 +166,7 @@
 		gradeTextField.font = [UIFont fontWithName:@"Noteworthy-Bold" size:17];
 		gradeTextField.textAlignment = UITextAlignmentRight;
 		gradeTextField.borderStyle = UITextBorderStyleNone;
-		gradeTextField.tag = i+1;
+		gradeTextField.tag = [[fields objectForKey:@"oddTag"] intValue];
 		gradeTextField.delegate = self;
 		gradeTextField.text = [fields objectForKey:@"gradeTextField"];
 		gradeTextField.userInteractionEnabled = NO;
