@@ -41,7 +41,7 @@
     return self;
 }
 
-#pragma mark Window methods 
+#pragma mark Window methods
 
 - (void) keyboardWasShown:(NSNotification *) notification {
 	[UIView animateWithDuration:0.2 animations:^{
@@ -151,24 +151,61 @@
 	int evenTag = deleteButton.tag-1;
 	int oddTag = deleteButton.tag;
 	
-	NSLog(@"Even: %d | Odd: %d", evenTag, oddTag);
+	NSLog(@"Eventag: %d", evenTag);
 	
-	[[(UIButton *)deleteButtonsView viewWithTag:evenTag] removeFromSuperview];
+	// Sets a differente Tag so it won't interfer with the other objects with that tag
+	[(UIButton *)[deleteButtonsView viewWithTag:evenTag] setTag:-2];
+	UIButton *deleteCircle = (UIButton *)[deleteButtonsView viewWithTag:-2];
 	
-	[ThisLabelTextField removeFromSuperview];
-	[ThisGradeTextField removeFromSuperview];
-	
-	[deleteButton removeFromSuperview];
-	
-	[arrayFields removeObjectAtIndex:evenTag/2];
-	[plistManager removeEntryAtIndex:evenTag/2 FromDatabase:fileName];
-	
-	for (UIView *view in self.scrollView.subviews) {
-		[view removeFromSuperview];
+	// Slides to the right
+	[UIView animateWithDuration:0.2 animations:^{
+		
+		ThisLabelTextField.frame = CGRectMake(ThisLabelTextField.frame.origin.x+8, ThisLabelTextField.frame.origin.y, ThisLabelTextField.frame.size.width, ThisLabelTextField.frame.size.height);
+		ThisGradeTextField.frame = CGRectMake(ThisGradeTextField.frame.origin.x+8, ThisGradeTextField.frame.origin.y, ThisGradeTextField.frame.size.width, ThisGradeTextField.frame.size.height);
+		deleteButton.frame = CGRectMake(deleteButton.frame.origin.x+8, deleteButton.frame.origin.y, deleteButton.frame.size.width, deleteButton.frame.size.height);
+		deleteCircle.frame = CGRectMake(deleteCircle.frame.origin.x+8, deleteCircle.frame.origin.y, deleteCircle.frame.size.width, deleteCircle.frame.size.height);
+		
 	}
-	
-	[self setData];
-	
+	// Slides to the left and fades out
+	completion:^(BOOL finished){
+		
+		[UIView animateWithDuration:0.2 animations:^{
+			ThisLabelTextField.frame = CGRectMake(ThisLabelTextField.frame.origin.x-200, ThisLabelTextField.frame.origin.y, ThisLabelTextField.frame.size.width, ThisLabelTextField.frame.size.height);
+			ThisGradeTextField.frame = CGRectMake(ThisGradeTextField.frame.origin.x-200, ThisGradeTextField.frame.origin.y, ThisGradeTextField.frame.size.width, ThisGradeTextField.frame.size.height);
+			deleteButton.frame = CGRectMake(deleteButton.frame.origin.x-200, deleteButton.frame.origin.y, deleteButton.frame.size.width, deleteButton.frame.size.height);
+			deleteCircle.frame = CGRectMake(deleteCircle.frame.origin.x-200, deleteCircle.frame.origin.y, deleteCircle.frame.size.width, deleteCircle.frame.size.height);
+			
+			ThisLabelTextField.alpha = 0.0;
+			ThisGradeTextField.alpha = 0.0;
+			deleteButton.alpha = 0.0;
+			deleteCircle.alpha = 0.0;
+			
+		}
+		 // Really remove the data
+		completion:^(BOOL finished){
+			
+			[ThisLabelTextField removeFromSuperview];
+			[ThisGradeTextField removeFromSuperview];
+			
+			[arrayFields removeObjectAtIndex:evenTag/2];
+			[plistManager removeEntryAtIndex:evenTag/2 FromDatabase:fileName];
+			
+			// Cleans the deleteButtonsView
+			for (UIView *view in deleteButtonsView.subviews) {
+				[view removeFromSuperview];
+			}
+			
+			// Cleans the scrollView
+			for (UIView *view in self.scrollView.subviews) {
+				if (![view isEqual:deleteButtonsView]) [view removeFromSuperview];
+			}
+			
+			deleteButtonIsReadyToDelete = NO;
+			
+			[self setData];
+			
+		}];
+	}];
 }
 
 - (void) toggleDeletionState:(UIButton *) deleteCircle {
@@ -208,7 +245,7 @@
 	if (![plistManager databaseAlreadyExistsWithName:fileName]) {
 		[plistManager createNewDatabaseWithName:fileName];
 		arrayFields = [NSMutableArray arrayWithArray:[plistManager databaseWithName:fileName]];
-	}	
+	}
 	
 	NSMutableDictionary *fieldsDictionary = [[NSMutableDictionary alloc] init];
 	
@@ -235,7 +272,16 @@
 	[self.scrollView addSubview:gradeTextField];
 	[labelTextField becomeFirstResponder];
 	
-	NSLog(@"Label: %d | Grade %d", labelTextField.tag, gradeTextField.tag);
+	// Adds the delete buttons
+	UIButton *deleteCircle = [UIButton buttonWithType:UIButtonTypeCustom];
+	[deleteCircle setImage:[UIImage imageNamed:@"DeleteCircle.png"] forState:UIControlStateNormal];
+	deleteCircle.frame = CGRectMake(0, 0, 46, 36);
+	deleteCircle.center = labelTextField.center;
+	deleteCircle.frame = CGRectMake(0, deleteCircle.frame.origin.y, 46, 36);
+	deleteCircle.tag = labelTextField.tag;
+	[deleteCircle addTarget:self action:@selector(toggleDeletionState:) forControlEvents:UIControlEventTouchUpInside];
+	
+	[deleteButtonsView addSubview:deleteCircle];
 	
 	// Sets the dictionary
 	[fieldsDictionary setValue:@"" forKey:@"labelTextField"];
