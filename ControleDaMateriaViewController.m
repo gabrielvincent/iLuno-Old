@@ -229,6 +229,7 @@
     // set the pageViewController's frame as an inset rect.
     self.pageViewController.view.frame = CGRectMake(0, 0, 320, 354);
 	self.pageViewController.view.center = self.view.center;
+	
     
     //Step 6:
     //Assign the gestureRecognizers property of our pageViewController to our view's gestureRecognizers property.

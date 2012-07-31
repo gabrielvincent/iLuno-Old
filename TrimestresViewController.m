@@ -6,7 +6,10 @@
 //  Copyright (c) 2012 _A_Z. All rights reserved.
 //
 
+#define BadGradeColor UIColorFromRGB(0xFC452B)
+#define GoodGradeColor UIColorFromRGB(0x3B44FF)
 #define DynamicContentSizeHeight (([arrayFields count]+(7-([arrayFields count]%7)))*40)+15
+#define DynamicContentSizeHeightWhenKeyboardIsActive (([arrayFields count]+(4-([arrayFields count]%4)))*40)+15
 #define ScrollViewContentSizeHeight self.scrollView.contentSize.height
 #define ScrollViewWidth self.scrollView.frame.size.width
 #define ScrollViewHeight self.scrollView.frame.size.height
@@ -31,7 +34,16 @@
     return self;
 }
 
-#pragma mark UITextField delegate methods 
+#pragma mark UITextField delegate methods
+
+- (void) textFieldDidChange:(UITextField *)textField {
+	NSLog(@"Text: %@", textField.text);
+	
+	int grade = [textField.text floatValue];
+	
+	if (grade >= 6.0) textField.textColor = GoodGradeColor;
+	else textField.textColor = BadGradeColor;
+}
 
 - (void) textFieldDidBeginEditing:(UITextField *)textField {
 	self.scrollView.frame = CGRectMake(ScrollViewOriginX, ScrollViewOriginY, ScrollViewWidth, 157);
@@ -53,7 +65,14 @@
 	NSString *key;
 	
 	if (textField.tag%2 == 0) key = @"labelTextField";
-	else key = @"gradeTextField";
+	else {
+		key = @"gradeTextField";
+		int grade = [textField.text floatValue];
+		
+		// Colorizes the text, depending on the grade
+		if (grade >= 6.0) textField.textColor = GoodGradeColor;
+		else textField.textColor = BadGradeColor;
+	}
 	
 	[arrayFields replaceObjectAtIndex:index withObject:fields];
 	[plistManager setValue:textField.text ForKey:key ForEntryAtIndex:index InDatabase:fileName];
@@ -87,7 +106,10 @@
 		
 		[(UITextField *)[self.scrollView viewWithTag:evenTag] setUserInteractionEnabled:YES];
 		[(UITextField *)[self.scrollView viewWithTag:oddTag] setUserInteractionEnabled:YES];
+		[(UITextField *)[self.scrollView viewWithTag:oddTag] addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
 	}
+	
+	self.scrollView.contentSize = CGSizeMake(0, DynamicContentSizeHeightWhenKeyboardIsActive);
 }
 
 - (void) saveFieldsWithTag:(NSInteger)tag {
@@ -122,6 +144,7 @@
 	gradeTextField.borderStyle = UITextBorderStyleNone;
 	gradeTextField.tag = ([arrayFields count]*2)+1;
 	gradeTextField.delegate = self;
+	[gradeTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
 	
 	// Adds Them to the ScrollView
 	[self.scrollView addSubview:labelTextField];
@@ -142,7 +165,7 @@
 	[arrayFields addObject:fieldsDictionary];
 	
 	NSLog(@"PercentSeven: %d", [arrayFields count]%7);
-	if ([arrayFields count] > 7) self.scrollView.contentSize = CGSizeMake(0, DynamicContentSizeHeight);
+	self.scrollView.contentSize = CGSizeMake(0, DynamicContentSizeHeight);
 	
 }
 
@@ -170,6 +193,12 @@
 		gradeTextField.delegate = self;
 		gradeTextField.text = [fields objectForKey:@"gradeTextField"];
 		gradeTextField.userInteractionEnabled = NO;
+		
+		int grade = [gradeTextField.text floatValue];
+		
+		// Colorizes the text, depending on the grade
+		if (grade >= 6.0) gradeTextField.textColor = GoodGradeColor;
+		else gradeTextField.textColor = BadGradeColor;
 		
 		// Adds them to the superview
 		[self.scrollView addSubview:labelTextField];
