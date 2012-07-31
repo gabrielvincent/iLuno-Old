@@ -101,6 +101,10 @@
 		3DCABE31152ECD35007BF5BF /* menu-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DCABE30152ECD35007BF5BF /* menu-bg.png */; };
 		3DCABE34152ECED0007BF5BF /* darkest-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DCABE32152ECED0007BF5BF /* darkest-background.png */; };
 		3DCABE35152ECED0007BF5BF /* darkest-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DCABE33152ECED0007BF5BF /* darkest-background@2x.png */; };
+		3DCD3E2915C784270047B030 /* DeleteCircle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DCD3E2715C784270047B030 /* DeleteCircle@2x.png */; };
+		3DCD3E2A15C784270047B030 /* DeleteCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DCD3E2815C784270047B030 /* DeleteCircle.png */; };
+		3DCD3E2E15C7A1ED0047B030 /* DeleteButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DCD3E2C15C7A1ED0047B030 /* DeleteButton@2x.png */; };
+		3DCD3E2F15C7A1ED0047B030 /* DeleteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DCD3E2D15C7A1ED0047B030 /* DeleteButton.png */; };
 		3DDDF6D3158EBCE2000ACE3D /* AdicioneUmaMateria@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DDDF6D1158EBCE2000ACE3D /* AdicioneUmaMateria@2x.png */; };
 		3DDDF6D4158EBCE2000ACE3D /* AdicioneUmaMateria.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DDDF6D2158EBCE2000ACE3D /* AdicioneUmaMateria.png */; };
 		3DDF0D3C1565128B00FC33E8 /* MateriaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDF0D3A1565128B00FC33E8 /* MateriaViewController.m */; };
@@ -237,6 +241,10 @@
 		3DCABE30152ECD35007BF5BF /* menu-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-bg.png"; sourceTree = "<group>"; };
 		3DCABE32152ECED0007BF5BF /* darkest-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "darkest-background.png"; sourceTree = "<group>"; };
 		3DCABE33152ECED0007BF5BF /* darkest-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "darkest-background@2x.png"; sourceTree = "<group>"; };
+		3DCD3E2715C784270047B030 /* DeleteCircle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DeleteCircle@2x.png"; sourceTree = "<group>"; };
+		3DCD3E2815C784270047B030 /* DeleteCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DeleteCircle.png; sourceTree = "<group>"; };
+		3DCD3E2C15C7A1ED0047B030 /* DeleteButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DeleteButton@2x.png"; sourceTree = "<group>"; };
+		3DCD3E2D15C7A1ED0047B030 /* DeleteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DeleteButton.png; sourceTree = "<group>"; };
 		3DDDF6D1158EBCE2000ACE3D /* AdicioneUmaMateria@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AdicioneUmaMateria@2x.png"; sourceTree = "<group>"; };
 		3DDDF6D2158EBCE2000ACE3D /* AdicioneUmaMateria.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AdicioneUmaMateria.png; sourceTree = "<group>"; };
 		3DDF0D391565128B00FC33E8 /* MateriaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MateriaViewController.h; sourceTree = "<group>"; };
@@ -494,6 +502,10 @@
 		3DCABE2D152ECCE5007BF5BF /* Ibagens */ = {
 			isa = PBXGroup;
 			children = (
+				3DCD3E2C15C7A1ED0047B030 /* DeleteButton@2x.png */,
+				3DCD3E2D15C7A1ED0047B030 /* DeleteButton.png */,
+				3DCD3E2715C784270047B030 /* DeleteCircle@2x.png */,
+				3DCD3E2815C784270047B030 /* DeleteCircle.png */,
 				3D9D718A15B8371000EFCC1F /* NoteBookBackground.png */,
 				3D9D718B15B8371000EFCC1F /* NoteBookBackground@2x.png */,
 				3DDDF6D1158EBCE2000ACE3D /* AdicioneUmaMateria@2x.png */,
@@ -687,6 +699,10 @@
 				3D9D718C15B8371000EFCC1F /* NoteBookBackground.png in Resources */,
 				3D9D718D15B8371000EFCC1F /* NoteBookBackground@2x.png in Resources */,
 				3D59881115BA49DC00DB5E99 /* TrimestresViewController.xib in Resources */,
+				3DCD3E2915C784270047B030 /* DeleteCircle@2x.png in Resources */,
+				3DCD3E2A15C784270047B030 /* DeleteCircle.png in Resources */,
+				3DCD3E2E15C7A1ED0047B030 /* DeleteButton@2x.png in Resources */,
+				3DCD3E2F15C7A1ED0047B030 /* DeleteButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

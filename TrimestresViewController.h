@@ -11,10 +11,13 @@
 
 @interface TrimestresViewController : UIViewController <UITextFieldDelegate> {
 	IBOutlet UIScrollView *scrollView;
+	IBOutlet UIView *deleteButtonsView;
 	
 	GVPlistPersistence *plistManager;
 	NSMutableArray *arrayFields;
 	NSString *fileName;
+	BOOL deleteButtonIsReadyToDelete;
+	UIButton *deleteButton;
 }
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;

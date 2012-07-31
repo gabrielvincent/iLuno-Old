@@ -15,6 +15,13 @@
 #define ScrollViewHeight self.scrollView.frame.size.height
 #define ScrollViewOriginX self.scrollView.frame.origin.x
 #define ScrollViewOriginY self.scrollView.frame.origin.y
+#define ViewWidth self.view.frame.size.width
+#define ViewHeight self.view.frame.size.height
+#define ViewOriginX self.view.frame.origin.x
+#define ViewOriginY self.view.frame.origin.y
+#define ThisTextField [(UITextField *)self.scrollView viewWithTag:tag]
+#define ThisLabelTextField [(UITextField *)self.scrollView viewWithTag:evenTag]
+#define ThisGradeTextField [(UITextField *)self.scrollView viewWithTag:oddTag]
 
 #import "TrimestresViewController.h"
 
@@ -34,6 +41,26 @@
     return self;
 }
 
+#pragma mark Window methods 
+
+- (void) keyboardWasShown:(NSNotification *) notification {
+	[UIView animateWithDuration:0.2 animations:^{
+		self.view.frame = CGRectMake(ViewOriginX, ViewOriginY-4, ViewWidth, ViewHeight);
+	}];
+	
+	self.scrollView.frame = CGRectMake(ScrollViewOriginX, ScrollViewOriginY, ScrollViewWidth, 161);
+	if ([arrayFields count] > 4) self.scrollView.contentSize = CGSizeMake(0, DynamicContentSizeHeightWhenKeyboardIsActive);
+}
+
+- (void) keyboardWillBeHidden:(NSNotification *) notification {
+	[UIView animateWithDuration:0.2 animations:^{
+		self.view.frame = CGRectMake(ViewOriginX, ViewOriginY+4, ViewWidth, ViewHeight);
+	}];
+	
+	self.scrollView.frame = CGRectMake(ScrollViewOriginX, ScrollViewOriginY, ScrollViewWidth, 280);
+	if ([arrayFields count] > 7) self.scrollView.contentSize = CGSizeMake(0, DynamicContentSizeHeight);
+}
+
 #pragma mark UITextField delegate methods
 
 - (void) textFieldDidChange:(UITextField *)textField {
@@ -46,14 +73,6 @@
 }
 
 - (void) textFieldDidBeginEditing:(UITextField *)textField {
-	self.scrollView.frame = CGRectMake(ScrollViewOriginX, ScrollViewOriginY, ScrollViewWidth, 157);
-	if ([arrayFields count] > 7) self.scrollView.contentSize = CGSizeMake(0, DynamicContentSizeHeight);
-	
-	if (textField.frame.origin.y > 157) {
-		
-		[self.scrollView setContentOffset:CGPointMake(0, textField.frame.origin.y-67) animated:YES];
-		
-	}
 }
 
 - (void) textFieldDidEndEditing:(UITextField *)textField {
@@ -84,10 +103,6 @@
 	
 	[self.scrollView endEditing:YES];
 	
-	self.scrollView.frame = CGRectMake(ScrollViewOriginX, ScrollViewOriginY, ScrollViewWidth, 280);
-	[self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
-	if ([arrayFields count] > 7) self.scrollView.contentSize = CGSizeMake(0, DynamicContentSizeHeight);
-	
 	// Makes the user interaction disabled for all TextFields
 	for (NSDictionary *fields in arrayFields) {
 		int evenTag = [[fields objectForKey:@"evenTag"] intValue];
@@ -96,6 +111,23 @@
 		[(UITextField *)[self.scrollView viewWithTag:evenTag] setUserInteractionEnabled:NO];
 		[(UITextField *)[self.scrollView viewWithTag:oddTag] setUserInteractionEnabled:NO];
 	}
+	
+	int tag = deleteButton.tag;
+	
+	[UIView animateWithDuration:0.2 animations:^{
+		deleteButtonsView.alpha = 0.0;
+		deleteButtonsView.frame = CGRectMake(-25, 0, 46, 280);
+		
+		if (deleteButtonIsReadyToDelete) {
+			deleteButton.frame = CGRectMake(308, deleteButton.frame.origin.y, 0, 36);
+			deleteButton.alpha = 0.0;
+			ThisTextField.frame = CGRectMake(246, ThisTextField.frame.origin.y, 55, ThisTextField.frame.size.height);
+			ThisTextField.alpha = 1.0;
+		}
+		
+	} completion:^(BOOL finished){
+		if (deleteButtonIsReadyToDelete) [deleteButton removeFromSuperview];
+	}];
 }
 
 - (void) didEnterEditMode {
@@ -109,18 +141,69 @@
 		[(UITextField *)[self.scrollView viewWithTag:oddTag] addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
 	}
 	
-	self.scrollView.contentSize = CGSizeMake(0, DynamicContentSizeHeightWhenKeyboardIsActive);
+	[UIView animateWithDuration:0.2 animations:^{
+		deleteButtonsView.alpha = 1.0;
+		deleteButtonsView.frame = CGRectMake(0, 0, 46, 280);
+	}];
 }
 
-- (void) saveFieldsWithTag:(NSInteger)tag {
+- (void) deleteFields {
+	int evenTag = deleteButton.tag-1;
+	int oddTag = deleteButton.tag;
 	
+	NSLog(@"Even: %d | Odd: %d", evenTag, oddTag);
+	
+	[[(UIButton *)deleteButtonsView viewWithTag:evenTag] removeFromSuperview];
+	
+	[ThisLabelTextField removeFromSuperview];
+	[ThisGradeTextField removeFromSuperview];
+	
+	[deleteButton removeFromSuperview];
+	
+	[arrayFields removeObjectAtIndex:evenTag/2];
+	[plistManager removeEntryAtIndex:evenTag/2 FromDatabase:fileName];
+	
+	for (UIView *view in self.scrollView.subviews) {
+		[view removeFromSuperview];
+	}
+	
+	[self setData];
+	
+}
+
+- (void) toggleDeletionState:(UIButton *) deleteCircle {
+	
+	// Second touch
+	if (deleteButtonIsReadyToDelete) {
+		[UIView animateWithDuration:0.2 animations:^{
+			deleteCircle.transform = CGAffineTransformMakeRotation(0);
+		}];
+		deleteButtonIsReadyToDelete = NO;
+	}
+	// First touch
+	else {
+		int tag = deleteCircle.tag+1;
+		
+		deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
+		[deleteButton setImage:[UIImage imageNamed:@"DeleteButton.png"] forState:UIControlStateNormal];
+		deleteButton.frame = CGRectMake(308, 12, 0, 36);
+		deleteButton.center = deleteCircle.center;
+		deleteButton.frame = CGRectMake(308, deleteButton.frame.origin.y, 0, 36);
+		deleteButton.tag = tag;
+		[deleteButton addTarget:self action:@selector(deleteFields) forControlEvents:UIControlEventTouchUpInside];
+		[self.scrollView addSubview:deleteButton];
+		
+		[UIView animateWithDuration:0.2 animations:^{
+			deleteCircle.transform = CGAffineTransformMakeRotation(-M_PI/2);
+			deleteButton.frame = CGRectMake(246, deleteButton.frame.origin.y, 62, 36);
+			ThisTextField.frame = CGRectMake(ThisTextField.frame.origin.x, ThisTextField.frame.origin.y, 0, ThisTextField.frame.size.height);
+			ThisTextField.alpha = 0.0;
+		}];
+		deleteButtonIsReadyToDelete = YES;
+	}
 }
 
 - (void)addFieldsForTrimester:(NSInteger)trimester OfSubject:(NSString *)subject {
-	
-	[UIView animateWithDuration:0.4 animations:^{
-		self.scrollView.frame = CGRectMake(ScrollViewOriginX, ScrollViewOriginY, ScrollViewWidth, 157);
-	}];
 	
 	if (![plistManager databaseAlreadyExistsWithName:fileName]) {
 		[plistManager createNewDatabaseWithName:fileName];
@@ -130,15 +213,16 @@
 	NSMutableDictionary *fieldsDictionary = [[NSMutableDictionary alloc] init];
 	
 	// Sets the textFields
-	UITextField *labelTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, ([arrayFields count]*40)+15, 182, 30)];
+	UITextField *labelTextField = [[UITextField alloc] initWithFrame:CGRectMake(56, ([arrayFields count]*40)+15, 182, 30)];
 	labelTextField.font = [UIFont fontWithName:@"Noteworthy-Light" size:17];
+	labelTextField.placeholder = @"avaliação";
 	labelTextField.borderStyle = UITextBorderStyleNone;
 	labelTextField.textColor = UIColorFromRGB(0x222222);
 	labelTextField.tag = [arrayFields count]*2;
 	labelTextField.delegate = self;
 	
-	UITextField *gradeTextField = [[UITextField alloc] initWithFrame:CGRectMake(200, ([arrayFields count]*40)+15, 55, 30)];
-	gradeTextField.text = @"0,00";
+	UITextField *gradeTextField = [[UITextField alloc] initWithFrame:CGRectMake(246, ([arrayFields count]*40)+15, 55, 30)];
+	gradeTextField.placeholder = @"nota";
 	gradeTextField.font = [UIFont fontWithName:@"Noteworthy-Bold" size:17];
 	gradeTextField.textAlignment = UITextAlignmentRight;
 	gradeTextField.borderStyle = UITextBorderStyleNone;
@@ -155,7 +239,7 @@
 	
 	// Sets the dictionary
 	[fieldsDictionary setValue:@"" forKey:@"labelTextField"];
-	[fieldsDictionary setValue:@"0,00" forKey:@"gradeTextField"];
+	[fieldsDictionary setValue:@"" forKey:@"gradeTextField"];
 	[fieldsDictionary setValue:[NSNumber numberWithInteger:labelTextField.tag] forKey:@"evenTag"];
 	[fieldsDictionary setValue:[NSNumber numberWithInteger:gradeTextField.tag] forKey:@"oddTag"];
 	
@@ -164,8 +248,7 @@
 	// Saves to the array
 	[arrayFields addObject:fieldsDictionary];
 	
-	NSLog(@"PercentSeven: %d", [arrayFields count]%7);
-	self.scrollView.contentSize = CGSizeMake(0, DynamicContentSizeHeight);
+	[self.scrollView setContentOffset:CGPointMake(0, ScrollViewContentSizeHeight*-1) animated:YES];
 	
 }
 
@@ -175,24 +258,26 @@
 	for (NSDictionary *fields in arrayFields) {
 		
 		// Sets the textFields
-		UITextField *labelTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, (i*40)+15, 182, 30)];
+		UITextField *labelTextField = [[UITextField alloc] initWithFrame:CGRectMake(56, (i*40)+15, 182, 30)];
 		labelTextField.font = [UIFont fontWithName:@"Noteworthy-Light" size:17];
 		labelTextField.borderStyle = UITextBorderStyleNone;
 		labelTextField.textColor = UIColorFromRGB(0x222222);
-		labelTextField.tag = [[fields objectForKey:@"evenTag"] intValue];
+		labelTextField.tag = i*2;
 		labelTextField.delegate = self;
 		labelTextField.text = [fields objectForKey:@"labelTextField"];
 		labelTextField.userInteractionEnabled = NO;
+		labelTextField.placeholder = @"avaliação";
 		
-		UITextField *gradeTextField = [[UITextField alloc] initWithFrame:CGRectMake(200, (i*40)+15, 55, 30)];
+		UITextField *gradeTextField = [[UITextField alloc] initWithFrame:CGRectMake(246, (i*40)+15, 55, 30)];
 		gradeTextField.text = @"0,00";
 		gradeTextField.font = [UIFont fontWithName:@"Noteworthy-Bold" size:17];
 		gradeTextField.textAlignment = UITextAlignmentRight;
 		gradeTextField.borderStyle = UITextBorderStyleNone;
-		gradeTextField.tag = [[fields objectForKey:@"oddTag"] intValue];
+		gradeTextField.tag = (i*2)+1;
 		gradeTextField.delegate = self;
 		gradeTextField.text = [fields objectForKey:@"gradeTextField"];
 		gradeTextField.userInteractionEnabled = NO;
+		gradeTextField.placeholder = @"nota";
 		
 		int grade = [gradeTextField.text floatValue];
 		
@@ -204,11 +289,21 @@
 		[self.scrollView addSubview:labelTextField];
 		[self.scrollView addSubview:gradeTextField];
 		
+		// Adds the delete buttons
+		UIButton *deleteCircle = [UIButton buttonWithType:UIButtonTypeCustom];
+		[deleteCircle setImage:[UIImage imageNamed:@"DeleteCircle.png"] forState:UIControlStateNormal];
+		deleteCircle.frame = CGRectMake(0, 0, 46, 36);
+		deleteCircle.center = labelTextField.center;
+		deleteCircle.frame = CGRectMake(0, deleteCircle.frame.origin.y, 46, 36);
+		deleteCircle.tag = labelTextField.tag;
+		[deleteCircle addTarget:self action:@selector(toggleDeletionState:) forControlEvents:UIControlEventTouchUpInside];
+		
+		[deleteButtonsView addSubview:deleteCircle];
+		
 		i++;
 	}
 	
-	if ([arrayFields count] > 7) self.scrollView.contentSize = CGSizeMake(0, DynamicContentSizeHeight);
-	
+	self.scrollView.contentSize = CGSizeMake(0, DynamicContentSizeHeight);
 }
 
 - (void)viewDidLoad
@@ -216,7 +311,7 @@
     [super viewDidLoad];
 	
     self.trimestreLabel.text = self.trimestreString;
-	self.scrollView.frame = CGRectMake(51, 38, 262, 280);
+	self.scrollView.frame = CGRectMake(0, 38, 308, 280);
 	
 	plistManager = [[GVPlistPersistence alloc] init];
 	arrayFields = [[NSMutableArray alloc] init];
@@ -229,6 +324,17 @@
 		
 		[self setData];
 	}
+	
+	deleteButtonIsReadyToDelete = NO;
+	
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+	// register for keyboard notifications
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:)
+												 name:UIKeyboardDidShowNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:)
+												 name:UIKeyboardWillHideNotification object:self.view.window];
 }
 
 - (void)viewDidUnload
