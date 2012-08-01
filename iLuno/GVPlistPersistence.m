@@ -251,6 +251,14 @@
 	return [arrayLoaded count];
 }
 
+- (void) overwriteDatabase:(NSString *)fileName WithArray:(NSMutableArray *)arrayToOverwrite {
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *documentsDirectoryPath = [paths objectAtIndex:0];
+	NSString *fielPath = [documentsDirectoryPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist", fileName]];
+	
+	[arrayToOverwrite writeToFile:fielPath atomically:YES];
+}
+
 - (void) removeDatabase:(NSString *) fileName {
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); 
 	NSString *documentsDirectoryPath = [paths objectAtIndex:0];

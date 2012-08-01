@@ -15,6 +15,7 @@
 	
 	GVPlistPersistence *plistManager;
 	NSMutableArray *arrayFields;
+	NSMutableArray *arrayTextFields;
 	NSString *fileName;
 	BOOL deleteButtonIsReadyToDelete;
 	UIButton *deleteButton;

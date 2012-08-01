@@ -104,12 +104,10 @@
 	[self.scrollView endEditing:YES];
 	
 	// Makes the user interaction disabled for all TextFields
-	for (NSDictionary *fields in arrayFields) {
-		int evenTag = [[fields objectForKey:@"evenTag"] intValue];
-		int oddTag = [[fields objectForKey:@"oddTag"] intValue];
-		
-		[(UITextField *)[self.scrollView viewWithTag:evenTag] setUserInteractionEnabled:NO];
-		[(UITextField *)[self.scrollView viewWithTag:oddTag] setUserInteractionEnabled:NO];
+	for (UIView *view in self.scrollView.subviews) {
+		if ([view respondsToSelector:@selector(setTextColor:)]) {
+			view.userInteractionEnabled = NO;
+		}
 	}
 	
 	int tag = deleteButton.tag;
@@ -132,13 +130,10 @@
 
 - (void) didEnterEditMode {
 	// Makes the user interaction enabled for all TextFields
-	for (NSDictionary *fields in arrayFields) {
-		int evenTag = [[fields objectForKey:@"evenTag"] intValue];
-		int oddTag = [[fields objectForKey:@"oddTag"] intValue];
-		
-		[(UITextField *)[self.scrollView viewWithTag:evenTag] setUserInteractionEnabled:YES];
-		[(UITextField *)[self.scrollView viewWithTag:oddTag] setUserInteractionEnabled:YES];
-		[(UITextField *)[self.scrollView viewWithTag:oddTag] addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+	for (UIView *view in self.scrollView.subviews) {
+		if ([view respondsToSelector:@selector(setTextColor:)]) {
+			view.userInteractionEnabled = YES;
+		}
 	}
 	
 	[UIView animateWithDuration:0.2 animations:^{
@@ -181,46 +176,68 @@
 			deleteCircle.alpha = 0.0;
 			
 		}
-		 // Really remove the data
+		 // Animate the remaining views 40px up
 		completion:^(BOOL finished){
 			
-			[ThisLabelTextField removeFromSuperview];
-			[ThisGradeTextField removeFromSuperview];
-			
-			[arrayFields removeObjectAtIndex:evenTag/2];
-			[plistManager removeEntryAtIndex:evenTag/2 FromDatabase:fileName];
-			
-			// Cleans the deleteButtonsView
-			for (UIView *view in deleteButtonsView.subviews) {
-				[view removeFromSuperview];
+			[UIView animateWithDuration:0.2 animations:^{
+				
+				for (UIView *view in self.scrollView.subviews) {
+					if (![view isEqual:deleteButtonsView] && view.tag > evenTag) {
+						view.frame = CGRectMake(view.frame.origin.x, view.frame.origin.y-40, view.frame.size.width, view.frame.size.height);
+					}
+				}
+				
+				for (UIView *view in deleteButtonsView.subviews) {
+					if (![view isEqual:deleteButtonsView] && view.tag > evenTag) {
+						view.frame = CGRectMake(view.frame.origin.x, view.frame.origin.y-40, view.frame.size.width, view.frame.size.height);
+					}
+				}
+				
 			}
-			
-			// Cleans the scrollView
-			for (UIView *view in self.scrollView.subviews) {
-				if (![view isEqual:deleteButtonsView]) [view removeFromSuperview];
-			}
-			
-			deleteButtonIsReadyToDelete = NO;
-			
-			[self setData];
-			
+			 // Really remove the data
+			completion:^(BOOL finished){
+				
+				[ThisLabelTextField removeFromSuperview];
+				[ThisGradeTextField removeFromSuperview];
+				
+				[arrayFields removeObjectAtIndex:evenTag/2];
+				[plistManager removeEntryAtIndex:evenTag/2 FromDatabase:fileName];
+				
+				// Cleans the deleteButtonsView
+				for (UIView *view in deleteButtonsView.subviews) {
+					[view removeFromSuperview];
+				}
+				
+				// Cleans the scrollView
+				for (UIView *view in self.scrollView.subviews) {
+					if (![view isEqual:deleteButtonsView]) [view removeFromSuperview];
+				}
+				
+				deleteButtonIsReadyToDelete = NO;
+				
+				[self reloadData];
+				
+			}];
 		}];
 	}];
 }
 
-- (void) toggleDeletionState:(UIButton *) deleteCircle {
+- (void) toggleDeletionState:(UIView *) deleteCircle {
+	
+	int tag = deleteCircle.tag+1;
 	
 	// Second touch
 	if (deleteButtonIsReadyToDelete) {
 		[UIView animateWithDuration:0.2 animations:^{
 			deleteCircle.transform = CGAffineTransformMakeRotation(0);
+			deleteButton.frame = CGRectMake(308, deleteButton.frame.origin.y, 0, 36);
+			ThisTextField.frame = CGRectMake(ThisTextField.frame.origin.x, ThisTextField.frame.origin.y, 55, ThisTextField.frame.size.height);
+			ThisTextField.alpha = 1.0;
 		}];
 		deleteButtonIsReadyToDelete = NO;
 	}
 	// First touch
 	else {
-		int tag = deleteCircle.tag+1;
-		
 		deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
 		[deleteButton setImage:[UIImage imageNamed:@"DeleteButton.png"] forState:UIControlStateNormal];
 		deleteButton.frame = CGRectMake(308, 12, 0, 36);
@@ -286,8 +303,6 @@
 	// Sets the dictionary
 	[fieldsDictionary setValue:@"" forKey:@"labelTextField"];
 	[fieldsDictionary setValue:@"" forKey:@"gradeTextField"];
-	[fieldsDictionary setValue:[NSNumber numberWithInteger:labelTextField.tag] forKey:@"evenTag"];
-	[fieldsDictionary setValue:[NSNumber numberWithInteger:gradeTextField.tag] forKey:@"oddTag"];
 	
 	[plistManager addNewEntry:fieldsDictionary ToDatabase:fileName];
 	
@@ -296,6 +311,10 @@
 	
 	[self.scrollView setContentOffset:CGPointMake(0, ScrollViewContentSizeHeight*-1) animated:YES];
 	
+}
+
+- (void) reloadData {
+	[self setData];
 }
 
 - (void) setData {
@@ -346,6 +365,14 @@
 		
 		[deleteButtonsView addSubview:deleteCircle];
 		
+		// Adds the objects to the arrayTextFields
+		NSMutableDictionary *textFieldsDictionary = [[NSMutableDictionary alloc] init];
+		
+		[textFieldsDictionary setValue:labelTextField forKey:@"labelTextFields"];
+		[textFieldsDictionary setValue:gradeTextField forKey:@"gradesTextField"];
+		
+		[arrayTextFields addObject:textFieldsDictionary];
+		
 		i++;
 	}
 	
@@ -361,6 +388,7 @@
 	
 	plistManager = [[GVPlistPersistence alloc] init];
 	arrayFields = [[NSMutableArray alloc] init];
+	arrayTextFields = [[NSMutableArray alloc] init];
 	
 	NSString *currentTrimester = [self.trimestreString stringByReplacingOccurrencesOfString:@"º " withString:@""];
 	fileName = [NSString stringWithFormat:@"CDN%@%@", currentTrimester, materiaString];
