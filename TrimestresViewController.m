@@ -343,6 +343,13 @@
 
 - (void) reloadData {
 	[self setData];
+	
+	// Makes the user interaction enabled for all TextFields
+	for (UIView *view in self.scrollView.subviews) {
+		if ([view respondsToSelector:@selector(setTextColor:)]) {
+			view.userInteractionEnabled = YES;
+		}
+	}
 }
 
 - (void) setData {
