@@ -49,7 +49,8 @@
 	}];
 	
 	self.scrollView.frame = CGRectMake(ScrollViewOriginX, ScrollViewOriginY, ScrollViewWidth, 161);
-	if ([arrayFields count] > 4) self.scrollView.contentSize = CGSizeMake(0, DynamicContentSizeHeightWhenKeyboardIsActive);
+//	if ([arrayFields count] > 4) self.scrollView.contentSize = CGSizeMake(0, DynamicContentSizeHeightWhenKeyboardIsActive);
+	if ([arrayFields count] > 4) self.scrollView.contentSize = CGSizeMake(0, ScrollViewContentSizeHeight+216);
 }
 
 - (void) keyboardWillBeHidden:(NSNotification *) notification {
@@ -73,6 +74,8 @@
 }
 
 - (void) textFieldDidBeginEditing:(UITextField *)textField {
+	
+	[self.scrollView setContentOffset:CGPointMake(0, ScrollViewContentSizeHeight-(ScrollViewContentSizeHeight-textField.frame.origin.y)) animated:YES];
 }
 
 - (void) textFieldDidEndEditing:(UITextField *)textField {
@@ -119,6 +122,8 @@
 		if (deleteButtonIsReadyToDelete) {
 			deleteButton.frame = CGRectMake(308, deleteButton.frame.origin.y, 0, 36);
 			deleteButton.alpha = 0.0;
+			[(UIButton *)deleteButtonsView viewWithTag:deleteButton.tag-1].transform = CGAffineTransformMakeRotation(0);
+			deleteButtonIsReadyToDelete = NO;
 			ThisTextField.frame = CGRectMake(246, ThisTextField.frame.origin.y, 55, ThisTextField.frame.size.height);
 			ThisTextField.alpha = 1.0;
 		}
@@ -146,11 +151,9 @@
 	int evenTag = deleteButton.tag-1;
 	int oddTag = deleteButton.tag;
 	
-	NSLog(@"Eventag: %d", evenTag);
-	
 	// Sets a differente Tag so it won't interfer with the other objects with that tag
-	[(UIButton *)[deleteButtonsView viewWithTag:evenTag] setTag:-2];
-	UIButton *deleteCircle = (UIButton *)[deleteButtonsView viewWithTag:-2];
+	UIButton *deleteCircle  = (UIButton *)[deleteButtonsView viewWithTag:evenTag];
+	deleteCircle.tag = -2;
 	
 	// Slides to the right
 	[UIView animateWithDuration:0.2 animations:^{
@@ -228,6 +231,9 @@
 	
 	// Second touch
 	if (deleteButtonIsReadyToDelete) {
+		
+		for (UIView *view in deleteButtonsView.subviews) view.userInteractionEnabled = YES;
+		
 		[UIView animateWithDuration:0.2 animations:^{
 			deleteCircle.transform = CGAffineTransformMakeRotation(0);
 			deleteButton.frame = CGRectMake(308, deleteButton.frame.origin.y, 0, 36);
@@ -247,6 +253,10 @@
 		[deleteButton addTarget:self action:@selector(deleteFields) forControlEvents:UIControlEventTouchUpInside];
 		[self.scrollView addSubview:deleteButton];
 		
+		for (UIView *view in deleteButtonsView.subviews) {
+			if (view.tag != deleteCircle.tag && [view isKindOfClass:[UIButton class]]) view.userInteractionEnabled = NO;
+		}
+		
 		[UIView animateWithDuration:0.2 animations:^{
 			deleteCircle.transform = CGAffineTransformMakeRotation(-M_PI/2);
 			deleteButton.frame = CGRectMake(246, deleteButton.frame.origin.y, 62, 36);
@@ -265,6 +275,19 @@
 	}
 	
 	NSMutableDictionary *fieldsDictionary = [[NSMutableDictionary alloc] init];
+	
+	// Cancels any started deletion
+	if (deleteButtonIsReadyToDelete) {
+		[UIView animateWithDuration:0.2 animations:^{
+			int tag = deleteButton.tag;
+			deleteButton.frame = CGRectMake(308, deleteButton.frame.origin.y, 0, 36);
+			deleteButton.alpha = 0.0;
+			[(UIButton *)deleteButtonsView viewWithTag:deleteButton.tag-1].transform = CGAffineTransformMakeRotation(0);
+			deleteButtonIsReadyToDelete = NO;
+			ThisTextField.frame = CGRectMake(246, ThisTextField.frame.origin.y, 55, ThisTextField.frame.size.height);
+			ThisTextField.alpha = 1.0;
+		}];
+	}
 	
 	// Sets the textFields
 	UITextField *labelTextField = [[UITextField alloc] initWithFrame:CGRectMake(56, ([arrayFields count]*40)+15, 182, 30)];
@@ -296,7 +319,9 @@
 	deleteCircle.center = labelTextField.center;
 	deleteCircle.frame = CGRectMake(0, deleteCircle.frame.origin.y, 46, 36);
 	deleteCircle.tag = labelTextField.tag;
+	deleteCircle.imageView.tag = -2; // Sets an unused tag so it won't interer with the views that really need this tag set
 	[deleteCircle addTarget:self action:@selector(toggleDeletionState:) forControlEvents:UIControlEventTouchUpInside];
+	deleteCircle.userInteractionEnabled = YES;
 	
 	[deleteButtonsView addSubview:deleteCircle];
 	
@@ -309,7 +334,10 @@
 	// Saves to the array
 	[arrayFields addObject:fieldsDictionary];
 	
-	[self.scrollView setContentOffset:CGPointMake(0, ScrollViewContentSizeHeight*-1) animated:YES];
+	// Sets the new contentSize and ContentOffset
+	[UIView animateWithDuration:0.2 animations:^{
+		self.scrollView.contentSize = CGSizeMake(308, DynamicContentSizeHeightWhenKeyboardIsActive);
+	}];
 	
 }
 
@@ -324,7 +352,7 @@
 		
 		// Sets the textFields
 		UITextField *labelTextField = [[UITextField alloc] initWithFrame:CGRectMake(56, (i*40)+15, 182, 30)];
-		labelTextField.font = [UIFont fontWithName:@"Noteworthy-Light" size:17];
+		labelTextField.font = [UIFont fontWithName:@"Noteworthy-Light" size:18];
 		labelTextField.borderStyle = UITextBorderStyleNone;
 		labelTextField.textColor = UIColorFromRGB(0x222222);
 		labelTextField.tag = i*2;
@@ -343,6 +371,8 @@
 		gradeTextField.text = [fields objectForKey:@"gradeTextField"];
 		gradeTextField.userInteractionEnabled = NO;
 		gradeTextField.placeholder = @"nota";
+		gradeTextField.keyboardType = UIKeyboardTypeDecimalPad;
+		[gradeTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
 		
 		int grade = [gradeTextField.text floatValue];
 		
@@ -361,6 +391,7 @@
 		deleteCircle.center = labelTextField.center;
 		deleteCircle.frame = CGRectMake(0, deleteCircle.frame.origin.y, 46, 36);
 		deleteCircle.tag = labelTextField.tag;
+		deleteCircle.imageView.tag = -2; // Sets an unused tag so it won't interer with the views that really need this tag set
 		[deleteCircle addTarget:self action:@selector(toggleDeletionState:) forControlEvents:UIControlEventTouchUpInside];
 		
 		[deleteButtonsView addSubview:deleteCircle];
@@ -370,8 +401,6 @@
 		
 		[textFieldsDictionary setValue:labelTextField forKey:@"labelTextFields"];
 		[textFieldsDictionary setValue:gradeTextField forKey:@"gradesTextField"];
-		
-		[arrayTextFields addObject:textFieldsDictionary];
 		
 		i++;
 	}
@@ -388,7 +417,6 @@
 	
 	plistManager = [[GVPlistPersistence alloc] init];
 	arrayFields = [[NSMutableArray alloc] init];
-	arrayTextFields = [[NSMutableArray alloc] init];
 	
 	NSString *currentTrimester = [self.trimestreString stringByReplacingOccurrencesOfString:@"º " withString:@""];
 	fileName = [NSString stringWithFormat:@"CDN%@%@", currentTrimester, materiaString];

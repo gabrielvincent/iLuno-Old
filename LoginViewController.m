@@ -26,6 +26,25 @@
     return self;
 }
 
+- (void) reloadWebView {
+	
+	[loadingView performSelectorOnMainThread:@selector(exitReloadModeWithMessage:) withObject:@"Fazendo login..." waitUntilDone:NO];
+	
+	if ([self internetIsConnected]) {
+		loginWebView.delegate = self;
+		[loginWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://deaaz.com.br"]]];
+	}
+	else {
+		[loadingView enterReloadModeWithMessage:@"Recarregar"];
+	}
+}
+
+- (void) callReloadWebView {
+	queue = [NSOperationQueue new];
+	NSInvocationOperation *reloadOperation = [[NSInvocationOperation alloc] initWithTarget:self  selector:@selector(reloadWebView)  object:nil];
+	[queue addOperation:reloadOperation];
+}
+
 - (void) loadWebView {
 	if ([self internetIsConnected]) {
 		loginWebView.delegate = self;
@@ -53,7 +72,7 @@
 	loadingView.messageLabel.shadowOffset = CGSizeMake(0, -1);
 	loadingView.messageLabel.ShadowColor = [UIColor blackColor];
 	loadingView.reloadImage = [UIImage imageNamed:@"ReloadIcon.png"];
-	loadingView.reloadMethod = @selector(loadQuestions);
+	loadingView.reloadMethod = @selector(callLoadWebView);
 }
 
 - (void)viewDidLoad

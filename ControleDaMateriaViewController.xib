@@ -44,6 +44,7 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="532301490"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<int key="IBUITag">-1</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
