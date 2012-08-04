@@ -30,6 +30,8 @@
 		3D1E8EFC1583179200DFF380 /* ThumbsUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D1E8EFA1583179200DFF380 /* ThumbsUp.png */; };
 		3D1E8EFE1583C33F00DFF380 /* FormspringViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D1E8EFD1583C33F00DFF380 /* FormspringViewController.xib */; };
 		3D232A78158D40FA000696EB /* TwitterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D232A77158D40FA000696EB /* TwitterCell.xib */; };
+		3D2D2C3515CCDBCF00548C5F /* CheckedCheckbox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D2D2C3315CCDBCF00548C5F /* CheckedCheckbox@2x.png */; };
+		3D2D2C3615CCDBCF00548C5F /* CheckedCheckbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D2D2C3415CCDBCF00548C5F /* CheckedCheckbox.png */; };
 		3D3076C01560339600F668A3 /* TurmaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3076BF1560339600F668A3 /* TurmaViewController.m */; };
 		3D3076C7156048A400F668A3 /* MostraHorariosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3076C6156048A400F668A3 /* MostraHorariosViewController.m */; };
 		3D30EC6A153A5FF400FF3004 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D30EC68153A5FF400FF3004 /* logo.png */; };
@@ -85,11 +87,15 @@
 		3D9D718115B820A400EFCC1F /* ControleDaMateriaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D9D717F15B820A400EFCC1F /* ControleDaMateriaViewController.xib */; };
 		3D9D718C15B8371000EFCC1F /* NoteBookBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9D718A15B8371000EFCC1F /* NoteBookBackground.png */; };
 		3D9D718D15B8371000EFCC1F /* NoteBookBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9D718B15B8371000EFCC1F /* NoteBookBackground@2x.png */; };
+		3DAB4C3D15CCC55E00D69122 /* LoginSettings.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAB4C3B15CCC55E00D69122 /* LoginSettings.png */; };
+		3DAB4C3E15CCC55E00D69122 /* LoginSettings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAB4C3C15CCC55E00D69122 /* LoginSettings@2x.png */; };
 		3DB3AEE2158F386E006E26A5 /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB3AEE1158F386E006E26A5 /* libFlurryAnalytics.a */; };
 		3DB6FB9D152F4683000D2E0C /* TableViewSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6FB9C152F4683000D2E0C /* TableViewSampleViewController.m */; };
 		3DC234481597C45F00814009 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC234461597C45F00814009 /* LoginViewController.m */; };
 		3DC234491597C45F00814009 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC234471597C45F00814009 /* LoginViewController.xib */; };
 		3DC234511597C73C00814009 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC234501597C73C00814009 /* LoadingView.m */; };
+		3DC996E915CCD76C007904F5 /* UncheckedCheckbox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC996E715CCD76C007904F5 /* UncheckedCheckbox@2x.png */; };
+		3DC996EA15CCD76C007904F5 /* UncheckedCheckbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DC996E815CCD76C007904F5 /* UncheckedCheckbox.png */; };
 		3DCABE11152EC5D6007BF5BF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCABE10152EC5D6007BF5BF /* UIKit.framework */; };
 		3DCABE13152EC5D6007BF5BF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCABE12152EC5D6007BF5BF /* Foundation.framework */; };
 		3DCABE15152EC5D6007BF5BF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCABE14152EC5D6007BF5BF /* CoreGraphics.framework */; };
@@ -148,6 +154,8 @@
 		3D1E8EFA1583179200DFF380 /* ThumbsUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ThumbsUp.png; sourceTree = "<group>"; };
 		3D1E8EFD1583C33F00DFF380 /* FormspringViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormspringViewController.xib; sourceTree = "<group>"; };
 		3D232A77158D40FA000696EB /* TwitterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwitterCell.xib; sourceTree = "<group>"; };
+		3D2D2C3315CCDBCF00548C5F /* CheckedCheckbox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CheckedCheckbox@2x.png"; sourceTree = "<group>"; };
+		3D2D2C3415CCDBCF00548C5F /* CheckedCheckbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckedCheckbox.png; sourceTree = "<group>"; };
 		3D3076BE1560339600F668A3 /* TurmaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TurmaViewController.h; sourceTree = "<group>"; };
 		3D3076BF1560339600F668A3 /* TurmaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TurmaViewController.m; sourceTree = "<group>"; };
 		3D3076C5156048A400F668A3 /* MostraHorariosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MostraHorariosViewController.h; sourceTree = "<group>"; };
@@ -217,6 +225,8 @@
 		3D9D717F15B820A400EFCC1F /* ControleDaMateriaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ControleDaMateriaViewController.xib; sourceTree = "<group>"; };
 		3D9D718A15B8371000EFCC1F /* NoteBookBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoteBookBackground.png; sourceTree = "<group>"; };
 		3D9D718B15B8371000EFCC1F /* NoteBookBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NoteBookBackground@2x.png"; sourceTree = "<group>"; };
+		3DAB4C3B15CCC55E00D69122 /* LoginSettings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoginSettings.png; sourceTree = "<group>"; };
+		3DAB4C3C15CCC55E00D69122 /* LoginSettings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoginSettings@2x.png"; sourceTree = "<group>"; };
 		3DB3AEE0158F386E006E26A5 /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAnalytics.h; sourceTree = "<group>"; };
 		3DB3AEE1158F386E006E26A5 /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
 		3DB6FB9B152F4683000D2E0C /* TableViewSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableViewSampleViewController.h; path = iLuno/TableViewSampleViewController.h; sourceTree = "<group>"; };
@@ -226,6 +236,8 @@
 		3DC234471597C45F00814009 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		3DC2344F1597C73C00814009 /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
 		3DC234501597C73C00814009 /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
+		3DC996E715CCD76C007904F5 /* UncheckedCheckbox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UncheckedCheckbox@2x.png"; sourceTree = "<group>"; };
+		3DC996E815CCD76C007904F5 /* UncheckedCheckbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UncheckedCheckbox.png; sourceTree = "<group>"; };
 		3DCABE0C152EC5D6007BF5BF /* iLuno.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iLuno.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DCABE10152EC5D6007BF5BF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3DCABE12152EC5D6007BF5BF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -502,6 +514,12 @@
 		3DCABE2D152ECCE5007BF5BF /* Ibagens */ = {
 			isa = PBXGroup;
 			children = (
+				3D2D2C3315CCDBCF00548C5F /* CheckedCheckbox@2x.png */,
+				3D2D2C3415CCDBCF00548C5F /* CheckedCheckbox.png */,
+				3DC996E715CCD76C007904F5 /* UncheckedCheckbox@2x.png */,
+				3DC996E815CCD76C007904F5 /* UncheckedCheckbox.png */,
+				3DAB4C3B15CCC55E00D69122 /* LoginSettings.png */,
+				3DAB4C3C15CCC55E00D69122 /* LoginSettings@2x.png */,
 				3DCD3E2C15C7A1ED0047B030 /* DeleteButton@2x.png */,
 				3DCD3E2D15C7A1ED0047B030 /* DeleteButton.png */,
 				3DCD3E2715C784270047B030 /* DeleteCircle@2x.png */,
@@ -703,6 +721,12 @@
 				3DCD3E2A15C784270047B030 /* DeleteCircle.png in Resources */,
 				3DCD3E2E15C7A1ED0047B030 /* DeleteButton@2x.png in Resources */,
 				3DCD3E2F15C7A1ED0047B030 /* DeleteButton.png in Resources */,
+				3DAB4C3D15CCC55E00D69122 /* LoginSettings.png in Resources */,
+				3DAB4C3E15CCC55E00D69122 /* LoginSettings@2x.png in Resources */,
+				3DC996E915CCD76C007904F5 /* UncheckedCheckbox@2x.png in Resources */,
+				3DC996EA15CCD76C007904F5 /* UncheckedCheckbox.png in Resources */,
+				3D2D2C3515CCDBCF00548C5F /* CheckedCheckbox@2x.png in Resources */,
+				3D2D2C3615CCDBCF00548C5F /* CheckedCheckbox.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

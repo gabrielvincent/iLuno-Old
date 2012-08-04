@@ -8,6 +8,9 @@
 
 #define ViewWidth self.view.bounds.size.width
 #define ViewHeight self.view.bounds.size.height
+#define Database @"LoginUserDefaults"
+#define Unchecked 0
+#define Checked 1
 
 #import "LoginViewController.h"
 
@@ -24,6 +27,48 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void) keyboardWasShown:(NSNotification *) notification {
+	[UIView animateWithDuration:0.4 animations:^{
+		formView.transform = CGAffineTransformMakeTranslation(0, -80);
+	}];
+}
+
+- (void) keyboardWillBeHidden:(NSNotification *) notification {
+	[UIView animateWithDuration:0.4 animations:^{
+		formView.transform = CGAffineTransformMakeTranslation(0, 0);
+	}];
+}
+
+- (IBAction)toggleCheckboxState:(id)sender {
+	
+	if (checkboxImageView.tag == Unchecked) {
+		checkboxImageView.image = [UIImage imageNamed:@"CheckedCheckbox.png"];
+		checkboxImageView.tag = Checked;
+	}
+	else if (checkboxImageView.tag == Checked) {
+		checkboxImageView.image = [UIImage imageNamed:@"UncheckedCheckbox.png"];
+		checkboxImageView.tag = Unchecked;
+	}
+	
+}
+
+- (IBAction)login:(id)sender {
+	[loadingView showWithAnimation:GVLoadingViewShowAnimationAppear];
+	
+	[self callLoadWebView];
+	
+	if (checkboxImageView.tag == Checked) {
+		[[userDefaults objectAtIndex:0] setValue:[NSNumber numberWithBool:YES] forKey:@"AutoLogin"];
+		[[userDefaults objectAtIndex:0] setValue:usernameTextField.text	forKey:@"Username"];
+		[[userDefaults objectAtIndex:0] setValue:passwordTextField.text	forKey:@"Password"];
+		[plistManager overwriteDatabase:Database WithArray:userDefaults];
+	}
+}
+
+- (IBAction)hideKeyBoard:(id)sender {
+	[sender resignFirstResponder];
 }
 
 - (void) reloadWebView {
@@ -56,6 +101,9 @@
 }
 
 - (void) callLoadWebView {
+	[usernameTextField resignFirstResponder];
+	[passwordTextField resignFirstResponder];
+	
 	queue = [NSOperationQueue new];
 	NSInvocationOperation *loadOperation = [[NSInvocationOperation alloc] initWithTarget:self  selector:@selector(loadWebView)  object:nil];
 	[queue addOperation:loadOperation];
@@ -82,7 +130,8 @@
 	hasAlreadyTriedToLogIn = NO;
 	shoulfRemoveLoadingFromSuperView = NO;
 	
-	[self callLoadWebView];
+	plistManager = [[GVPlistPersistence alloc] init];
+	userDefaults = [[NSMutableArray alloc] init];
 }
 
 - (void)viewDidUnload
@@ -95,8 +144,36 @@
 - (void) viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:)
+												 name:UIKeyboardWillShowNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:)
+												 name:UIKeyboardWillHideNotification object:self.view.window];
+	
 	[self configureLoadingView];
-	[loadingView showWithAnimation:GVLoadingViewShowAnimationAppear];
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	
+	if (![plistManager databaseAlreadyExistsWithName:Database]) {
+		[plistManager createNewDatabaseWithName:Database];
+		NSMutableDictionary *defaults = [[NSMutableDictionary alloc] init];
+		[defaults setValue:[NSNumber numberWithBool:NO] forKey:@"AutoLogin"];
+		[defaults setValue:@"" forKey:@"Username"];
+		[defaults setValue:@"" forKey:@"Password"];
+		[userDefaults addObject:defaults];
+		[plistManager overwriteDatabase:Database WithArray:userDefaults];
+	}
+	
+	userDefaults = [NSMutableArray arrayWithArray:[plistManager databaseWithName:Database]];
+	
+	if ([[[userDefaults objectAtIndex:0] objectForKey:@"AutoLogin"] boolValue]) {
+		usernameTextField.text = [[userDefaults objectAtIndex:0] objectForKey:@"Username"];
+		passwordTextField.text = [[userDefaults objectAtIndex:0] objectForKey:@"Password"];
+		checkboxImageView.image = [UIImage imageNamed:@"CheckedCheckbox.png"];
+		[loadingView showWithAnimation:GVLoadingViewShowAnimationFade];
+		[self callLoadWebView];
+	}
 }
 
 - (BOOL) internetIsConnected {
@@ -127,12 +204,19 @@
 	
 	return YES;
 }
+// Nina
+// Username: nina.29.5@gmail.com
+// Password: 133364
+
+// Iunes
+// Username:
+// Password:
 
 - (void) webViewDidFinishLoad:(UIWebView *)webView {
 	if (!hasAlreadyTriedToLogIn) {
-		NSString *js = @"$('.login').val('nina.29.5@gmail.com');";
+		NSString *js = [NSString stringWithFormat:@"$('.login').val('%@');", usernameTextField.text];
 		[loginWebView stringByEvaluatingJavaScriptFromString:js];
-		js = @"$('.senha').val('133364');";
+		js = [NSString stringWithFormat:@"$('.senha').val('%@');", passwordTextField.text];
 		[loginWebView stringByEvaluatingJavaScriptFromString:js];
 		[loginWebView stringByEvaluatingJavaScriptFromString:@"$('.btn-submit').click();"];
 		hasAlreadyTriedToLogIn = YES;
@@ -142,6 +226,21 @@
 		[loadingView dismissWithAnimation:GVLoadingViewDismissAnimationFade];
 		
 		loginWebView.userInteractionEnabled = YES;
+		
+		NSString *verificationString = [webView stringByEvaluatingJavaScriptFromString:@"$('.clearfix > h1').html();"];
+		if ([verificationString isEqualToString:@"Página não encontrada"]) {
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Falha no login" message:@"Verifique seu nome usuário e senha" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+			[alert show];
+		}
+		else {
+			[UIView animateWithDuration:0.4 animations:^{
+				loginView.transform = CGAffineTransformMakeTranslation(0, 411);
+			} completion:^(BOOL finished) {
+				[UIView animateWithDuration:0.4 animations:^{
+					loginView.alpha = 0.0;
+				}];
+			}];
+		}
 	}
 	
 }

@@ -48,7 +48,7 @@
 		self.view.frame = CGRectMake(ViewOriginX, ViewOriginY-4, ViewWidth, ViewHeight);
 	}];
 	
-	self.scrollView.frame = CGRectMake(ScrollViewOriginX, ScrollViewOriginY, ScrollViewWidth, 161);
+	self.scrollView.frame = CGRectMake(ScrollViewOriginX, ScrollViewOriginY, ScrollViewWidth, 160);
 //	if ([arrayFields count] > 4) self.scrollView.contentSize = CGSizeMake(0, DynamicContentSizeHeightWhenKeyboardIsActive);
 	if ([arrayFields count] > 4) self.scrollView.contentSize = CGSizeMake(0, ScrollViewContentSizeHeight+216);
 }
@@ -74,8 +74,6 @@
 }
 
 - (void) textFieldDidBeginEditing:(UITextField *)textField {
-	
-	[self.scrollView setContentOffset:CGPointMake(0, ScrollViewContentSizeHeight-(ScrollViewContentSizeHeight-textField.frame.origin.y)) animated:YES];
 }
 
 - (void) textFieldDidEndEditing:(UITextField *)textField {
@@ -334,10 +332,9 @@
 	// Saves to the array
 	[arrayFields addObject:fieldsDictionary];
 	
-	// Sets the new contentSize and ContentOffset
-	[UIView animateWithDuration:0.2 animations:^{
-		self.scrollView.contentSize = CGSizeMake(308, DynamicContentSizeHeightWhenKeyboardIsActive);
-	}];
+	// Sets the new contentSize
+	self.scrollView.contentSize = CGSizeMake(308, DynamicContentSizeHeightWhenKeyboardIsActive);
+	if ((labelTextField.tag/2)%4 == 0) [self.scrollView setContentOffset:CGPointMake(0, ScrollViewContentSizeHeight-216) animated:YES];
 	
 }
 
