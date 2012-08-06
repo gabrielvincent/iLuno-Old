@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GVLoadingView.h"
 #import "GVPlistPersistence.h"
+#import "LoginSettingsViewController.h"
 
 @interface LoginViewController : UIViewController <UIWebViewDelegate> {
 	IBOutlet UIWebView *loginWebView;
@@ -17,6 +18,7 @@
 	IBOutlet UITextField *usernameTextField;
 	IBOutlet UITextField *passwordTextField;
 	IBOutlet UIImageView *checkboxImageView;
+	IBOutlet UIView *settingsView;
 	
 	BOOL hasAlreadyTriedToLogIn;
 	BOOL shoulfRemoveLoadingFromSuperView;
@@ -24,10 +26,13 @@
 	NSOperationQueue *queue;
 	GVPlistPersistence *plistManager;
 	NSMutableArray *userDefaults;
+	LoginSettingsViewController *loginSettingsViewController;
 }
 
 - (IBAction)hideKeyBoard:(id)sender;
 - (IBAction)login:(id)sender;
 - (IBAction)toggleCheckboxState:(id)sender;
+- (IBAction)openSettings:(id)sender;
+- (IBAction)closeSettings:(id)sender;
 
 @end

@@ -41,6 +41,34 @@
 	}];
 }
 
+- (IBAction)closeSettings:(id)sender {
+	
+	if ([loginSettingsViewController fieldsAreValid]) {
+		[UIView animateWithDuration:0.4 animations:^{
+			settingsView.transform = CGAffineTransformMakeTranslation(0, 0);
+			loginWebView.frame = CGRectMake(0, 0, 320, 401);
+		} completion:^(BOOL finished) {
+			[loginSettingsViewController.view removeFromSuperview];
+		}];
+	}
+	else {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erro" message:@"Preencha todos os campos corretamente." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+		[alert show];
+	}
+}
+
+- (IBAction)openSettings:(id)sender {
+	
+	settingsView.frame = CGRectMake(0, -401, 320, 401);
+	[self.view addSubview:settingsView];
+	[settingsView addSubview:loginSettingsViewController.view];
+	
+	[UIView animateWithDuration:0.4 animations:^{
+		settingsView.transform = CGAffineTransformMakeTranslation(0, 401);
+		loginWebView.frame = CGRectMake(0, 401, 320, 0.0001);
+	}];
+}
+
 - (IBAction)toggleCheckboxState:(id)sender {
 	
 	if (checkboxImageView.tag == Unchecked) {
@@ -132,6 +160,9 @@
 	
 	plistManager = [[GVPlistPersistence alloc] init];
 	userDefaults = [[NSMutableArray alloc] init];
+	loginSettingsViewController = [[LoginSettingsViewController alloc] initWithNibName:@"LoginSettingsViewController" bundle:nil];
+	
+	[self addChildViewController:loginSettingsViewController];
 }
 
 - (void)viewDidUnload

@@ -91,6 +91,8 @@
 		3DAB4C3E15CCC55E00D69122 /* LoginSettings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAB4C3C15CCC55E00D69122 /* LoginSettings@2x.png */; };
 		3DB3AEE2158F386E006E26A5 /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB3AEE1158F386E006E26A5 /* libFlurryAnalytics.a */; };
 		3DB6FB9D152F4683000D2E0C /* TableViewSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6FB9C152F4683000D2E0C /* TableViewSampleViewController.m */; };
+		3DBD1FCA15CF01AA0024DCE4 /* LoginSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBD1FC815CF01AA0024DCE4 /* LoginSettingsViewController.m */; };
+		3DBD1FCB15CF01AA0024DCE4 /* LoginSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBD1FC915CF01AA0024DCE4 /* LoginSettingsViewController.xib */; };
 		3DC234481597C45F00814009 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC234461597C45F00814009 /* LoginViewController.m */; };
 		3DC234491597C45F00814009 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC234471597C45F00814009 /* LoginViewController.xib */; };
 		3DC234511597C73C00814009 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC234501597C73C00814009 /* LoadingView.m */; };
@@ -231,6 +233,9 @@
 		3DB3AEE1158F386E006E26A5 /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
 		3DB6FB9B152F4683000D2E0C /* TableViewSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableViewSampleViewController.h; path = iLuno/TableViewSampleViewController.h; sourceTree = "<group>"; };
 		3DB6FB9C152F4683000D2E0C /* TableViewSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableViewSampleViewController.m; path = iLuno/TableViewSampleViewController.m; sourceTree = "<group>"; };
+		3DBD1FC715CF01AA0024DCE4 /* LoginSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginSettingsViewController.h; sourceTree = "<group>"; };
+		3DBD1FC815CF01AA0024DCE4 /* LoginSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginSettingsViewController.m; sourceTree = "<group>"; };
+		3DBD1FC915CF01AA0024DCE4 /* LoginSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginSettingsViewController.xib; sourceTree = "<group>"; };
 		3DC234451597C45F00814009 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		3DC234461597C45F00814009 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		3DC234471597C45F00814009 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -426,6 +431,9 @@
 				3DC234451597C45F00814009 /* LoginViewController.h */,
 				3DC234461597C45F00814009 /* LoginViewController.m */,
 				3DC234471597C45F00814009 /* LoginViewController.xib */,
+				3DBD1FC715CF01AA0024DCE4 /* LoginSettingsViewController.h */,
+				3DBD1FC815CF01AA0024DCE4 /* LoginSettingsViewController.m */,
+				3DBD1FC915CF01AA0024DCE4 /* LoginSettingsViewController.xib */,
 			);
 			name = Login;
 			path = ..;
@@ -727,6 +735,7 @@
 				3DC996EA15CCD76C007904F5 /* UncheckedCheckbox.png in Resources */,
 				3D2D2C3515CCDBCF00548C5F /* CheckedCheckbox@2x.png in Resources */,
 				3D2D2C3615CCDBCF00548C5F /* CheckedCheckbox.png in Resources */,
+				3DBD1FCB15CF01AA0024DCE4 /* LoginSettingsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -764,6 +773,7 @@
 				3DEFE32B15B2699E00D8CD80 /* GVLoadingView.m in Sources */,
 				3D9D718015B820A400EFCC1F /* ControleDaMateriaViewController.m in Sources */,
 				3D59881015BA49DC00DB5E99 /* TrimestresViewController.m in Sources */,
+				3DBD1FCA15CF01AA0024DCE4 /* LoginSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
