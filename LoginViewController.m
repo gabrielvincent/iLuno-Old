@@ -161,6 +161,7 @@
 	
 	hasAlreadyTriedToLogIn = NO;
 	shoulfRemoveLoadingFromSuperView = NO;
+	isLoggedIn = NO;
 	
 	plistManager = [[GVPlistPersistence alloc] init];
 	userDefaults = [[NSMutableArray alloc] init];
@@ -268,10 +269,12 @@
 		NSString *verificationString = [webView stringByEvaluatingJavaScriptFromString:@"$('.clearfix > #menu-lat > #menu-wrap > h3').html();"];
 		NSLog(@"Verification: %@", verificationString);
 		if (![verificationString isEqualToString:@"área do aluno"]) {
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Falha no login" message:@"Verifique seu nome de usuário e senha" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-			[alert show];
-			loginButton.userInteractionEnabled = YES;
-			loginButton.alpha = 1.0;
+			if (!isLoggedIn) {
+				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Falha no login" message:@"Verifique seu nome de usuário e senha" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+				[alert show];
+				loginButton.userInteractionEnabled = YES;
+				loginButton.alpha = 1.0;
+			}
 		}
 		else {
 			[UIView animateWithDuration:0.4 animations:^{
@@ -280,10 +283,10 @@
 				[UIView animateWithDuration:0.4 animations:^{
 					loginView.alpha = 0.0;
 				}];
+				isLoggedIn = YES;
 			}];
 		}
 	}
-	
 }
 
 @end

@@ -23,6 +23,7 @@
 	
 	BOOL hasAlreadyTriedToLogIn;
 	BOOL shoulfRemoveLoadingFromSuperView;
+	BOOL isLoggedIn;
 	GVLoadingView *loadingView;
 	NSOperationQueue *queue;
 	GVPlistPersistence *plistManager;
