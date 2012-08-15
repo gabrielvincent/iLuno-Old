@@ -85,6 +85,10 @@
 - (IBAction)login:(id)sender {
 	[loadingView showWithAnimation:GVLoadingViewShowAnimationAppear];
 	
+	hasAlreadyTriedToLogIn = NO;
+	loginButton.userInteractionEnabled = NO;
+	loginButton.alpha = 0.6;
+	
 	[self callLoadWebView];
 	
 	if (checkboxImageView.tag == Checked) {
@@ -199,9 +203,12 @@
 	userDefaults = [NSMutableArray arrayWithArray:[plistManager databaseWithName:Database]];
 	
 	if ([[[userDefaults objectAtIndex:0] objectForKey:@"AutoLogin"] boolValue]) {
+		loginButton.userInteractionEnabled = NO;
+		loginButton.alpha = 0.6;
 		usernameTextField.text = [[userDefaults objectAtIndex:0] objectForKey:@"Username"];
 		passwordTextField.text = [[userDefaults objectAtIndex:0] objectForKey:@"Password"];
 		checkboxImageView.image = [UIImage imageNamed:@"CheckedCheckbox.png"];
+		checkboxImageView.tag = Checked;
 		[loadingView showWithAnimation:GVLoadingViewShowAnimationFade];
 		[self callLoadWebView];
 	}
@@ -258,10 +265,13 @@
 		
 		loginWebView.userInteractionEnabled = YES;
 		
-		NSString *verificationString = [webView stringByEvaluatingJavaScriptFromString:@"$('.clearfix > h1').html();"];
-		if ([verificationString isEqualToString:@"Página não encontrada"]) {
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Falha no login" message:@"Verifique seu nome usuário e senha" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		NSString *verificationString = [webView stringByEvaluatingJavaScriptFromString:@"$('.clearfix > #menu-lat > #menu-wrap > h3').html();"];
+		NSLog(@"Verification: %@", verificationString);
+		if (![verificationString isEqualToString:@"área do aluno"]) {
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Falha no login" message:@"Verifique seu nome de usuário e senha" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 			[alert show];
+			loginButton.userInteractionEnabled = YES;
+			loginButton.alpha = 1.0;
 		}
 		else {
 			[UIView animateWithDuration:0.4 animations:^{

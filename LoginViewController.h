@@ -19,6 +19,7 @@
 	IBOutlet UITextField *passwordTextField;
 	IBOutlet UIImageView *checkboxImageView;
 	IBOutlet UIView *settingsView;
+	IBOutlet UIButton *loginButton;
 	
 	BOOL hasAlreadyTriedToLogIn;
 	BOOL shoulfRemoveLoadingFromSuperView;

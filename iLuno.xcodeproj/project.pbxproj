@@ -48,6 +48,7 @@
 		3D357A0015316238003E7018 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3579FE1531616A003E7018 /* Reachability.m */; };
 		3D357A0315316286003E7018 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D357A0215316286003E7018 /* SystemConfiguration.framework */; };
 		3D3798DC153124940007263A /* MediasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3798DB153124940007263A /* MediasViewController.m */; };
+		3D40CC4015D3640B00FE7062 /* LoginSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D40CC3F15D3640B00FE7062 /* LoginSettingsViewController.m */; };
 		3D481A8A155935A100E4A674 /* SeriesData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D481A89155935A100E4A674 /* SeriesData.plist */; };
 		3D481A911559507C00E4A674 /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D481A8F1559507C00E4A674 /* check@2x.png */; };
 		3D481A921559507C00E4A674 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D481A901559507C00E4A674 /* check.png */; };
@@ -62,6 +63,7 @@
 		3D6780EF1546D33900B5CAC5 /* calculateButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D6780ED1546D33900B5CAC5 /* calculateButtonPressed.png */; };
 		3D6780F31546DD6300B5CAC5 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D6780F11546DD6300B5CAC5 /* Icon@2x.png */; };
 		3D6780F41546DD6300B5CAC5 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D6780F21546DD6300B5CAC5 /* Icon.png */; };
+		3D6C685E15DBC3F000740391 /* LoginSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D6C685D15DBC3F000740391 /* LoginSettingsViewController.xib */; };
 		3D7D4C8C1546048D001B1A1D /* separator.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D7D4C8A1546048D001B1A1D /* separator.png */; };
 		3D7D4C8D1546048D001B1A1D /* separator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D7D4C8B1546048D001B1A1D /* separator@2x.png */; };
 		3D7D4C9815461265001B1A1D /* ConfiguracoesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D7D4C9615461265001B1A1D /* ConfiguracoesViewController.m */; };
@@ -91,8 +93,6 @@
 		3DAB4C3E15CCC55E00D69122 /* LoginSettings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAB4C3C15CCC55E00D69122 /* LoginSettings@2x.png */; };
 		3DB3AEE2158F386E006E26A5 /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB3AEE1158F386E006E26A5 /* libFlurryAnalytics.a */; };
 		3DB6FB9D152F4683000D2E0C /* TableViewSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6FB9C152F4683000D2E0C /* TableViewSampleViewController.m */; };
-		3DBD1FCA15CF01AA0024DCE4 /* LoginSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBD1FC815CF01AA0024DCE4 /* LoginSettingsViewController.m */; };
-		3DBD1FCB15CF01AA0024DCE4 /* LoginSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBD1FC915CF01AA0024DCE4 /* LoginSettingsViewController.xib */; };
 		3DC234481597C45F00814009 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC234461597C45F00814009 /* LoginViewController.m */; };
 		3DC234491597C45F00814009 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC234471597C45F00814009 /* LoginViewController.xib */; };
 		3DC234511597C73C00814009 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC234501597C73C00814009 /* LoadingView.m */; };
@@ -180,6 +180,8 @@
 		3D357A0215316286003E7018 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3D3798DA153124940007263A /* MediasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediasViewController.h; sourceTree = "<group>"; };
 		3D3798DB153124940007263A /* MediasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediasViewController.m; sourceTree = "<group>"; };
+		3D40CC3E15D3640B00FE7062 /* LoginSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginSettingsViewController.h; sourceTree = "<group>"; };
+		3D40CC3F15D3640B00FE7062 /* LoginSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginSettingsViewController.m; sourceTree = "<group>"; };
 		3D481A89155935A100E4A674 /* SeriesData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SeriesData.plist; sourceTree = "<group>"; };
 		3D481A8F1559507C00E4A674 /* check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check@2x.png"; sourceTree = "<group>"; };
 		3D481A901559507C00E4A674 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 		3D6780ED1546D33900B5CAC5 /* calculateButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calculateButtonPressed.png; sourceTree = "<group>"; };
 		3D6780F11546DD6300B5CAC5 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		3D6780F21546DD6300B5CAC5 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		3D6C685D15DBC3F000740391 /* LoginSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginSettingsViewController.xib; sourceTree = "<group>"; };
 		3D7D4C8A1546048D001B1A1D /* separator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = separator.png; sourceTree = "<group>"; };
 		3D7D4C8B1546048D001B1A1D /* separator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "separator@2x.png"; sourceTree = "<group>"; };
 		3D7D4C9515461265001B1A1D /* ConfiguracoesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfiguracoesViewController.h; sourceTree = "<group>"; };
@@ -233,9 +236,6 @@
 		3DB3AEE1158F386E006E26A5 /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
 		3DB6FB9B152F4683000D2E0C /* TableViewSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableViewSampleViewController.h; path = iLuno/TableViewSampleViewController.h; sourceTree = "<group>"; };
 		3DB6FB9C152F4683000D2E0C /* TableViewSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableViewSampleViewController.m; path = iLuno/TableViewSampleViewController.m; sourceTree = "<group>"; };
-		3DBD1FC715CF01AA0024DCE4 /* LoginSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginSettingsViewController.h; sourceTree = "<group>"; };
-		3DBD1FC815CF01AA0024DCE4 /* LoginSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginSettingsViewController.m; sourceTree = "<group>"; };
-		3DBD1FC915CF01AA0024DCE4 /* LoginSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginSettingsViewController.xib; sourceTree = "<group>"; };
 		3DC234451597C45F00814009 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		3DC234461597C45F00814009 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		3DC234471597C45F00814009 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -431,9 +431,9 @@
 				3DC234451597C45F00814009 /* LoginViewController.h */,
 				3DC234461597C45F00814009 /* LoginViewController.m */,
 				3DC234471597C45F00814009 /* LoginViewController.xib */,
-				3DBD1FC715CF01AA0024DCE4 /* LoginSettingsViewController.h */,
-				3DBD1FC815CF01AA0024DCE4 /* LoginSettingsViewController.m */,
-				3DBD1FC915CF01AA0024DCE4 /* LoginSettingsViewController.xib */,
+				3D40CC3E15D3640B00FE7062 /* LoginSettingsViewController.h */,
+				3D40CC3F15D3640B00FE7062 /* LoginSettingsViewController.m */,
+				3D6C685D15DBC3F000740391 /* LoginSettingsViewController.xib */,
 			);
 			name = Login;
 			path = ..;
@@ -735,7 +735,7 @@
 				3DC996EA15CCD76C007904F5 /* UncheckedCheckbox.png in Resources */,
 				3D2D2C3515CCDBCF00548C5F /* CheckedCheckbox@2x.png in Resources */,
 				3D2D2C3615CCDBCF00548C5F /* CheckedCheckbox.png in Resources */,
-				3DBD1FCB15CF01AA0024DCE4 /* LoginSettingsViewController.xib in Resources */,
+				3D6C685E15DBC3F000740391 /* LoginSettingsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -773,7 +773,7 @@
 				3DEFE32B15B2699E00D8CD80 /* GVLoadingView.m in Sources */,
 				3D9D718015B820A400EFCC1F /* ControleDaMateriaViewController.m in Sources */,
 				3D59881015BA49DC00DB5E99 /* TrimestresViewController.m in Sources */,
-				3DBD1FCA15CF01AA0024DCE4 /* LoginSettingsViewController.m in Sources */,
+				3D40CC4015D3640B00FE7062 /* LoginSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -848,6 +848,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iLuno/iLuno-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
@@ -859,6 +860,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -866,7 +868,8 @@
 		3DCABE2C152EC5D6007BF5BF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Gabriel Vincent";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Gabriel Vincent";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iLuno/iLuno-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
@@ -877,7 +880,8 @@
 					"\"$(SRCROOT)/**\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "22FDA331-0F80-473E-ACBD-E7566EAC4E91";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "22FDA331-0F80-473E-ACBD-E7566EAC4E91";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
