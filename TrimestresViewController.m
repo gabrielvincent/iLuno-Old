@@ -8,8 +8,8 @@
 
 #define BadGradeColor UIColorFromRGB(0xFC452B)
 #define GoodGradeColor UIColorFromRGB(0x3B44FF)
-#define DynamicContentSizeHeight (([arrayFields count]+(7-([arrayFields count]%7)))*40)+15
-#define DynamicContentSizeHeightWhenKeyboardIsActive (([arrayFields count]+(4-([arrayFields count]%4)))*40)+15
+#define DynamicContentSizeHeight (([arrayFields count]+(7-([arrayFields count]%7)))*40)
+#define DynamicContentSizeHeightWhenKeyboardIsActive (([arrayFields count]+(4-([arrayFields count]%4)))*40)
 #define ScrollViewContentSizeHeight self.scrollView.contentSize.height
 #define ScrollViewWidth self.scrollView.frame.size.width
 #define ScrollViewHeight self.scrollView.frame.size.height
@@ -22,6 +22,8 @@
 #define ThisTextField [(UITextField *)self.scrollView viewWithTag:tag]
 #define ThisLabelTextField [(UITextField *)self.scrollView viewWithTag:evenTag]
 #define ThisGradeTextField [(UITextField *)self.scrollView viewWithTag:oddTag]
+#define DeleteButtonsViewOriginX deleteButtonsView.frame.origin.x
+#define DeleteButtonsViweHeight deleteButtonsView.frame.size.height
 
 #import "TrimestresViewController.h"
 
@@ -115,7 +117,7 @@
 	
 	[UIView animateWithDuration:0.2 animations:^{
 		deleteButtonsView.alpha = 0.0;
-		deleteButtonsView.frame = CGRectMake(-25, 0, 46, 280);
+		deleteButtonsView.transform = CGAffineTransformMakeTranslation(0, 0);
 		
 		if (deleteButtonIsReadyToDelete) {
 			deleteButton.frame = CGRectMake(308, deleteButton.frame.origin.y, 0, 36);
@@ -131,17 +133,21 @@
 	}];
 }
 
+- (void) teste {
+	NSLog(@"Chamou");
+}
+
 - (void) didEnterEditMode {
 	// Makes the user interaction enabled for all TextFields
 	for (UIView *view in self.scrollView.subviews) {
-		if ([view respondsToSelector:@selector(setTextColor:)]) {
+		if ([view respondsToSelector:@selector(setTextColor:)]) { // If the view is a UILabel
 			view.userInteractionEnabled = YES;
 		}
 	}
 	
 	[UIView animateWithDuration:0.2 animations:^{
 		deleteButtonsView.alpha = 1.0;
-		deleteButtonsView.frame = CGRectMake(0, 0, 46, 280);
+		deleteButtonsView.transform = CGAffineTransformMakeTranslation(25, 0);
 	}];
 }
 
@@ -321,6 +327,7 @@
 	[deleteCircle addTarget:self action:@selector(toggleDeletionState:) forControlEvents:UIControlEventTouchUpInside];
 	deleteCircle.userInteractionEnabled = YES;
 	
+	deleteButtonsView.frame = CGRectMake(0, 0, 46, deleteButtonsView.frame.size.height+40);
 	[deleteButtonsView addSubview:deleteCircle];
 	
 	// Sets the dictionary
@@ -394,10 +401,11 @@
 		deleteCircle.frame = CGRectMake(0, 0, 46, 36);
 		deleteCircle.center = labelTextField.center;
 		deleteCircle.frame = CGRectMake(0, deleteCircle.frame.origin.y, 46, 36);
-		deleteCircle.tag = labelTextField.tag;
-		deleteCircle.imageView.tag = -2; // Sets an unused tag so it won't interer with the views that really need this tag set
+		deleteCircle.tag = labelTextField.tag; // Sets the same tag as the Label textfield
+		deleteCircle.imageView.tag = -2; // Sets an unused tag so it won't interfer with the views that really need this tag set
 		[deleteCircle addTarget:self action:@selector(toggleDeletionState:) forControlEvents:UIControlEventTouchUpInside];
 		
+		deleteButtonsView.frame = CGRectMake(DeleteButtonsViewOriginX, 0, 46, DeleteButtonsViweHeight+40);
 		[deleteButtonsView addSubview:deleteCircle];
 		
 		// Adds the objects to the arrayTextFields

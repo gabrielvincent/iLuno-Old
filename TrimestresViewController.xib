@@ -180,7 +180,7 @@
 									<object class="IBUIView" id="557081911">
 										<reference key="NSNextResponder" ref="153740711"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{-25, 0}, {46, 280}}</string>
+										<string key="NSFrame">{{-25, 0}, {46, 0}}</string>
 										<reference key="NSSuperview" ref="153740711"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="999885703"/>
@@ -199,6 +199,7 @@
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="557081911"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<reference key="IBUIBackgroundColor" ref="1058542142"/>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIMultipleTouchEnabled">YES</bool>
 								<int key="IBUITag">-1</int>
@@ -345,6 +346,7 @@
 						<int key="objectID">164</int>
 						<reference key="object" ref="557081911"/>
 						<reference key="parent" ref="153740711"/>
+						<string key="objectName">DeleteButtonsView</string>
 					</object>
 				</array>
 			</object>
