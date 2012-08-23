@@ -40,7 +40,7 @@
 		activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
 		[activityIndicator startAnimating];
 		activityIndicator.center = postItImageView.center;
-		activityIndicator.frame = CGRectMake(activityIndicator.frame.origin.x, activityIndicator.frame.origin.y+25, activityIndicator.frame.size.width, activityIndicator.frame.size.height);
+		activityIndicator.frame = CGRectMake(activityIndicator.frame.origin.x-15, activityIndicator.frame.origin.y+40, activityIndicator.frame.size.width, activityIndicator.frame.size.height);
 		[scrollView addSubview:activityIndicator];
 		
 		[scrollView setContentOffset:CGPointMake(220, 0) animated:YES];
