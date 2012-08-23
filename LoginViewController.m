@@ -204,7 +204,7 @@
 	userDefaults = [NSMutableArray arrayWithArray:[plistManager databaseWithName:Database]];
 	
 	if ([[[userDefaults objectAtIndex:0] objectForKey:@"AutoLogin"] boolValue]) {
-		loginButton.userInteractionEnabled = NO;
+		self.view.userInteractionEnabled = NO;
 		loginButton.alpha = 0.6;
 		usernameTextField.text = [[userDefaults objectAtIndex:0] objectForKey:@"Username"];
 		passwordTextField.text = [[userDefaults objectAtIndex:0] objectForKey:@"Password"];
@@ -268,6 +268,7 @@
 		
 		NSString *verificationString = [webView stringByEvaluatingJavaScriptFromString:@"$('.clearfix > #menu-lat > #menu-wrap > h3').html();"];
 		NSLog(@"Verification: %@", verificationString);
+		// Login Failed
 		if (![verificationString isEqualToString:@"área do aluno"]) {
 			if (!isLoggedIn) {
 				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Falha no login" message:@"Verifique seu nome de usuário e senha" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -276,6 +277,7 @@
 				loginButton.alpha = 1.0;
 			}
 		}
+		// Login succeeded
 		else {
 			[UIView animateWithDuration:0.4 animations:^{
 				loginView.transform = CGAffineTransformMakeTranslation(0, 411);
@@ -286,6 +288,8 @@
 				isLoggedIn = YES;
 			}];
 		}
+		
+		self.view.userInteractionEnabled = YES;
 	}
 }
 
