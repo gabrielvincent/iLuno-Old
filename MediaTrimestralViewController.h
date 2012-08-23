@@ -25,6 +25,5 @@
 - (IBAction)TM2_ATNext:(id)sender;
 - (IBAction)infoButton:(id)sender;
 - (IBAction)validateString:(id)sender;
--(IBAction)adjustScrollViewToKeyboard:(id)sender;
 
 @end

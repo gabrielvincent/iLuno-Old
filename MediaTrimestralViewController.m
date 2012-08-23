@@ -6,57 +6,17 @@
 //  Copyright 2010 _A_Z. All rights reserved.
 //
 
+#define BadGradeColor UIColorFromRGB(0xFC452B)
+#define GoodGradeColor UIColorFromRGB(0x3B44FF)
+
 #import "MediaTrimestralViewController.h"
 
 
 @implementation MediaTrimestralViewController
 
 - (void)colorizeGrade {
-	if (nota.text.floatValue >= 6.0) nota.textColor = [UIColor colorWithRed:75.0/255.0 green:137.0/255.0 blue:208.0/255.0 alpha:1.0];
-	else nota.textColor = [UIColor redColor];
-}
-
-- (void) adjustScrollViewToKeyboardVoid {
-	typedef enum {
-        UIInterfaceOrientationPortrait           = UIDeviceOrientationPortrait,
-        UIInterfaceOrientationPortraitUpsideDown = UIDeviceOrientationPortraitUpsideDown,
-        UIInterfaceOrientationLandscapeLeft      = UIDeviceOrientationLandscapeLeft,
-        UIInterfaceOrientationLandscapeRight     = UIDeviceOrientationLandscapeRight
-    } UIInterfaceOrientation;
-    
-    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-    
-	if (orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight) {
-		if ([TM1TextField isFirstResponder] || [TM2TextField isFirstResponder] || [ATTextField isFirstResponder]) {
-			scrollView.frame = CGRectMake(0, 0, 480, 107);
-			scrollView.contentSize = CGSizeMake(480, 220);
-			
-			ATHighlight.center = ATTextField.center;
-		}
-    }
-	
-	ATHighlight.center = ATTextField.center;
-}
-
--(IBAction)adjustScrollViewToKeyboard:(id)sender {
-	typedef enum {
-        UIInterfaceOrientationPortrait           = UIDeviceOrientationPortrait,
-        UIInterfaceOrientationPortraitUpsideDown = UIDeviceOrientationPortraitUpsideDown,
-        UIInterfaceOrientationLandscapeLeft      = UIDeviceOrientationLandscapeLeft,
-        UIInterfaceOrientationLandscapeRight     = UIDeviceOrientationLandscapeRight
-    } UIInterfaceOrientation;
-    
-    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-    
-	if (orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight) {
-		scrollView.frame = CGRectMake(0, 0, 480, 107);
-		scrollView.contentSize = CGSizeMake(480, 180);
-		
-		mediaTrimestralLabel.hidden = YES;
-		nota.text = @"";
-    }
-	
-	ATHighlight.center = ATTextField.center;
+	if (nota.text.floatValue >= 6.0) nota.textColor = GoodGradeColor;
+	else nota.textColor = BadGradeColor;
 }
 
 - (IBAction)validateString:(id)sender {
@@ -173,54 +133,15 @@
 }
 
 - (IBAction)esconderOTeclado:(id)sender {
-	typedef enum {
-        UIInterfaceOrientationPortrait           = UIDeviceOrientationPortrait,
-        UIInterfaceOrientationPortraitUpsideDown = UIDeviceOrientationPortraitUpsideDown,
-        UIInterfaceOrientationLandscapeLeft      = UIDeviceOrientationLandscapeLeft,
-        UIInterfaceOrientationLandscapeRight     = UIDeviceOrientationLandscapeRight
-    } UIInterfaceOrientation;
-    
-    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-    
-	if (orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight) {
-		scrollView.frame = CGRectMake(0, 0, 480, 220);
-		scrollView.contentSize = CGSizeMake(480, 220);
-    }
-	
-	ATHighlight.center = ATTextField.center;
-	
     [TM1TextField resignFirstResponder];
 	[TM2TextField resignFirstResponder];
 	[ATTextField resignFirstResponder];
 }
 
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-	typedef enum {
-        UIInterfaceOrientationPortrait           = UIDeviceOrientationPortrait,
-        UIInterfaceOrientationPortraitUpsideDown = UIDeviceOrientationPortraitUpsideDown,
-        UIInterfaceOrientationLandscapeLeft      = UIDeviceOrientationLandscapeLeft,
-        UIInterfaceOrientationLandscapeRight     = UIDeviceOrientationLandscapeRight
-    } UIInterfaceOrientation;
-    
-    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-    
-	if (orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight) {
-		scrollView.frame = CGRectMake(0, 0, 480, 220);
-		scrollView.contentSize = CGSizeMake(480, 220);
-		
-		if (TM1TextField.text.length != 0 && TM2TextField.text.length != 0 && ATTextField.text.length != 0) [self calcularMediaTrimestral:nil];
-    }
-    else if (orientation == UIDeviceOrientationPortrait || orientation == UIDeviceOrientationPortraitUpsideDown) {
-        scrollView.frame = CGRectMake(0, 0, 320, 367);
-		scrollView.contentSize = CGSizeMake(320, 367);
-    }
-	
-	ATHighlight.center = ATTextField.center;
-    
-	[self adjustScrollViewToKeyboardVoid];
-	
-    return YES;
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return NO;
 }
 
 
