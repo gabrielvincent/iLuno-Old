@@ -67,18 +67,13 @@
 #pragma mark UITextField delegate methods
 
 - (void) textFieldDidChange:(UITextField *)textField {
-	NSLog(@"Text: %@", textField.text);
 	
-	int grade = [textField.text floatValue];
-	
-	if (grade >= 6.0) textField.textColor = GoodGradeColor;
-	else textField.textColor = BadGradeColor;
-}
-
-- (void) textFieldDidBeginEditing:(UITextField *)textField {
-}
-
-- (void) textFieldDidEndEditing:(UITextField *)textField {
+	if (textField.tag%2 != 0) {
+		float grade = [textField.text floatValue];
+		
+		if (grade >= 6.0) textField.textColor = GoodGradeColor;
+		else textField.textColor = BadGradeColor;
+	}
 	
 	int index;
 	if (textField.tag%2 == 0) index = textField.tag/2;
@@ -89,15 +84,39 @@
 	if (textField.tag%2 == 0) key = @"labelTextField";
 	else {
 		key = @"gradeTextField";
-		int grade = [textField.text floatValue];
-		
-		// Colorizes the text, depending on the grade
-		if (grade >= 6.0) textField.textColor = GoodGradeColor;
-		else textField.textColor = BadGradeColor;
 	}
 	
 	[arrayFields replaceObjectAtIndex:index withObject:fields];
 	[plistManager setValue:textField.text ForKey:key ForEntryAtIndex:index InDatabase:fileName];
+}
+
+- (void) textFieldDidBeginEditing:(UITextField *)textField {
+}
+
+- (void) textFieldDidEndEditing:(UITextField *)textField {
+	NSLog(@"Ended editing");
+	/*
+	if (deleteButtonIsReadyToDelete == NO) {
+		int index;
+		if (textField.tag%2 == 0) index = textField.tag/2;
+		else index = (textField.tag-1)/2;
+		NSMutableDictionary *fields = [arrayFields objectAtIndex:index];
+		NSString *key;
+		
+		if (textField.tag%2 == 0) key = @"labelTextField";
+		else {
+			key = @"gradeTextField";
+			int grade = [textField.text floatValue];
+			
+			// Colorizes the text, depending on the grade
+			if (grade >= 6.0) textField.textColor = GoodGradeColor;
+			else textField.textColor = BadGradeColor;
+		}
+		
+		[arrayFields replaceObjectAtIndex:index withObject:fields];
+		[plistManager setValue:textField.text ForKey:key ForEntryAtIndex:index InDatabase:fileName];
+	}
+	*/
 }
 
 #pragma mark ViewController methods
@@ -301,6 +320,7 @@
 	labelTextField.textColor = UIColorFromRGB(0x222222);
 	labelTextField.tag = [arrayFields count]*2;
 	labelTextField.delegate = self;
+	[labelTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
 	
 	UITextField *gradeTextField = [[UITextField alloc] initWithFrame:CGRectMake(246, ([arrayFields count]*40)+15, 55, 30)];
 	gradeTextField.placeholder = @"nota";
@@ -346,6 +366,10 @@
 }
 
 - (void) reloadData {
+	NSLog(@"Did reload");
+	
+	NSLog(@"Array: %@", arrayFields);
+	
 	[self setData];
 	
 	// Makes the user interaction enabled for all TextFields
@@ -358,6 +382,8 @@
 
 - (void) setData {
 	
+	arrayFields = [NSMutableArray arrayWithArray:[plistManager databaseWithName:fileName]];
+	
 	int i = 0;
 	for (NSDictionary *fields in arrayFields) {
 		
@@ -368,9 +394,10 @@
 		labelTextField.textColor = UIColorFromRGB(0x222222);
 		labelTextField.tag = i*2;
 		labelTextField.delegate = self;
-		labelTextField.text = [fields objectForKey:@"labelTextField"];
+		labelTextField.text = [fields objectForKey:@"labelTextField"]; NSLog(@"LabelTexField: %@", labelTextField.text);
 		labelTextField.userInteractionEnabled = NO;
 		labelTextField.placeholder = @"avaliação";
+		[labelTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
 		
 		UITextField *gradeTextField = [[UITextField alloc] initWithFrame:CGRectMake(246, (i*40)+15, 55, 30)];
 		gradeTextField.text = @"0,00";
@@ -434,13 +461,10 @@
 	fileName = [NSString stringWithFormat:@"CDN%@%@", currentTrimester, materiaString];
 	
 	if ([plistManager databaseAlreadyExistsWithName:fileName]) {
-		arrayFields = [NSMutableArray arrayWithArray:[plistManager databaseWithName:fileName]];
-		
 		[self setData];
 	}
 	
 	deleteButtonIsReadyToDelete = NO;
-	
 }
 
 - (void) viewWillAppear:(BOOL)animated {
