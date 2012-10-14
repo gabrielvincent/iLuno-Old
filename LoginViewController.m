@@ -29,6 +29,13 @@
     return self;
 }
 
+- (void) showNoInternetAlert {
+	[loadingView enterReloadModeWithMessage:@"Recarregar"];
+	
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Não há conexão com a internet" message:@"Conecte-se a uma rede e tente novamente" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	[alert show];
+}
+
 - (void) keyboardWasShown:(NSNotification *) notification {
 	[UIView animateWithDuration:0.4 animations:^{
 		formView.transform = CGAffineTransformMakeTranslation(0, -80);
@@ -46,7 +53,7 @@
 	if ([loginSettingsViewController fieldsAreValid]) {
 		[UIView animateWithDuration:0.4 animations:^{
 			settingsView.transform = CGAffineTransformMakeTranslation(0, 0);
-			loginWebView.frame = CGRectMake(0, 0, 320, 401);
+			loginWebView.transform = CGAffineTransformMakeTranslation(0, 0);
 		} completion:^(BOOL finished) {
 			[loginSettingsViewController.view removeFromSuperview];
 		}];
@@ -65,7 +72,7 @@
 	
 	[UIView animateWithDuration:0.4 animations:^{
 		settingsView.transform = CGAffineTransformMakeTranslation(0, 401);
-		loginWebView.frame = CGRectMake(0, 401, 320, 0.0001);
+		loginWebView.transform = CGAffineTransformMakeScale(0, 0);
 	}];
 }
 
@@ -112,7 +119,7 @@
 		[loginWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://deaaz.com.br"]]];
 	}
 	else {
-		[loadingView enterReloadModeWithMessage:@"Recarregar"];
+		[self performSelectorOnMainThread:@selector(showNoInternetAlert) withObject:nil waitUntilDone:NO];
 	}
 }
 
@@ -128,7 +135,7 @@
 		[loginWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://deaaz.com.br"]]];
 	}
 	else {
-		[loadingView enterReloadModeWithMessage:@"Recarregar"];
+		[self performSelectorOnMainThread:@selector(showNoInternetAlert) withObject:nil waitUntilDone:NO];
 	}
 }
 
@@ -142,17 +149,18 @@
 }
 
 - (void) configureLoadingView {
-	loadingView = [[GVLoadingView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-40, 320, 40)];
+	loadingView = [[GVLoadingView alloc] init];
+	loadingView.delegate = (id)self;
+	loadingView.frame = CGRectMake(0, self.view.frame.size.height-40, 320, 40);
 	loadingView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
 	loadingView.animationTime = 0.4;
-	loadingView.delegate = (id)self;
 	loadingView.messageLabel.text = @"Fazendo login...";
 	loadingView.messageLabel.font = [UIFont boldSystemFontOfSize:14];
 	loadingView.messageLabel.textColor = [UIColor whiteColor];
 	loadingView.messageLabel.shadowOffset = CGSizeMake(0, -1);
 	loadingView.messageLabel.ShadowColor = [UIColor blackColor];
 	loadingView.reloadImage = [UIImage imageNamed:@"ReloadIcon.png"];
-	loadingView.reloadMethod = @selector(callLoadWebView);
+	loadingView.reloadMethod = @selector(callReloadWebView);
 }
 
 - (void)viewDidLoad
@@ -185,7 +193,7 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:)
 												 name:UIKeyboardWillHideNotification object:self.view.window];
 	
-	[self configureLoadingView];
+	if (!loadingView) [self configureLoadingView];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -204,7 +212,7 @@
 	userDefaults = [NSMutableArray arrayWithArray:[plistManager databaseWithName:Database]];
 	
 	if ([[[userDefaults objectAtIndex:0] objectForKey:@"AutoLogin"] boolValue]) {
-		self.view.userInteractionEnabled = NO;
+		alwaysLoginButton.userInteractionEnabled = NO;
 		loginButton.alpha = 0.6;
 		usernameTextField.text = [[userDefaults objectAtIndex:0] objectForKey:@"Username"];
 		passwordTextField.text = [[userDefaults objectAtIndex:0] objectForKey:@"Password"];
@@ -216,14 +224,12 @@
 }
 
 - (BOOL) internetIsConnected {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://gabrielvincent.com/CheckInternetConnection"]];  
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://gabrielvincent.com/CheckInternetConnection"]];
     
-	NSLog(@"Verifying...");
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:8.0];      
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:8.0];
     NSURLResponse *response;
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
     NSString *output = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-	NSLog(@"Verified!");
     
     return (output.length > 0) ? YES : NO;
 }
@@ -280,7 +286,7 @@
 		// Login succeeded
 		else {
 			[UIView animateWithDuration:0.4 animations:^{
-				loginView.transform = CGAffineTransformMakeTranslation(0, 411);
+				loginView.transform = CGAffineTransformMakeTranslation(0, -411);
 			} completion:^(BOOL finished) {
 				[UIView animateWithDuration:0.4 animations:^{
 					loginView.alpha = 0.0;

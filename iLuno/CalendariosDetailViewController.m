@@ -262,6 +262,8 @@
 		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); 
 		arrayEventos = [[NSMutableArray alloc] initWithContentsOfURL:[NSURL URLWithString:urlString]];
 		
+		NSLog(@"Eventos: %@", arrayEventos);
+		
 		[arrayEventos writeToFile:[[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist", fileName]] atomically:YES];
 		[self setUpdateDate];
 		
@@ -373,7 +375,9 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-	self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkest-background-full.png"]];
+	UIView *backgroundView = [[UIView alloc] init];
+	backgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkest-background-full.png"]];
+	self.tableView.backgroundView = backgroundView;
 
 	// check for internet connection
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];
@@ -491,7 +495,6 @@
 }
 
 - (void) scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(CGPoint *)targetContentOffset {
-	NSLog(@"Offset: %f", self.tableView.contentOffset.y*-1);
 	if (shouldUpdate && !isUpdating) {
 		
 		[self callUpdateCalendars];

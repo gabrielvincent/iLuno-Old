@@ -6,6 +6,9 @@
 //  Copyright (c) 2012 _A_Z. All rights reserved.
 //
 
+#define Twitter 0
+#define Formspring 1
+
 #import "RedesSociaisViewController.h"
 #import "TwitterViewController.h"
 #import "FormspringViewController.h"
@@ -26,11 +29,9 @@
 }
 
 
-- (void) goToSocialNetworkByTapping:(UIPanGestureRecognizer *) sender {
-	CGPoint tapPoint = [sender locationInView:self.view];
-	float y = tapPoint.y;
+- (IBAction)goToSocialNetworkByTapping:(UIButton *)sender {
 	
-	if (y <= 177) {
+	if (sender.tag == Twitter) {
 		TwitterViewController *twitter = [[TwitterViewController alloc] init];
 		twitter.titleString = @"Twitter";
 		[self.navigationController pushViewController:twitter animated:YES];
@@ -99,8 +100,6 @@
 	
 	pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(goToSocialNetwork:)];
 	[self.view addGestureRecognizer:pan];
-	tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToSocialNetworkByTapping:)];
-	[self.view addGestureRecognizer:tap];
 }
 
 - (void)viewDidUnload

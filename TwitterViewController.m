@@ -170,12 +170,10 @@
 - (BOOL) internetIsConnected {
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://gabrielvincent.com/CheckInternetConnection"]];  
     
-	NSLog(@"Verifying...");
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:8.0];      
     NSURLResponse *response;
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
     NSString *output = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-	NSLog(@"Verified!");
     
     return (output.length > 0) ? YES : NO;
 }

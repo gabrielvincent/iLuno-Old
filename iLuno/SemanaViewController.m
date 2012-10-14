@@ -76,7 +76,9 @@
 	else titleLabel.text = serie;
 	[titleLabel sizeToFit];
 	
-	self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkest-background-full.png"]];
+	UIView *backgroundView = [[UIView alloc] init];
+	backgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkest-background-full.png"]];
+	self.tableView.backgroundView = backgroundView;
 	self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
 	self.tableView.separatorColor = [UIColor lightGrayColor];
 	

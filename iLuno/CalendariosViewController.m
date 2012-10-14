@@ -51,7 +51,9 @@
 	
 	self.view.frame = CGRectMake(0, 0, 320, 400);
 	self.navigationItem.title = @"Calendários";
-	self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkest-background-full.png"]];
+	UIView *backgroundView = [[UIView alloc] init];
+	backgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"darkest-background-full.png"]];
+	self.tableView.backgroundView = backgroundView;
 	self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
 	self.tableView.separatorColor = [UIColor lightGrayColor];
 }

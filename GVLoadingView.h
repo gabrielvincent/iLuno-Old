@@ -33,7 +33,6 @@ typedef enum {
 	CGRect finalFrame;
 	__unsafe_unretained UIViewController <GVLoadingViewDelegate> *delegate;
 	UIButton *reloadButton;
-	UITapGestureRecognizer *reloadTapGesture;
 	BOOL isFirstCall;
 }
 

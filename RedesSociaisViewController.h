@@ -13,7 +13,8 @@
 	IBOutlet UIButton *formspringButton;
 	
 	UIPanGestureRecognizer *pan;
-	UITapGestureRecognizer *tap;
 }
+
+- (IBAction)goToSocialNetworkByTapping:(UIButton *)sender;
 
 @end

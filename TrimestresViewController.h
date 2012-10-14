@@ -10,7 +10,6 @@
 #import "GVPlistPersistence.h"
 
 @interface TrimestresViewController : UIViewController <UITextFieldDelegate> {
-	IBOutlet UIScrollView *scrollView;
 	IBOutlet UIView *deleteButtonsView;
 	
 	GVPlistPersistence *plistManager;

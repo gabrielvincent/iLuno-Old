@@ -263,6 +263,57 @@
 		if ((x >= 0 && x <= 105) && (y >= 64 && y <= 169)) {
 			iconId = @"horarios";
 			[self showSpecifiedViewController:@"horarios"];
+			//higlightImage.hidden = NO;
+			higlightImage.frame = CGRectMake(26, 83, 86, 83);
+		}
+		//Calendários
+		else if ((x >= 106 && x <= 215) && (y >= 64 && y <= 169)) {
+			iconId = @"calendarios";
+			[self showSpecifiedViewController:@"calendarios"];
+			//higlightImage.hidden = NO;
+			higlightImage.frame = CGRectMake(118, 83, 86, 83);
+		}
+		//Vídeos
+		else if ((x >= 216 && x <= 320) && (y >= 64 && y <= 169)) {
+			iconId = @"videos";
+			[self showSpecifiedViewController:@"videos"];
+			//higlightImage.hidden = NO;
+			higlightImage.frame = CGRectMake(210, 83, 86, 83);
+		}
+		//Redes Sociais
+		else if ((x >= 0 && x <= 105) && (y >= 170 && y <= 279)) {
+			iconId = @"redes";
+			[self showSpecifiedViewController:@"redes"];
+			//higlightImage.hidden = NO;
+			higlightImage.frame = CGRectMake(26, 178, 86, 83);
+		}
+		//Login
+		else if ((x >= 106 && x <= 215) && (y >= 170 && y <= 279)) {
+			iconId = @"login";
+			[self showSpecifiedViewController:@"login"];
+			//higlightImage.hidden = NO;
+			higlightImage.frame = CGRectMake(119, 178, 86, 83);
+		}
+		//Controle de Notas
+		else if ((x >= 216 && x <= 320) && (y >= 170 && y <= 279)) {
+			iconId = @"controle";
+			[self showSpecifiedViewController:@"controle"];
+			//higlightImage.hidden = NO;
+			higlightImage.frame = CGRectMake(210, 178, 86, 83);
+		}
+		//Configurações
+		else if ((x >= 0 && x <= 105) && (y >= 280 && y <= 375)) {
+			iconId = @"configuracoes";
+			[self showSpecifiedViewController:@"configuracoes"];
+			//higlightImage.hidden = NO;
+			higlightImage.frame = CGRectMake(26, 268, 86, 83);
+		}
+		
+		/*
+		// Horários
+		if ((x >= 0 && x <= 105) && (y >= 64 && y <= 169)) {
+			iconId = @"horarios";
+			[self showSpecifiedViewController:@"horarios"];
 		}
 		//Calendários
 		else if ((x >= 106 && x <= 215) && (y >= 64 && y <= 169)) {
@@ -314,6 +365,7 @@
 			navigationRedes.view.alpha = 0.0;
 			videos.alpha = 0.0;
 		}
+		 */
 		
 		NSLog(@"IconID: %@", iconId);
 		
@@ -362,10 +414,10 @@
 			//higlightImage.hidden = NO;
 			higlightImage.frame = CGRectMake(118, 83, 86, 83);
 		}
-		//Médias
+		//Vídeos
 		else if ((x >= 216 && x <= 320) && (y >= 64 && y <= 169)) {
-			iconId = @"medias";
-			[self showSpecifiedViewController:@"medias"];
+			iconId = @"videos";
+			[self showSpecifiedViewController:@"videos"];
 			//higlightImage.hidden = NO;
 			higlightImage.frame = CGRectMake(210, 83, 86, 83);
 		}
@@ -376,27 +428,30 @@
 			//higlightImage.hidden = NO;
 			higlightImage.frame = CGRectMake(26, 178, 86, 83);
 		}
-		//Vídeos
-		else if ((x >= 106 && x <= 215) && (y >= 170 && y <= 279)) {
-			iconId = @"videos";
-			[self showSpecifiedViewController:@"videos"];
-			//higlightImage.hidden = NO;
-			higlightImage.frame = CGRectMake(119, 178, 86, 83);
-		}
-		//Folhas _A_Z
-		else if ((x >= 216 && x <= 320) && (y >= 170 && y <= 279)) {
-			iconId = @"folhas";
-			[self showSpecifiedViewController:@"folhas"];
-			//higlightImage.hidden = NO;
-			higlightImage.frame = CGRectMake(210, 178, 86, 83);
-		}
 		//Login
-		else if ((x >= 0 && x <= 105) && (y >= 280 && y <= 375)) {
+		else if ((x >= 106 && x <= 215) && (y >= 170 && y <= 279)) {
 			iconId = @"login";
 			[self showSpecifiedViewController:@"login"];
 			//higlightImage.hidden = NO;
+			higlightImage.frame = CGRectMake(119, 178, 86, 83);
+		}
+		//Controle de Notas
+		else if ((x >= 216 && x <= 320) && (y >= 170 && y <= 279)) {
+			iconId = @"controle";
+			[self showSpecifiedViewController:@"controle"];
+			//higlightImage.hidden = NO;
+			higlightImage.frame = CGRectMake(210, 178, 86, 83);
+		}
+		//Configurações
+		else if ((x >= 0 && x <= 105) && (y >= 280 && y <= 375)) {
+			iconId = @"configuracoes";
+			[self showSpecifiedViewController:@"configuracoes"];
+			//higlightImage.hidden = NO;
 			higlightImage.frame = CGRectMake(26, 268, 86, 83);
 		}
+		else return;
+		
+		/*
 		//Controle de Notas
 		else if ((x >= 106 && x <= 215) && (y >= 280 && y <= 375)) {
 			iconId = @"controller";
@@ -410,6 +465,7 @@
 			[self showSpecifiedViewController:@"configuracoes"];
 			higlightImage.frame = CGRectMake(210, 268, 86, 83);
 		}
+		 */
 		
 		if (![iconId isEqualToString:@""]) [self leaveHomeScreen];
 		

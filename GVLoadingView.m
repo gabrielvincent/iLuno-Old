@@ -82,7 +82,8 @@
 }
 
 - (void) enterReloadModeWithMessage:(NSString *) reloadMessage {
-	reloadTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:delegate action:reloadMethod];
+	
+	UITapGestureRecognizer *reloadTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:delegate action:reloadMethod];
 	[self addGestureRecognizer:reloadTapGesture];
 	
 	messageLabel.text = reloadMessage;

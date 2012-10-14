@@ -20,6 +20,7 @@
 	IBOutlet UIImageView *checkboxImageView;
 	IBOutlet UIView *settingsView;
 	IBOutlet UIButton *loginButton;
+	IBOutlet UIButton *alwaysLoginButton;
 	
 	BOOL hasAlreadyTriedToLogIn;
 	BOOL shoulfRemoveLoadingFromSuperView;

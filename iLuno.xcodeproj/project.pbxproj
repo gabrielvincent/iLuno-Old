@@ -91,7 +91,7 @@
 		3D9D718D15B8371000EFCC1F /* NoteBookBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D9D718B15B8371000EFCC1F /* NoteBookBackground@2x.png */; };
 		3DAB4C3D15CCC55E00D69122 /* LoginSettings.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAB4C3B15CCC55E00D69122 /* LoginSettings.png */; };
 		3DAB4C3E15CCC55E00D69122 /* LoginSettings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DAB4C3C15CCC55E00D69122 /* LoginSettings@2x.png */; };
-		3DB3AEE2158F386E006E26A5 /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB3AEE1158F386E006E26A5 /* libFlurryAnalytics.a */; };
+		3DB3AEE2158F386E006E26A5 /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB3AEE1158F386E006E26A5 /* libFlurryAnalytics.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		3DB6FB9D152F4683000D2E0C /* TableViewSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6FB9C152F4683000D2E0C /* TableViewSampleViewController.m */; };
 		3DC234481597C45F00814009 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC234461597C45F00814009 /* LoginViewController.m */; };
 		3DC234491597C45F00814009 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC234471597C45F00814009 /* LoginViewController.xib */; };
@@ -861,6 +861,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -868,8 +869,8 @@
 		3DCABE2C152EC5D6007BF5BF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Gabriel Vincent";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Gabriel Vincent";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iLuno/iLuno-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/**";
@@ -880,8 +881,9 @@
 					"\"$(SRCROOT)/**\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "22FDA331-0F80-473E-ACBD-E7566EAC4E91";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "22FDA331-0F80-473E-ACBD-E7566EAC4E91";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
