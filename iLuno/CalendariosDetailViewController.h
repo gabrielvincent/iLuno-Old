@@ -12,63 +12,32 @@
 @class Reachability;
 
 @interface CalendariosDetailViewController : UITableViewController {	
-	UILabel *eventoLabel;
-	UILabel *diaDaSemanaLabel;
-	UILabel *diaDoMesLabel;
-	UIView *fillView;
+	IBOutlet UITableViewCell *customCell;
+	IBOutlet UILabel *eventLabel;
+	IBOutlet UILabel *weekdayLabel;
+	IBOutlet UILabel *monthdayLabel;
 	
-	IBOutlet UIButton *atualizarButton;
-	UITableViewCell *customCell;
-	
-    NSMutableArray *arrayLoaded;
-	NSMutableArray *arrayEventos;
-	NSArray *segments;
-	NSOperationQueue *queue;
-	UIActivityIndicatorView *spinner;
-	GVPlistPersistence *plistManager;
-	UIBarButtonItem *atualizar;
-	UIBarButtonItem *atualizando;
+	NSMutableArray *arrayEvents;
+	NSDateFormatter *dateFormatter;
+	UIColor *bgColor;
 	UILabel *updateLabel;
 	UILabel *lastUpdateLabel;
 	BOOL shouldUpdate;
-	UIImageView *updateImageView;
-	NSString *title;
-	NSArray *userDefaults;
-	UIActivityIndicatorView *activityIndicator;
 	BOOL isUpdating;
-	BOOL isDragging;
-	
-	int totalIndexPath;
-	
-	int FEV; NSMutableArray *arrayFEV;
-	int MAR; NSMutableArray *arrayMAR;
-	int ABR; NSMutableArray *arrayABR;
-	int MAI; NSMutableArray *arrayMAI;
-	int JUN; NSMutableArray *arrayJUN;
-	int JUL; NSMutableArray *arrayJUL;
-	int AGO; NSMutableArray *arrayAGO;
-	int SET; NSMutableArray *arraySET;
-	int OUT; NSMutableArray *arrayOUT;
-	int NOV; NSMutableArray *arrayNOV;
-	int DEZ; NSMutableArray *arrayDEZ;
-	
-	int backToBlack;
-	
-	NSMutableArray *arrayUpdate;
-	NSMutableArray *currentArray;
-	UIColor *bgColor;
-	
-	NSString *urlString;
+	UIImageView *updateImageView;
+	NSOperationQueue *queue;
+	UIActivityIndicatorView *spinner;
+	GVPlistPersistence *plistManager;
 	NSString *fileName;
-	
-	Reachability* internetReachable;
-	Reachability* hostReachable;
-	BOOL connected;
+	NSString *filePath;
+	NSString *urlString;
+	NSArray *userDefaults;
+	NSInteger id_serie;
 }
 @property (nonatomic, strong) NSString *table;
-@property (nonatomic, strong) NSString *urlString;
 @property (nonatomic, strong) NSString *fileName;
 @property (nonatomic, strong) NSString *title;
+@property (nonatomic) NSInteger id_serie;
 
 - (void) checkNetworkStatus:(NSNotification *)notice;
 - (void) viewWillArtificiallyAppear;

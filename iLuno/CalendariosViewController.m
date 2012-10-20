@@ -161,27 +161,27 @@
 			detailViewController.table = @"Cal9Ano";
 			detailViewController.fileName = @"Cal9Ano";
 			detailViewController.title = @"9º Ano";
-			detailViewController.urlString = @"http://www.iluno.com.br/plistgenerator/calendarios-generator.php?table=Cal9Ano";
+			detailViewController.id_serie = 1;
 			break;
 		case 1:
 			detailViewController.fileName = @"Cal1Serie";
 			detailViewController.title = @"1ª Série";
-			detailViewController.urlString = @"http://www.iluno.com.br/plistgenerator/calendarios-generator.php?table=Cal1Serie";
+			detailViewController.id_serie = 2;
 			break;
 		case 2:
 			detailViewController.fileName = @"Cal2Serie";
 			detailViewController.title = @"2ª Série";
-			detailViewController.urlString = @"http://www.iluno.com.br/plistgenerator/calendarios-generator.php?table=Cal2Serie";
+			detailViewController.id_serie = 3;
 			break;
 		case 3:
 			detailViewController.fileName = @"Cal3Serie";
 			detailViewController.title = @"3ª Série";
-			detailViewController.urlString = @"http://www.iluno.com.br/plistgenerator/calendarios-generator.php?table=Cal3Serie";
+			detailViewController.id_serie = 4;
 			break;
 		case 4:
 			detailViewController.fileName = @"CalExtensivo";
 			detailViewController.title = @"Extensivo";
-			detailViewController.urlString = @"http://www.iluno.com.br/plistgenerator/calendarios-generator.php?table=CalExtensivo";
+			detailViewController.id_serie = 5;
 			break;
 			
 		default:
@@ -199,32 +199,33 @@
 			detailViewController.table = @"Cal9Ano";
 			detailViewController.fileName = @"Cal9Ano";
 			detailViewController.title = @"9º Ano";
-			detailViewController.urlString = @"http://www.iluno.com.br/plistgenerator/calendarios-generator.php?table=Cal9Ano";
+			detailViewController.id_serie = 1;
 			break;
 		case 1:
 			detailViewController.fileName = @"Cal1Serie";
 			detailViewController.title = @"1ª Série";
-			detailViewController.urlString = @"http://www.iluno.com.br/plistgenerator/calendarios-generator.php?table=Cal1Serie";
+			detailViewController.id_serie = 2;
 			break;
 		case 2:
 			detailViewController.fileName = @"Cal2Serie";
 			detailViewController.title = @"2ª Série";
-			detailViewController.urlString = @"http://www.iluno.com.br/plistgenerator/calendarios-generator.php?table=Cal2Serie";
+			detailViewController.id_serie = 3;
 			break;
 		case 3:
 			detailViewController.fileName = @"Cal3Serie";
 			detailViewController.title = @"3ª Série";
-			detailViewController.urlString = @"http://www.iluno.com.br/plistgenerator/calendarios-generator.php?table=Cal3Serie";
+			detailViewController.id_serie = 4;
 			break;
 		case 4:
 			detailViewController.fileName = @"CalExtensivo";
 			detailViewController.title = @"Extensivo";
-			detailViewController.urlString = @"http://www.iluno.com.br/plistgenerator/calendarios-generator.php?table=CalExtensivo";
+			detailViewController.id_serie = 5;
 			break;
 			
 		default:
 			break;
 	}
+	
 	[self.navigationController pushViewController:detailViewController animated:YES];
 }
 
