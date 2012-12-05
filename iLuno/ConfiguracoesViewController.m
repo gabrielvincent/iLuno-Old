@@ -7,6 +7,7 @@
 //
 
 #import "ConfiguracoesViewController.h"
+#import "JSON.h"
 
 @interface ConfiguracoesViewController ()
 
@@ -87,6 +88,8 @@
 	NSURL *query;
 	NSArray *data;
 	NSString *table;
+	NSInteger id_serie;
+	NSString *fileName;
 	
 	for (int i = 0; i < 5; i++) {
 		NSString *dia;
@@ -118,12 +121,14 @@
 	
 	
 	// Baixa os Calendários
-	table = [[userDefaults objectAtIndex:0]objectForKey:@"CalendarioTable"];
-	query = [NSURL URLWithString:[NSString stringWithFormat:@"http://iluno.com.br/plistgenerator/calendarios-generator.php?table=%@", table]];
-	data = [NSArray arrayWithContentsOfURL:query];
+	fileName = [serieTextField.text stringByReplacingOccurrencesOfString:@"ª" withString:@""]; fileName = [fileName stringByReplacingOccurrencesOfString:@"º" withString:@""]; fileName = [fileName stringByReplacingOccurrencesOfString:@" " withString:@""]; fileName = [fileName stringByReplacingOccurrencesOfString:@"é" withString:@"e"]; fileName = [NSString stringWithFormat:@"Cal%@", fileName];
+	id_serie = [[[userDefaults objectAtIndex:0]objectForKey:@"ID"] integerValue];
+	query = [NSURL URLWithString:[NSString stringWithFormat:CalendariosURL, id_serie]];
+	NSString *jsonString = [NSString stringWithContentsOfURL:query encoding:NSUTF8StringEncoding error:nil];
+	data = [jsonString JSONValue];
 	
-	[data writeToFile:[[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist", table]] atomically:YES];
-	[self performSelectorOnMainThread:@selector(setProgressViewProgressWithCurrentFile:) withObject:[NSString stringWithFormat:@"%@", table] waitUntilDone:YES];
+	[data writeToFile:[[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist", fileName]] atomically:YES];
+	[self performSelectorOnMainThread:@selector(setProgressViewProgressWithCurrentFile:) withObject:[NSString stringWithFormat:@"%@", fileName] waitUntilDone:YES];
 	
 }
 
@@ -294,18 +299,19 @@
 		NSString *unidade;
 		NSString *serie;
 		NSString *turma;
-		NSString *calendarioTable;
+		NSNumber *serie_id;
 		NSString *horarioTable;
 		NSString *monitoriaTable;
 		
 		unidade = [unidadeTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
 		serie = [serieTextField.text stringByReplacingOccurrencesOfString:@"ª" withString:@""]; serie = [serie stringByReplacingOccurrencesOfString:@"º" withString:@""]; serie = [serie stringByReplacingOccurrencesOfString:@" " withString:@""]; serie = [serie stringByReplacingOccurrencesOfString:@"é" withString:@"e"];
 		turma = [turmaTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""]; turma = [turma stringByReplacingOccurrencesOfString:@"ã" withString:@"a"]; turma = [turma stringByReplacingOccurrencesOfString:@"Abelha" withString:@"A"]; turma = [turma stringByReplacingOccurrencesOfString:@"/" withString:@""]; turma = [turma stringByReplacingOccurrencesOfString:@"Zangao" withString:@"Z"];
-		calendarioTable = [NSString stringWithFormat:@"Cal%@", serie];
 		horarioTable = [NSString stringWithFormat:@"%@%@%@", serie, turma, unidade];
 		monitoriaTable = [NSString stringWithFormat:@"Monitoria%@", unidade];
 		
-		NSLog(@"Turma: %@", turma);
+		NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"SeriesData" ofType:@"plist"];
+		NSArray *arraySeries = [NSArray arrayWithContentsOfFile:plistPath];
+		serie_id = [[arraySeries objectAtIndex:3] objectForKey:serieTextField.text];
 		
 		dataArray = [NSMutableArray arrayWithArray:[plistManager databaseWithName:@"UserDefaults"]];
 		if (dataArray.count == 0) {
@@ -316,7 +322,7 @@
 			[dict setValue:unidade forKey:@"Unidade"];
 			[dict setValue:serie forKey:@"Serie"];
 			[dict setValue:turma forKey:@"Turma"];
-			[dict setValue:calendarioTable forKey:@"CalendarioTable"];
+			[dict setValue:serie_id forKey:@"ID"];
 			[dict setValue:horarioTable forKey:@"HorarioTable"];
 			[dict setValue:monitoriaTable forKey:@"MonitoriaTable"];
 			[dict setValue:serieTextField.text forKey:@"SerieLabel"];
@@ -330,7 +336,7 @@
 			[plistManager setValue:unidade ForKey:@"Unidade" ForEntryAtIndex:0 InDatabase:@"UserDefaults"];
 			[plistManager setValue:serie ForKey:@"Serie" ForEntryAtIndex:0 InDatabase:@"UserDefaults"];
 			[plistManager setValue:turma ForKey:@"Turma" ForEntryAtIndex:0 InDatabase:@"UserDefaults"];
-			[plistManager setValue:calendarioTable ForKey:@"CalendarioTable" ForEntryAtIndex:0 InDatabase:@"UserDefaults"];
+			[plistManager setValue:serie_id ForKey:@"ID" ForEntryAtIndex:0 InDatabase:@"UserDefaults"];
 			[plistManager setValue:horarioTable ForKey:@"HorarioTable" ForEntryAtIndex:0 InDatabase:@"UserDefaults"];
 			[plistManager setValue:monitoriaTable ForKey:@"MonitoriaTable" ForEntryAtIndex:0 InDatabase:@"UserDefaults"];
 			[plistManager setValue:serieTextField.text ForKey:@"SerieLabel" ForEntryAtIndex:0 InDatabase:@"UserDefaults"];

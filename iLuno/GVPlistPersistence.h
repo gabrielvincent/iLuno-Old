@@ -22,8 +22,8 @@
 - (void) addValue:(NSString *)value ForKey:(NSString *)key ForEntryAtIndex:(NSInteger)index ToDatabase: (NSString *) fileName;
 - (void) removeEntryAtIndex:(NSInteger) index FromDatabase:(NSString *) fileName;
 - (NSString *) valueOfKey:(NSString *) key ForEntryAtIndex:(NSInteger) index FromDatabase:(NSString *)fileName;
-- (void) setValue:(NSString *) value ForKey:(NSString *) key ForEntryAtIndex:(NSInteger) index InDatabase:(NSString *) fileName;
-- (void) setValue:(NSString *)value ForKey:(NSString *)key ForAllEntriesInDatabase:(NSString *) fileName;
+- (void) setValue:(id)value ForKey:(NSString *) key ForEntryAtIndex:(NSInteger) index InDatabase:(NSString *) fileName;
+- (void) setValue:(id)value ForKey:(NSString *)key ForAllEntriesInDatabase:(NSString *) fileName;
 - (NSInteger) countEntriesInDatabase:(NSString *) fileName;
 - (void) removeDatabase:(NSString *) fileName;
 - (void) overwriteDatabase:(NSString *)fileName WithArray:(NSMutableArray *)arrayToOverwrite;

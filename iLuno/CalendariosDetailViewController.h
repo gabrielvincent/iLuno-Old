@@ -34,7 +34,6 @@
 	NSArray *userDefaults;
 	NSInteger id_serie;
 }
-@property (nonatomic, strong) NSString *table;
 @property (nonatomic, strong) NSString *fileName;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic) NSInteger id_serie;

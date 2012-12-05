@@ -222,7 +222,7 @@
 	return [NSArray arrayWithArray:newArray];
 }
 
-- (void) setValue:(NSString *) value ForKey:(NSString *) key ForEntryAtIndex:(NSInteger) index InDatabase:(NSString *) fileName {
+- (void) setValue:(id)value ForKey:(NSString *) key ForEntryAtIndex:(NSInteger) index InDatabase:(NSString *) fileName {
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSMutableArray *arrayLoaded = [[NSMutableArray alloc] init];
 	arrayLoaded = [NSMutableArray arrayWithArray:[self databaseWithName:fileName]];
@@ -232,7 +232,7 @@
 	[arrayLoaded writeToFile:[[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist", fileName]] atomically:YES];
 }
 
-- (void) setValue:(NSString *)value ForKey:(NSString *)key ForAllEntriesInDatabase:(NSString *) fileName {
+- (void) setValue:(id)value ForKey:(NSString *)key ForAllEntriesInDatabase:(NSString *) fileName {
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSMutableArray *arrayLoaded = [[NSMutableArray alloc] init];
 	arrayLoaded = [NSMutableArray arrayWithArray:[self databaseWithName:fileName]];

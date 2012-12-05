@@ -47,5 +47,17 @@
 			<string>Tarde/Noite</string>
 		</array>
 	</dict>
+	<dict>
+		<key>9º Ano</key>
+		<integer>1</integer>
+		<key>1ª Série</key>
+		<integer>2</integer>
+		<key>2ª Série</key>
+		<integer>3</integer>
+		<key>3ª Série</key>
+		<integer>4</integer>
+		<key>Extensivo</key>
+		<integer>5</integer>
+	</dict>
 </array>
 </plist>

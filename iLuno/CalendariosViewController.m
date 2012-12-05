@@ -158,7 +158,6 @@
 	
 	switch (indexPath) {
 		case 0:
-			detailViewController.table = @"Cal9Ano";
 			detailViewController.fileName = @"Cal9Ano";
 			detailViewController.title = @"9º Ano";
 			detailViewController.id_serie = 1;
@@ -196,7 +195,6 @@
 	
 	switch (indexPath.row) {
 		case 0:
-			detailViewController.table = @"Cal9Ano";
 			detailViewController.fileName = @"Cal9Ano";
 			detailViewController.title = @"9º Ano";
 			detailViewController.id_serie = 1;

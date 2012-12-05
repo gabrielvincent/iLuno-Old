@@ -24,7 +24,7 @@
 #import "JSON.h"
 
 @implementation CalendariosDetailViewController
-@synthesize fileName, title, table, id_serie;
+@synthesize fileName, title, id_serie;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
